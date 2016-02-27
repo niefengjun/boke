@@ -19,6 +19,7 @@
     "request": "^2.69.0",
     "serve-favicon": "~2.3.0",
     "stylus": "^0.53.0",
+    "ueditor": "^1.1.1",
     "xml2js": "^0.4.16"
   }
 }

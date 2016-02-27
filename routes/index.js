@@ -6,6 +6,6 @@ var pageBlog = require('../lib/pageBlog.js');
 router.get('/', pageLogin.index);
 router.get('/admin', pageLogin.index);
 router.get('/Login/', pageLogin.login);
-router.get('/admin/blog/',pageBlog.index) ;
+router.all('/admin/blog/',pageBlog.index) ;
 
 module.exports = router;
