@@ -7,5 +7,16 @@
 out
 gen
 # Created by .ignore support plugin (hsz.mobi)
-node_modules
-.idea
+/logs
+Debug/
+Release/
+logs/
+obj/
+/db/
+.idea/
+.idea/
+/node_modules/
+.DS_Store
+/test/
+/public/blog/
+tingyun_agent.log
