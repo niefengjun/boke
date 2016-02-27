@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/admin/style/global.css" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jQuery.md5.js"></script>
+    <script src="/js/common.js"></script>
+    <style type="text/css">
+        body {background:#fff;}
+        .g-header {padding-left:100px;}
+    </style>
+
+    <script>
+        function login() {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            if (username.length == 0) {
+                alert('请输入用户名');
+                return false;
+            }
+            if (password.length == 0) {
+                alert('请输入密码');
+                return false;
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "/Login/",
+                data: "p=" + $.md5(password) + "&u=" + username + "&time=" + new Date(),
+                success: function (result) {
+                    if (result == "1") {
+
+                        window.location.href = "/admin/blog/?ajax=list"
+                        return false;
+                    }
+                    else {
+                        alert('登陆失败');
+                        return false;
+
+                    }
+                }
+            });
+
+        }
+        document.onkeydown = function (e) {
+            if (!e) e = window.event;
+            if ((e.keyCode || e.which) == 13) {
+                $(".btn").click();
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="g-header clearfix">
+    <a href="#2" class="left logo" title="首页"></a>
+</div>
+
+<div class="login">
+    <div class="login-logo"> <img src="/css/log.png" /></div>
+
+    <div class="form login-form">
+
+            <div class="form-item">
+                <div class="form-txt">用户名:</div>
+                <div class="field-wrap"><input type="text"  id="username" placeholder="请输入登录名" /></div>
+            </div>
+
+            <div class="form-item">
+                <div class="form-txt">密码:</div>
+                <div class="field-wrap"><input id="password"  type="password" placeholder="请输入密码" /></div>
+            </div>
+
+            <div class="btn-set clearfix">
+                <button type="submit" class="left btn" onclick="login()" >登 录</button>
+            </div>
+
+
+    </div>
+</div>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+.time{ overflow:hidden; position:absolute; z-index:10; width:90%; left:5%;}
+.time_left{ float:left; font-size:14px; line-height:50px;}
+.time_rig{ float:right; padding-top:10px;}
+.time_rig_n{ font-size:18px; margin-right:5px;}
+table{ width:90%; margin:0 auto; margin-top:20px;}
+tr { height:30px;}
+td{ text-align:center;}
+.spa{ display:table; margin:0 auto; font-size:20px; display:inline-block; line-height:30px; position:relative; left:50%; margin-left:-255px;}
+.bag{ background:#ddd;}

@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('./app');
 var debug = require('debug')('niefengjunboke:server');
 var http = require('http');
 
@@ -25,7 +25,15 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, '127.0.0.1', function (err, restult) {
+      if (!err) {
+        console.log('niefengjunblog服务器启动', app.get('port'))
+      }
+      else {
+        console.log('niefengjunblog服务器启动 出错', err, app.get('port'))
+      }
+    }
+);
 server.on('error', onError);
 server.on('listening', onListening);
 

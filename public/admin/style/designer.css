@@ -1,0 +1,10 @@
+.dlg-designer .description {height:145px;}
+.designer-aside {position:relative;}
+.designer-aside, .designer-aside img {width:145px; height:145px;}
+.designer-profile {font-size:0;}
+.designer-aside .icon-download {left:5px; background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeNqMkFEKACAIQ514/ysvggpZJu1LphsPQdJE00A23D4UK7kFaTxHutQAo0qmGcqER9MFjirgDYspOLsXDAEGADUnChoeVkRFAAAAAElFTkSuQmCC);}
+.designer-main {width:475px;}
+.icon-wrap .icon {position:absolute; top:5px; width:19px; height:19px; border-radius:2px; background-color:rgba(0,0,0,0.2); background-repeat:no-repeat; background-position:center center;}
+.icon-wrap .icon-delete {right:5px; background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADdJREFUeNpkjUEKADAMwtT//9ltUIo4bzbB0jcAiD/WADd4d01JYZcUNhM0dL9QT6WgnkrhCDAActAQCugutDEAAAAASUVORK5CYII=);}
+.icon-wrap .icon:hover {background-color:rgba(0,0,0,0.5);}
+.designer-aside .icon-download {left:5px; background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeNqMkFEKACAIQ514/ysvggpZJu1LphsPQdJE00A23D4UK7kFaTxHutQAo0qmGcqER9MFjirgDYspOLsXDAEGADUnChoeVkRFAAAAAElFTkSuQmCC);}

@@ -1,0 +1,160 @@
+<% include ./top.html %>
+<% include ./left.html %>
+
+<div class="left g-main">
+    <div class="crumb"><em>博客列表</em></div>
+    <div class="g-mod clearfix">
+        <div class="left search">
+            <!--<select id="sltType" class="left">-->
+            <!--<select id="sltCat" class="left">-->
+            <!--<select id="sltIsSdk" class="left">-->
+            <div class="left field-wrap">
+            </div>
+            <div class="right header-tools left">
+            </div>
+        </div>
+    </div>
+    <table class="g-mod list">
+        <thead>
+        <tr>
+            <th width="100">发布时间</th>
+            <th width="100">栏目</th>
+            <th width="100">博客标题</th>
+            <th width="100">作者</th>
+            <th width="160">阅读</th>
+            <th width="160">操作</th>
+        </tr>
+        </thead>
+
+        <tbody id="ajaxDataList">
+        </tbody>
+        <tbody id="ajaxDataLoading" style="display: none">
+        <tr>
+            <td colspan="8">
+                <img src="/admin/images/loading.gif">
+                数据加载中...
+            </td>
+        </tr>
+        </tbody>
+        </tbody>
+    </table>
+    <div class="list-ft clearfix">
+        <div class="right">
+            <div class="page clearfix">
+                <div class="left page-bd" id="ajaxPageInfo">
+                    <!--<span>首页</span> <span>上页</span> <em>1</em> <a href="#2">2</a> <a href="#2">3</a> <a href="#2">4</a> <a href="#2">5</a> <span>…</span> <a href="#2">16</a> <a href="#2">下页</a> <a href="#2">末页</a>-->
+                </div>
+                <span class="left">每页显示</span>
+                <select id="sltPage" class="left">
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../js/jQuery.md5.js"></script>
+
+
+<script type="text/javascript" src="/admin/js/pageCommon.js"></script>
+
+<script>
+    var _PageSize = 15;
+
+    $(function () {
+        $('#btnSubmit').click(function () {
+            _CurrentPage = 1;
+            ajaxGetList(true);
+        });
+        ajaxGetList(true);
+    })
+
+    function ajaxGetList(GetPageInfo) {
+        _PageSize = $('#sltPage').val();
+        $('#ajaxDataList').hide();
+        $('#ajaxDataLoading').show();
+        $.ajax({
+            type: "GET",
+            url: "/admin/blog/",
+            data: "ajax=pagePageInfo&pageSize=" + _PageSize + '&currentPage=' + _CurrentPage
+            + "&time=" + new Date(),
+            dataType: 'JSON',
+            success: function (result) {
+
+                if (GetPageInfo) {
+                    pageInfoDisplay(result['pageInfo']);
+                }
+
+                var html = "";
+                if (result.pageData.length > 0) {
+                    var items = result['pageData'];
+
+
+                    for (var i = 0; i < items.length; i++) {
+                        html += '<tr>';
+                        html += '<td>' + items[i].created + '</td>';
+                        if (items[i].column) {
+                            html += '<td>' + items[i].column + '</td>';
+                        }
+                        else {
+                            html += '<td>未分配</td>';
+                        }
+
+                        html += '<td>' + items[i].title + '</td>';
+                        html += '<td>' + items[i].create_username + '</td>';
+                        html += '<td>' + items[i].yuedu + '</td>';
+                        html += '<td><a href=/admin/blog/?ajax=edit&id=' + items[i]._id + '>编辑</a>&nbsp;&nbsp;';
+                        html += "<a href=#  onclick=\"return delnews('" + items[i]._id + "')\" >删除</a></td>";
+                        // html+='<td><a href=/setting/RoleSet/?id='+$.parseJSON(items[i])._id+'&name='+escape($.parseJSON(items[i]).rolename)+'>设置权限</td>';
+
+                        html += '</tr>';
+
+                    }
+                } else {
+                    html = "<tr><td colspan='7'>未找到任何数据</td></tr>";
+                }
+                $('#ajaxDataList').html(html);
+                $('#ajaxDataList').show();
+                $('#ajaxDataLoading').hide();
+            }
+        });
+    }
+
+    function delnews(id) {
+        if (confirm("确认要删除？")) {
+            $.ajax({
+                type: "get",
+                url: "/admin/blog/",
+                data: "ajax=blogDel&id=" + id + "&time=" + new Date(),
+                success: function (result) {
+                    if (result) {
+                        alert('删除成功');
+                        ajaxGetList(true);
+                    }
+                    else {
+                        alert('删除失败' + result);
+                    }
+                }
+            });
+        }
+    }
+
+
+    function showModal(uuid) {
+        $.fancybox({
+            'autoScale': true,
+            'showNavArrows': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'scrolling': false,
+            'hideOnOverlayClick': false,
+            'type': 'iframe',
+            'width': 750,
+            'height': 550,
+            'href': '../channel/auth/' + uuid
+
+        });
+    }
+
+</script>

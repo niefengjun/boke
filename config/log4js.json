@@ -1,0 +1,12 @@
+{"appenders": [
+  {
+    "type": "console"
+  },
+  {
+    "type": "dateFile",
+    "filename": "../logs/niefengjun/date.log",
+    "pattern": "-yyyy-MM-dd"
+  }
+],"replaceConsole": true
+}
+

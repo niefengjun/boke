@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>聂峰军笔记</title>
+
+    <meta name="domain_verify" content="pmrgi33nmfuw4ir2ejxgszlgmvxgo2tvnyxgg3rcfqrgo5ljmqrduirumzswcojuguztkmzzg42dgzbyme3dgnbzga3dsyjumjqwczbvgercyitunfwwku3bozsseorrgq2temjvhe2tknbygmyh2">
+    <script>
+
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fav and touch icons -->
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <meta name="baidu-site-verification" content="DKeT9f5wc4" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+
+    <meta content="聂峰军,聂峰军个人博客,nodejs,nodejs.cc,爱好编程,崇尚复杂的事情简单化,专注于web开发,网站建设优化,linux编程,努力做一个架构师" name="keywords">
+    <meta name="description" content="聂峰军,聂峰军个人博客,nodejs,nodejs.cc,爱好编程,崇尚复杂的事情简单化,专注于web开发,网站建设优化,linux编程,努力做一个架构师">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn">
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <%-classname%>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li class="active">搜索页面 只显示最新的100条搜索结果</li>
+
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8 col-md-8">
+
+                    <div id="ajaxDataList">
+
+                        <% if(paginate&&paginate.items.length > 0)
+                        {
+                        var items =paginate.items;
+                        for (var i = 0; i < items.length; i++) {
+                        %>
+                        <article class="post">
+                            <div class="post_header">
+                                <h1 class="post_title">
+                                    <a href="/blog/<%-items[i]._id%>.html"><%-items[i].title%></a>
+                                </h1>
+
+                                <div class="post_sub"><i class="fa-time"></i><%-items[i].created%>
+                                    <div class="post_sub"><i class="fa-time"></i></div>
+                                </div>
+
+                                <div class="post_content">
+                                    <% if (items[i].content && items[i].content.length > 300) {
+                                    %>
+                                    <%-items[i].content.substr(0, 300)%>   .....
+                                    <%
+                                    }
+                                    else {
+                                    %>
+                                    <%-items[i].content%>
+                                    <%
+                                    }
+                                    %>
+                                </div>
+
+                                <div>
+                                    <a class="post-read-more" href="blog/<%-items[i]._id %>.html">阅读全文»</a>
+                                </div>
+
+                        </article>
+
+
+                        <%
+                        }
+                        }%>
+
+
+                    </div>
+
+
+
+
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+
+                    <aside class="widget">
+
+
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>最新文章</h4>
+                        <%-listli%>
+                    </aside>
+
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <div   style="text-align:left;display: none" id="shouji">
+
+        </div>
+        <div   style="text-align:left;display: none" id="pc">
+
+            <script type="text/javascript">
+                var sogou_ad_id=526263;
+                var sogou_ad_height=60;
+                var sogou_ad_width=468;
+            </script>
+            <script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+
+        </div>
+
+        <script>
+
+            $(function(){
+                if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                    $('#shouji').show() ;
+                }
+                else
+                {
+                    $('#pc').show() ;
+                }
+            })
+        </script>
+
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row info">
+                <div class="col-sm-6 residence">
+
+                </div>
+                <div class="col-sm-5 touch">
+
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2015 all rights reserved<a  target="_blank">聂峰军笔记</a>
+                        </div>
+                        <a href="https://coding.net/u/niefengjun/p/keqingblog/git" target="_blank">
+                            开源地址
+                        </a>
+                        <br/>
+                        <!--<a href="/rss" target="_blank">-->
+                        <!--rss订阅-->
+                        <!--</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"2","bdPos":"right","bdTop":"100"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+
+</body>
+</html>

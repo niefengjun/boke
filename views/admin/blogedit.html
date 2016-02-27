@@ -1,0 +1,139 @@
+<%= include ./top.html %>
+<% include ./left.html %>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
+<script language="javascript" type="text/javascript" src="/My97/WdatePicker.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="left g-main">
+    <div class="crumb"><a href="#2">博客管理</a> / <a href="#2">编辑博客</a></div>
+
+    <div class="g-mod">
+        <h2 class="section-hd"><em>编辑博客</em></h2>
+
+        <div class="section-bd">
+            <div class="form-item">
+                <div class="form-txt">博客名称</div>
+                <div class="field-wrap">
+                    <input type="text" id='txtName' placeholder="最多40个字符">
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="form-txt">栏目</div>
+                <div class="field-wrap">
+                    <select name="column" id="column" class="xla_k">
+                        <option value="0">请选择</option>
+                        <option value="nodejs">nodejs</option>
+                        <option value="demo">demo</option>
+                        <option value="life">生活</option>
+                        <option value="reprint">转载</option>
+                        <option value="Other">其他</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="form-txt">发布时间</div>
+                <div class="field-wrap">
+                    <input type="text" id='texttime' placeholder="文章发布时间" onFocus="WdatePicker({startDate:'%y-%M-01 19:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})">
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="form-item-hd clearfix">
+                    <div class="left form-txt">博客内容</div>
+                    <div class="right form-tip">
+                        还可以输入
+                        <em>400</em>
+                        个字符
+                    </div>
+                </div>
+                <div class="field-wrap">
+                    <script id="editor" type="text/plain" style="width:950px;height:500px;"></script>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="btn-set clearfix">
+            <button class="left btn" type="submit" onclick="return enditnews() ;"><strong>编辑博客</strong></button>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    var ret = UE.getEditor('editor');
+    var id = '<%-id%>';
+
+
+    function newsedit() {
+
+        $.ajax({
+            type: "get",
+            url: "/admin/blog/",
+            data: "ajax=bloginfo&id=" + id + "&time=" + new Date(),
+            success: function (result) {
+                var info = result;
+                $('#txtName').val(info.title);
+                if (info.column) {
+
+                    $("#column").val(info.column);
+                }
+                $('#texttime').val(info.created);
+                var cons = info.content;
+                ret.ready(function() {
+                    ret.setContent(cons);
+                });
+//                ret.addListener("ready", function () {
+//                    UE.getEditor('editor').setContent(cons, true);
+//                });
+            }
+        });
+
+
+    }
+
+    newsedit();
+
+
+    function enditnews() {
+        var title = $("#txtName").val();
+        var c = UE.getEditor('editor').getContent();
+        var column = $("#column").val();
+        var texttime=$('#texttime').val();
+        if (title.trim().length == 0) {
+            alert("请输入新闻标题");
+            return false;
+        }
+        if(column==0)
+        {
+            alert("请选择栏目");
+            return false;
+        }
+        if (c == null) {
+            alert("请输入新闻内容");
+            return false;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/admin/blog/",
+            data: "ajax=blogedit&t=" + title+'&texttime='+texttime+"&column="+column+  "&id=" + id + "&c=" + escape(c) + "&time=" + new Date(),
+            success: function (result) {
+                alert(result);
+                window.location.href = "/admin/blog/?ajax=list";
+            }
+        });texttime
+
+
+    }
+
+</script>
