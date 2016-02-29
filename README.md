@@ -110,12 +110,4 @@ app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, r
     }
 }));
 
-三、正式写项目了
 
-首先，项目分为两个部分：前台和后台
-
-先写后台:
-
-后台管理 功能：管理员登陆、博文的增删改查 遇到的问题，req.query,req.params,req.param,req.body的使用场景 用的Nedb对nosql的不熟悉
-
-前台 前台页面 都是由后台生成静态页面的，
