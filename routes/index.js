@@ -8,7 +8,7 @@ var pageIndex = require('../lib/pageIndex.js');
 router.get('/',pageIndex.index) ;
 //router.get('/search',pageSeach.index) ;
 // app.get('/sogousiteverification.txt',pageblogindex.baidu) ;
-router.get('/page_:page.html',pageIndex.index) ;
+//router.get('/page_:page.html',pageIndex.index) ;
 
 router.get('/admin', pageLogin.index);
 router.get('/Login/', pageLogin.login);
