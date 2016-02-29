@@ -112,7 +112,7 @@ app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, r
 
 # 捐赠
 
-![捐赠wechat](www.niefengjun.cn/images/weixin.png)
+![捐赠聂峰军笔记 微信方式](http://www.niefengjun.cn/images/weixin.png)
 
 
 
