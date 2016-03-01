@@ -88,6 +88,12 @@ app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, r
 app.use(function(req, res, next) {
     res.render('404');
 });
+
+/*
+
+ */
+
+
 var log4js = require('log4js');
 log4js.configure('config/log4js.json');
 global.logger = log4js.getLogger();
