@@ -20,6 +20,9 @@
     "serve-favicon": "~2.3.0",
     "stylus": "^0.53.0",
     "ueditor": "^1.1.1",
+    "wechat": "^2.0.3",
+    "wechat-api": "^1.25.1",
+    "wechat-oauth": "^1.1.1",
     "xml2js": "^0.4.16"
   }
 }

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var routes = require('./routes/index');
+var weixin = require('./routes/weixin.js');
 var ueditor = require("ueditor");
 
 var app = express();
@@ -29,6 +30,7 @@ app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
 app.use('/', routes);
+app.use('/weixin',weixin);
 
 app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     // ueditor 客户发起上传图片请求
