@@ -28,9 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
-
+app.use('/weixin/',weixin);
 app.use('/', routes);
-app.use('/weixin',weixin);
+
 
 app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     // ueditor 客户发起上传图片请求
