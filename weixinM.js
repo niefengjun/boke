@@ -1,12 +1,12 @@
 
 
 
-var API = require('wechat-api').API;
+var API = require('wechat-api');
 /*
  测试号菜单
  */
 
-var api = new API("wxe01b23fa51508d70","b3e0ffbe949b5b28c4aef2c72323efec");
+var api = new API("wx5cf362bf73906352","7557e541b12836e4af8a34210206d85c");
 
 
 function postmenu(callback) {
@@ -17,12 +17,12 @@ function postmenu(callback) {
             {
                 "name": "首页",
                 "type": "view",
-                "url": "http://www.niefengjun.cn/getauthorizeurl/niefengjun/?url=/index"
+                "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/index"
             },
             {
-                "name": "预约",
+                "name": "nodejs",
                 "type": "view",
-                "url": "http://www.niefengjun.cn/getauthorizeurl/niefengjun/?url=/nodejs/"
+                "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/category/nodejs.html/"
             },
 
 
@@ -34,22 +34,19 @@ function postmenu(callback) {
 
                 "sub_button": [
 
-                    {
-                        "type": "view",
-                        "name": "个人中心",
-                        "url": "http://pay-test.jiankangdoctor.com/getauthorizeurl/shoudaotest/?url=/wode/"
-                    },
 
                     {
                         "type": "view",
-                        "name": "我是技师",
-                        "url": "http://pay-test.jiankangdoctor.com/getauthorizeurl/shoudaotest/?url=http://jishi-test.jiankangdoctor.com/login/2/"
-                    }
-                    , {
+                        "name": "测试",
+                        "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/test/"
+                    },
+                    {
                         "type": "view",
-                        "name": "我是店长",
-                        "url": "http://pay-test.jiankangdoctor.com/getauthorizeurl/shoudaotest/?url=http://jishi-test.jiankangdoctor.com/login/1/"
-                    }
+                        "name": "nodejs",
+                        "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/category/nodejs.html/"
+                    },
+
+
                 ]
             }
 
