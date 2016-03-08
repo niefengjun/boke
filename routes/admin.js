@@ -7,7 +7,11 @@ var pagecategory = require('../lib/pagecategory.js');
 var pageSeach = require('../lib/pageSeach.js');
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('test') ;
+    res.render('') ;
+});
+
+router.get('/index', function (req, res) {
+    res.render('manager/index') ;
 });
 
 module.exports = router;

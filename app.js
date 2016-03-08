@@ -9,6 +9,7 @@ var ejs = require('ejs');
 var routes = require('./routes/index');
 var weixin = require('./routes/weixin.js');
 var test = require('./routes/test.js');
+var admin = require('./routes/admin.js');
 var ueditor = require("ueditor");
 
 var app = express();
@@ -32,6 +33,7 @@ app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 app.use('/weixin/',weixin);
 app.use('/test', test);
+app.use('/manager',admin);
 app.use('/', routes);
 
 
