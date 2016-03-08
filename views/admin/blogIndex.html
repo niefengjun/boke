@@ -73,6 +73,15 @@
 <script>
     UE.getEditor('editor');
 
+
+
+    function URLencode(sStr)
+    {
+
+        return escape(sStr).replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27').replace(/\//g,'%2F');
+
+    }
+
     function Addnews() {
         var title = $("#txtName").val();
         var column = $("#column").val();
@@ -93,10 +102,12 @@
         }
 
 
+
+
         $.ajax({
             type: "post",
             url: "/admin/blog/",
-            data: "ajax=add&t=" + escape(title) +"&texttime="+texttime+ "&c=" + escape(c) +"&column="+column+ "&time=" + new Date(),
+            data: "ajax=add&t=" + escape(URLencode(title)) +"&texttime="+texttime+ "&c=" + escape(URLencode(c)) +"&column="+column+ "&time=" + new Date(),
             success: function (result) {
                 if (result != 0) {
                     alert('添加成功');

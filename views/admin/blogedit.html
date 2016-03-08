@@ -123,10 +123,17 @@
             return false;
         }
 
+
+        function URLencode(sStr)
+        {
+
+            return escape(sStr).replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27').replace(/\//g,'%2F');
+
+        }
         $.ajax({
             type: "post",
             url: "/admin/blog/",
-            data: "ajax=blogedit&t=" + title+'&texttime='+texttime+"&column="+column+  "&id=" + id + "&c=" + escape(c) + "&time=" + new Date(),
+            data: "ajax=blogedit&t=" + URLencode(title)+'&texttime='+URLencode(texttime)+"&column="+URLencode(column)+  "&id=" + id + "&c=" + escape(c) + "&time=" + new Date(),
             success: function (result) {
                 alert(result);
                 window.location.href = "/admin/blog/?ajax=list";
