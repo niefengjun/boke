@@ -23,6 +23,7 @@
     "wechat": "^2.0.3",
     "wechat-api": "^1.25.1",
     "wechat-oauth": "^1.1.1",
-    "xml2js": "^0.4.16"
+    "xml2js": "^0.4.16",
+    "youzan-sdk": "0.0.4"
   }
 }
