@@ -17,12 +17,12 @@ function postmenu(callback) {
             {
                 "name": "首页",
                 "type": "view",
-                "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/index"
+                "url": "http://yikeshu.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/index"
             },
             {
-                "name": "nodejs",
+                "name": "兑换中心",
                 "type": "view",
-                "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/category/nodejs.html/"
+                "url": "http://yikeshu.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/duihuan/"
             },
 
 
@@ -40,11 +40,11 @@ function postmenu(callback) {
                         "name": "测试",
                         "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/test/"
                     },
-                    {
-                        "type": "view",
-                        "name": "nodejs",
-                        "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/category/nodejs.html/"
-                    },
+                    //{
+                    //    "type": "view",
+                    //    "name": "nodejs",
+                    //    "url": "http://www.niefengjun.cn/weixin/getauthorizeurl/niefengjun/?url=/category/nodejs.html/"
+                    //},
 
 
                 ]

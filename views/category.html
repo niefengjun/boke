@@ -132,15 +132,15 @@
                             <li><a href='/category/<%-category%>/<%-paginate.page-2 %>.html'><%= paginate.page-2 %></a></li>
                             <li><a href='/category/<%-category%>/<%-paginate.page-1 %>.html'><%= paginate.page-1 %></a></li>
                             <% if(paginate.page!==paginate.pages){ %>
-                            <li class='disabled'><a href='#'><%= paginate.page %></a></li>
+                            <li class='disabled'><a href='/category/<%-category%>/page_<%-paginate.page%>.html'><%=paginate.page%></a></li>
                             <% } %>
 
                             <%} else {%>
                             <%for (i = 1; i <= paginate.page; i++) {%>
                             <%if (i === paginate.page) {%>
-                            <li class='disabled'><a href='#'><%= i %></a></li>
+                            <li class='disabled'><a href='/category/<%-category%>/page_<%-i%>.html'><%=i%></a></li>
                             <%} else {%>
-                            <li><a href='/page_<%-i %>.html'><%= i %></a></li>
+                            <li><a href='/category/<%-category%>/page_<%-i%>.html'><%=i%></a></li>
                             <%}%>
                             <%}%>
                             <%}%>
@@ -151,27 +151,27 @@
                             <li><a href='/category/<%-category%>/<%-paginate.page+2 %>.html'><%= paginate.page+2 %></a></li>
                             <%}%>
                             <%if (paginate.pages - paginate.page > 3) {%>
-                            <li class='disabled'><a href='#'>…</a></li>
+                            <li class='disabled'><a href='/category/<%-category%>/<%-paginate.pages-3 %>.html'>…</a></li>
                             <%}%>
                             <%}%>
 
                             <%if (paginate.page === paginate.pages) {%>
-                            <li class='disabled'><a href='#'><%= paginate.pages %></a></li>
+                            <li ><a href='/category/<%-category%>/<%-paginate.pages+3%>.html'><%= paginate.pages %></a></li>
                             <%} else {%>
-                            <li><a href=''><%= paginate.pages %></a></li>
+                            <li><a href='/category/<%-category%>/<%-paginate.pages %>.html'><%= paginate.pages %></a></li>
                             <%}%>
                             <%} else {%>
                             <% for (i = 1; i <= paginate.pages; i++){ %>
                             <%if (i === paginate.page){ %>
-                            <li class='disabled'><a href='#'><%= i %></a></li>
+                            <li class='disabled'><a href='/category/<%-category%>/<%-i%>.html'><%=i%></a></li>
                             <%} else {%>
-                            <li><a href='/category/<%-category%>/<%-i%>.html'><%= i %></a></li>
+                            <li><a href='/category/<%-category%>/<%-i%>.html'><%=i%></a></li>
                             <%}%>
                             <%}%>
                             <%}%>
                             <!--后-->
                             <% if(paginate.page===paginate.pages){ %>
-                            <li class='disabled'><a href='#'>&raquo;</a></li>
+                            <!--<li class='disabled'><a href='#'>&raquo;</a></li>-->
                             <%} else {%>
                             <li><a href='' title='末页'>&raquo;</a></li>
                             <% } %>
