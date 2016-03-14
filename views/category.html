@@ -171,9 +171,9 @@
                             <%}%>
                             <!--后-->
                             <% if(paginate.page===paginate.pages){ %>
-                            <!--<li class='disabled'><a href='#'>&raquo;</a></li>-->
+                            <li class='disabled'><a href='#'>&raquo;</a></li>
                             <%} else {%>
-                            <li><a <a href='/category/<%-category%>/<%-paginate.pages %>.html' title='末页'>&raquo;</a></li>
+                            <li><a  href='/category/<%-category%>/<%-paginate.pages%>.html' title='末页'>&raquo;</></li>
                             <% } %>
                             <%} else {%>
                             <li class='disabled'><a href='#'>&laquo;</a></li>
