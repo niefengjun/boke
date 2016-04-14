@@ -29,9 +29,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
-app.use(bodyParser.json({ "limit":"80000kb"}));
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({ "limit":"80mb"}));
+//app.use(express.json({limit: '50mb'}));
+//app.use(express.urlencoded({limit: '50mb'}));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 app.use('/weixin/',weixin);
