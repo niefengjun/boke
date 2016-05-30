@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+
 /**
  * Module dependencies.
  */
@@ -26,14 +27,12 @@ var socket = require('socket.io');
  */
 
 server.listen(port, function (err, restult) {
-      if (!err) {
-        console.log('niefengjunblog服务器启动', app.get('port'))
-      }
-      else {
-        console.log('niefengjunblog服务器启动 出错', err, app.get('port'))
-      }
-    }
-);
+  if (!err) {
+    console.log('niefengjunblog服务器启动', app.get('port'));
+  } else {
+    console.log('niefengjunblog服务器启动 出错', err, app.get('port'));
+  }
+});
 
 server.on('error', onError);
 server.on('listening', onListening);
@@ -66,9 +65,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -91,8 +88,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+//# sourceMappingURL=www-compiled.js.map

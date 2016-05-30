@@ -11,8 +11,6 @@ var weixin = require('./routes/weixin.js');
 var test = require('./routes/test.js');
 var admin = require('./routes/admin.js');
 var ueditor = require("ueditor");
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
 var config = require('./config/config.js');
 
 var app = express();
@@ -36,18 +34,6 @@ app.use(bodyParser.json({ "limit": "80mb" }));
 
 app.use(cookieParser('keyboard cat'));
 
-app.use(session({
-    store: new RedisStore({
-        host: config.redisdb.redis_host,
-        port: config.redisdb.redis_port,
-        pass: config.redisdb.redis_psd,
-        db: 0
-    }),
-    resave: false,
-    saveUninitialized: false,
-    secret: 'keyboard cat',
-    cookie: { maxAge: 60 * 60 * 24 * 1000 }
-}));
 //app.use(express.json({limit: '50mb'}));
 //app.use(express.urlencoded({limit: '50mb'}));
 app.engine('.html', ejs.__express);
