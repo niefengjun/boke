@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Welcome to Toon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            display: box;
+            display: -webkit-box;
+            display: -o-box;
+            display: -moz-box;
+            display: -ms-box;
+            -webkit-box-flex: 1;
+            -o-box-flex: 1;
+            -ms-box-flex: 1;
+            box-flex: 1;
+            -webkit-box-orient: vertical;
+            -o-box-orient: vertical;
+            -ms-box-orient: vertical;
+            box-orient: vertical;
+            height: 100%;
+            width: 100%;
+        }
+
+        #wx_layout {
+            width: 100%;
+            height: 100%;
+            background: url("share-cover2.png") no-repeat scroll;
+            background-size: 100% 100%;
+        }
+
+        #other_layout {
+            width: 100%;
+            height: 100%;
+            background: url("into_bg2.png") no-repeat scroll;
+            background-size: 100% 100%;
+            text-align: center;
+        }
+
+        #other_layout img {
+            width: 55%;
+            margin-top: 30%;
+        }
+
+        #other_layout a {
+            display: block;
+            width: 100%;
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        #other_layout a img {
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="wx_layout" style="display: none;"></div>
+<div id="other_layout" style="display: none;">
+    <img src="into_banner2.png">
+    <a href="http://app.systoon.com"><img src="into_button2.png"></a>
+</div>
+
+<script type="text/javascript">
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var wxShowLayout = document.getElementById("wx_layout");
+        var otherShowLayout = document.getElementById("other_layout");
+
+        function  urlpar()
+        {
+            var ret={} ;
+            var url1 = location.hash.split('#'); //获取url中"?"符后的字串
+            for (var i = 0; i < url1.length; i++) {
+                if(url1[i].indexOf(':')>0) {
+                    var r=url1[i].split(":") ;
+                    ret[r[0]]=r[1] ;
+                }
+            }
+            return ret ;
+        }
+
+
+
+
+        var userAgent = window.navigator.userAgent.toLowerCase();
+
+        var url = window.location.href.split('?')[1];
+      //  console.log(url, window.location) ;
+        //url = "http://t200.tqrcode.toon.mobi/index.html?frame:1#feedId:c_1450943286236972#userId:304240#cardFeedId:c_123456";
+        var patt1 = new RegExp('frame');
+        var patt2 = new RegExp('qrcode');
+        var url1 = urlpar(); //获取url中"?"符后的字串
+        if ((userAgent.match(/MicroMessenger/i) == 'micromessenger') || (userAgent.indexOf("weibo") != -1) || (userAgent.indexOf("qzone") != -1) || ((userAgent.indexOf("qq") != -1) && (userAgent.indexOf("nettype") != -1))) {
+            wxShowLayout.style.display = 'block';
+            otherShowLayout.style.display = 'none';
+        }
+        else {
+            wxShowLayout.style.display = 'none';
+            otherShowLayout.style.display = 'block';
+
+            //frame
+            if (patt1.test(url)) {
+
+                var para =JSON.stringify({feedId: url1.feedId,myCardId:url1.cardFeedId});
+                var url='toon://qrcode/show?params='+para ;
+                console.log('1',url) ;
+                //window.location.href=url;
+            }
+            //qrcode
+            if (patt2.test(url)) {
+                //toon://qrcode/show?params={“feedId”:”xxx”}
+                var para =JSON.stringify({feedId: url1.feedId});
+                console.log('2222', para)
+                var url='toon://frame/card?params='+para ;
+                // window.location.href=url;
+
+            }
+            //window.location.href='toon://qrcode/show??params=' + JSON.stringify(para);
+        }
+    });
+
+</script>
+</body>
+
+</html>
