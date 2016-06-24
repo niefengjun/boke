@@ -16,5 +16,6 @@ router.get('/category/:id/:page.html', pagecategory.index);
 router.get('/admin', pageLogin.index);
 router.get('/Login/', pageLogin.login);
 router.all('*', pageLogin.checkLogin);
+router.all('/admin/index/',pageLogin.Loginindex)
 router.all('/admin/blog/',pageBlog.index) ;
 module.exports = router;
