@@ -37,7 +37,8 @@
                 <th width="80">时间</th>
                 <th width="120">作者</th>
                 <th width="75">浏览次数</th>
-                <th width="60">操作</th>
+                <th width="60">编辑</th>
+                <th width="60">删除</th>
             </tr>
             </thead>
             <tbody id="ajaxDataList">
@@ -77,13 +78,7 @@
         });
         layer.full(index);
     }
-    /*资讯-删除*/
-    function article_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',1);
-        });
-    }
+
     /*资讯-审核*/
     function article_shenhe(obj,id){
         layer.confirm('审核文章？', {
@@ -132,100 +127,45 @@
 </script>
 
 <script>
-    var _PageSize = 15;
 
-    $(function () {
-        $('#btnSubmit').click(function () {
-            _CurrentPage = 1;
-            ajaxGetList(true);
+
+    $(document).ready(function () {
+        $("#myTable").dataTable({
+            "bProcessing": false, // 是否显示取数据时的那个等待提示
+            "bServerSide": true,//这个用来指明是通过服务端来取数据
+            "sAjaxSource": "?ajax=pagePageInfo",//这个是请求的地址
+            //"fnServerData": retrieveData, // 获取数据的处理函数
+            "bDeferRender": true,
+            "bInfo": true,
+            "columnDefs": [{
+                // 定义操作列
+                "targets": 5,
+                "data": null,
+                "render": function (data, type, row) {
+                    var html = '<a href=/admin/blog/?ajax=edit&id=' + row._id + '  class="delete btn btn-default btn-xs"><i class="fa fa-times"></i>编辑</a>';
+                    return html;
+                }
+            }, {
+                // 定义操作列
+                "targets": 6,
+                "data": null,
+                "render": function (data, type, row) {
+                    // var html = '<a href=/admin/blog/?ajax=edit&id=' + row._id + '  class="delete btn btn-default btn-xs"><i class="fa fa-times"></i>编辑</a>'
+                    var html = "<a href=# onclick=\"return delnews('" + row._id + "')\"  class=\"delete btn btn-default btn-xs\"><i class=\"fa fa-times\"></i>删除</a>"
+                    return html;
+                }
+            }],
+            buttons: ['colvis', 'excel', 'print'],
+            "columns": [
+                {"data": "title"},
+                {"data": "column"},
+                {"data": "created"},
+                {"data": "create_username"},
+                {"data": "yuedu"},
+                {"data": "_id"}
+            ]
         });
-        ajaxGetList(true);
-    })
-
-    function ajaxGetList(GetPageInfo) {
-        //_PageSize =$('.select').val();
-        $('#ajaxDataList').hide();
-        $('#ajaxDataLoading').show();
-        $.ajax({
-            type: "GET",
-            url: "/admin/blog/",
-            data: "ajax=pagePageInfo&pageSize=" + _PageSize + '&currentPage=' + _CurrentPage
-            + "&time=" + new Date(),
-            dataType: 'JSON',
-            success: function (result) {
-
-                if (GetPageInfo) {
-                    //pageInfoDisplay(result['pageInfo']);
-                    $('#recordCount').html(result["pageInfo"].recordCount)
-                }
-
-                var html = "";
-                if (result.pageData.length > 0) {
-                    var items = result['pageData'];
-
-
-                    for (var i = 0; i < items.length; i++) {
-                        html += '<tr class=\"text-c\">';
-                        html += '<td>' + items[i].title + '</td>';
-                        if (items[i].column) {
-                            html += '<td>' + items[i].column + '</td>';
-                        }
-                        else {
-                            html += '<td>未分配</td>';
-                        }
-
-                        html += '<td>' + items[i].created + '</td>';
-                        html += '<td>' + items[i].create_username + '</td>';
-                        html += '<td>' + items[i].yuedu + '</td>';
-                        html += '<td><a href=/admin/blog/?ajax=edit&id=' + items[i]._id + '>编辑</a>&nbsp;&nbsp;';
-                        html += "<a href=#  onclick=\"return delnews('" + items[i]._id + "')\" >删除</a></td>";
-                        // html+='<td><a href=/setting/RoleSet/?id='+$.parseJSON(items[i])._id+'&name='+escape($.parseJSON(items[i]).rolename)+'>设置权限</td>';
-
-                        html += '</tr>';
-
-                    }
-                } else {
-                    html = "<tr><td colspan='7'>未找到任何数据</td></tr>";
-                }
-                $('#ajaxDataList').html(html);
-                $('#ajaxDataList').show();
-                $('#ajaxDataLoading').hide();
-
-                $('.table-sort').dataTable({
-                    "oLanguage": { // 汉化
-                        "sProcessing": "正在加载数据...",
-                        "sLengthMenu": "显示_MENU_条 ",
-                        "sZeroRecords": "没有您要搜索的内容",
-                        "sInfo": "从_START_ 到 _END_ 条记录——总记录数为 _TOTAL_ 条",
-                        "sInfoEmpty": "记录数为0",
-                        "sInfoFiltered": "(全部记录数 _MAX_  条)",
-                        "sInfoPostFix": "",
-                        "sSearch": "搜索",
-                        "sUrl": "",
-                        "oPaginate": {
-                            "sFirst": "第一页",
-                            "sPrevious": " 上一页 ",
-                            "sNext": " 下一页 ",
-                            "sLast": " 最后一页 "
-                        }
-                    }
-                }
-
-//                {
-//
-//                    "aaSorting": [[ 1, "desc" ]],//默认第几个排序
-//                    "bStateSave": true,//状态保存
-//                    "aoColumnDefs": [
-//                        {"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-//                       // {"orderable":false,"aTargets":[0,1]}// 制定列不参与排序
-//                    ]
-//                }
-                );
-
-
-            }
-        });
-    }
+    });
 
     function delnews(id) {
         if (confirm("确认要删除？")) {
