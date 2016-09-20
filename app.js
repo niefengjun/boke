@@ -10,8 +10,11 @@ var routes = require('./routes/index');
 var weixin = require('./routes/weixin.js');
 var test = require('./routes/test.js');
 var admin = require('./routes/admin.js');
-var ueditor = require("ueditor");
+var ueditor = require("./lib/api/ueditor");
 var config = require('./config/config.js');
+var qiniu = require('./lib/api/qiniu.js');
+var os = require('os');
+var snowflake = require('node-snowflake').Snowflake;
 
 
 var app = express();
@@ -54,7 +57,13 @@ app.use("/ueditor/ue/", ueditor(path.join(__dirname, 'public'), function (req, r
         var imgname = req.ueditor.filename;
 
         var img_url = '/images/ueditor/';
+        var  filename=req.ueditor.filename;
+
+
+
         res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
+
+
     }
     //  客户端发起图片列表请求
     else if (req.query.action === 'listimage') {
