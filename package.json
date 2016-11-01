@@ -7,8 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.13.2",
-    "connect-redis": "^3.0.2",
-    "cookie-parser": "~1.3.5",
+    "cookie-parser": "^1.4.3",
     "crypto": "0.0.3",
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
@@ -22,10 +21,6 @@
     "serve-favicon": "~2.3.0",
     "stylus": "^0.53.0",
     "ueditor": "^1.1.1",
-    "wechat": "^2.0.3",
-    "wechat-api": "^1.25.1",
-    "wechat-oauth": "^1.1.1",
-    "xml2js": "^0.4.16",
-    "youzan-sdk": "0.0.4"
+    "xml2js": "^0.4.16"
   }
 }
