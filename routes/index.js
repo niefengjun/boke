@@ -6,8 +6,10 @@ var pageBlog = require('../lib/pageBlog.js');
 var pageIndex = require('../lib/pageIndex.js');
 var pagecategory = require('../lib/pagecategory.js');
 var pageSeach = require('../lib/pageSeach.js');
+var blogapi = require('../api/blog.js');
 /* GET home page. */
 router.get('/',pageIndex.index) ;
+router.get('/api/blog',blogapi.index) ;
 router.get('/search',pageSeach.index) ;
 router.get('/blogyuedu/:id/',pageIndex.findOneid_yuedu) ;
 router.get('/page_:page.html', pageIndex.index);
