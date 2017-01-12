@@ -68,7 +68,7 @@ exports.index = function (req, res) {
                         pages: tool.getPageInfo(data.length, cSize).pageCount
 
                     }
-                    res.send({blog: b, title: config.title, listli: listli, classname: classname, paginate: ret});
+                    res.send({paginate: ret});
                 }, function (err) {
                     res.send(-1);
                     //  console.log(err) ;

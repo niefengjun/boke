@@ -1,0 +1,46 @@
+server {
+        listen       80;
+        server_name  www.niefengjun.cn ;
+
+        location /
+        {
+          proxy_set_header   X-Real-IP            $remote_addr;
+          proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+          proxy_set_header   Host                   $http_host;
+          proxy_set_header   X-NginX-Proxy    true;
+          proxy_set_header   Connection "";
+          proxy_http_version 1.1;
+          proxy_pass http://172.18.0.1:4000;
+        }
+       #access_log  /alidata/log/nginx/access/niefengjun.log;
+}
+server {
+        server_name niefengjun.cn;
+        rewrite ^(.*) http://www.niefengjun.cn$1 permanent;
+}
+
+server {
+    listen 443;
+    server_name w.niefengjun.cn;
+    ssl on;
+    root html;
+    ssl_certificate   /cert/213996043770551.pem;
+    ssl_certificate_key  /cert/213996043770551.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    location / {
+                proxy_set_header   X-Real-IP            $remote_addr;
+                proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+                proxy_set_header   Host                   $http_host;
+                proxy_set_header   X-NginX-Proxy    true;
+                proxy_set_header   Connection "";
+                proxy_http_version 1.1;
+                proxy_pass http://172.18.0.1:4000;
+    }
+}
+
+
+docker run -d -p 80:80 -v /data/server/config:/etc/nginx/sites-enabled -v /data:/data  hub.c.163.com/public/nginx:1.2.1
+47f8415597392d61b1f68e91ac0975304051e93a62340703a2314ec24bbe7403
