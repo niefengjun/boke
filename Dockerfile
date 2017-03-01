@@ -5,7 +5,7 @@ ENV HTTP_PORT 4000  //端口号
 
 COPY app/ /app  //工作目录
 
-
+npm install
 
 # EXPOSE 4000
 
