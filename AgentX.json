@@ -1,0 +1,18 @@
+{
+  "server": "120.55.151.247:8080",
+  "appid": "1807",
+  "secret": "58b5c3c8805d25bb54e3fec944164afa496100ce",
+  "heartbeatInterval": 60,
+  "reconnectDelay": 10,
+  "reportInterval": 60,
+  "logdir": "/data/alinode",
+  "cmddir": "/data/alinode",
+  "error_log": [
+    "/data/alinode"
+  ],
+  "packages": [
+    "",
+    "可以输入多个package.json的路径，用于帮助模块依赖的版本检查",
+    "可选"
+  ]
+}

@@ -1,11 +1,11 @@
-FROM hub.c.163.com/public/nodejs:5.7.0
+FROM arp.reg.innertoon.com/library/node:4-slim
 # MAINTAINER mac@niefengjun.cn
 
-ENV HTTP_PORT 4000  //端口号
+ENV HTTP_PORT 4000
 
-COPY app/ /app  //工作目录
+COPY ./app /
 
-npm install
+
 
 # EXPOSE 4000
 
