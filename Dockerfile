@@ -3,10 +3,10 @@ FROM arp.reg.innertoon.com/library/node:4-slim
 
 ENV HTTP_PORT 4000
 
-COPY ./app /
+COPY . /
 
 
 
 # EXPOSE 4000
 
-CMD ["node","www.js"]//启动项目
+CMD ["node","www.js"]
