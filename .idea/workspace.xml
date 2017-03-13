@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="011d2ca5-8569-460e-95ed-d6afa7777e37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="boke.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -412,7 +411,7 @@
       <workItem from="1489056412565" duration="1109000" />
       <workItem from="1489139671740" duration="68000" />
       <workItem from="1489372892852" duration="2000" />
-      <workItem from="1489390483136" duration="1323000" />
+      <workItem from="1489390483136" duration="1949000" />
     </task>
     <task id="LOCAL-00001" summary="更新页码">
       <created>1478498547027</created>
@@ -453,7 +452,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30675000" />
+    <option name="totallyTimeSpent" value="31301000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
