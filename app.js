@@ -19,9 +19,10 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
-    extended: true,limit: '50mb'
+   extended: true
 }))
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json({ "limit":"80mb"}));
 
