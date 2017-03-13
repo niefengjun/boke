@@ -16,7 +16,7 @@ var app = express();
 // view engine setup
 app.use(cookieParser());
 
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
    extended: true
