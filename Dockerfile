@@ -4,6 +4,8 @@ FROM registry.cn-hangzhou.aliyuncs.com/niefengjun/nodejs:4-slim
 ENV HTTP_PORT 4000
 COPY . ./app
 WORKDIR /app
+CMD ["npm","install"]
+
 
 EXPOSE 4000
 
