@@ -1,0 +1,349 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>如何选择Node.js Web开发框架</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="如何选择Node.js Web开发框架"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,如何选择Node.js Web开发框架" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>如何选择Node.js Web开发框架</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-09-07 17:59:38
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p><br/></p><p style="text-align: center;"><em><img alt="u=1870833560,1605198175&amp;fm=21&amp;gp=0.jpg" src="/images/ueditor/640826955062710272.jpg" title=""/></em></p><pre id="best-content-1949230338" class="best-text mb-10">Node.js非常适用于Web开发，但是现在无论是一个网站，还是Web&nbsp;App都已经成为包括很多不同部分，如前端、数据库、
+业务模块、功能模块等等的大型项目，使用Node.js从零开始进行Web开发，也许大中型团队能够&nbsp;胜任，
+但对于个人和小型团队来说是不现实的。这时候框架就成为Web开发利器，对于个人开发来说几乎是必不可少。那么如何
+选择Node.js&nbsp;Web开发框架呢？
+首先，我们必须要弄清楚的是，我们需要的是——
+程序&nbsp;or&nbsp;框架？
+程序是已经成型的应用，你需要的是为它搭建环境、添加配置，然后就可以运行起来；框架则是应用的骨架，你需要为
+它添加数据模型、业务逻辑，它才能成为应用，开始提供服务。
+事实上，对于Web开发来说，程序和框架的区别正越来越模糊，比如几乎妇孺皆知的Wordpress，它是一个博客程序，
+但它丰富的插件以及高度的&nbsp;自定义能够支持很大程度上的二次开发，在这点上它比起一些框架也并不逊色。我个人认为
+，如果重心在于提供服务而不是掌握技术，有WordPress&nbsp;这样的程序是没有必要使用框架的。
+可惜的是，由于Nodejs还很年轻，目前还没有WordPress这样的程序，因此目前在Node.js开发里，
+如果想做出自己想要的作品，框架是必然的选择。如果是某些特定类型的应用，可以尝试一些开源的程序，
+比如要用Nodejs做博客，有Hexo、Ghost等。
+Node.js&nbsp;Web框架有哪些？
+Node.js里的Web框架分为API框架和Web应用框架。前者能够开发出RESTful的API，后者也能开发出RESTful&nbsp;API，
+但还包括模板、渲染等为前端所准备的功能。
+API框架的使用场景是为跨平台应用提供统一的数据模型，而渲染由前端/客户端自行解决。目前比较知名的API框架有
+restify（文档、Github、NPM）
+ActionHero.js（官网、Github、NPM）
+LoopBack（官网、Github、NPM）
+Frisby（官网、Github、NPM）
+Fortune.js（官网、Github、NPM）
+Web应用框架顾名思义，就是为了打造Web应用所开发的框架。这里有两种风格的Web应用框架。
+一个是Sinatra风格，另一个是Rails风格。Sinatra和Rails都是Ruby语言的Web框架，
+后者的影响力更大也更为知名。这里简单的解释一下两种风格是什么意思。
+Sinatra风格是指高度可配置，注重开发的自由度。代表性的Nodejs&nbsp;Web框架有：
+Express（官网、Github、NPM）TJ大神开发，Node.js官方推荐
+&nbsp;hapi（官网、Github、NPM）
+koa.js（官网、Github、NPM）
+flaliron（官网、Github、NPM）
+total.js（官网、Github、NPM）
+locomotive（官网、Github、NPM）
+Rails风格则是指不重复自己和约定优于配置，以及严格遵循MVC结构开发。代表性的框架有：
+Sails.js（官网、Github、NPM）
+geddy（官网、Github、NPM）
+CompoundJS（官网、Github、NPM）&nbsp;原railswayjs
+这两种风格无所谓谁优谁劣，全凭使用者的偏好。
+而在这两种Web框架之外，还有更大型的框架，即全栈框架，其中的代表是MEAN。
+MEAN？
+MEAN指MongoDB+Express+Angular.js+Node.js，这一组合包括运行环境、数据库、Web框架和前端引擎。
+被称为&nbsp;全栈框架（Full-stack&nbsp;framework）。这其中除了Node.js之外，每一个都是可替换的，目标是创建
+从前端到后端，全部使用javascript的Web应用。
+由于这一框架的完善性，有人将其称为LAMP的接班人。LAMP即PHP的典型运行环境，Linux+Apache+MySql+PHP，
+被大量的用于各种虚拟主机上。
+MEAN看似庞大，但事实上要构建完整的现代化Web应用，特别是SPA（单页面应用），
+这几个组件都是难以缺少的，并且，其中每一项几乎都是目前&nbsp;情况下的最佳选择，
+因此用于学习和重头开始打造新的Web应用是非常合适的。但由于实际业务的独特性，很可能要替换其中的组件，
+比如用Mysql来替换&nbsp;MongoDB，因此，学习其中的原理和架构，打造自己的类MEAN框架也是一种选择。
+作为个人和小团队来说，全栈框架MEAN基本上足够了，但目前大多数全栈框架还包含一项特性，那就是实时，
+拥有实时功能的框架我们又称为实时框架。
+实时框架好吗？
+实时框架（Real-time&nbsp;framework）指包含了webSocket的双向通信功能，能够在服务器和客户端做到实时通信的框架。
+服务端和客户端自由通信的需求一直都在，但由于HTTP协议本身的局限性，因此催生了Comet等变通的方法，
+但即使这样也离实时相距甚远。而当&nbsp;Node.js兴起后，另一个HTML5技术webSocket也渐渐成熟，
+人们突然发现，实时通信一下子变得触手可及，于是webSocket技术在&nbsp;Node.js中得到大量的应用，
+其中最为知名的模块就是socket.io，而各种全栈框架也纷纷加入实时特性来应对更广阔的开发需求。
+目前有代表性的实时框架有：
+Meteor（官网、Github、NPM）
+MEAN.io（官网、Github、NPM）
+Derby（官网、Github、NPM）
+SocketStream（官网、Github、NPM）
+不过说实话，目前能看到的实时通信的应用场景其实不多，其中大多集中于聊天室、to-do、实时图表
+、在线游戏等领域。其他领域使用实时特性不但没必要，而且是对服务器资源的浪费。因此目前是否要采用实时框架
+，要看具体的项目而定。
+以上基本就是Node.js&nbsp;Web框架的现状了，相信看到这里，对于选择何种框架读者已经心里有数了吧。
+最后再介绍一个容易搞混的概念，和解释一下我的选择。
+YEOMAN？
+第一次见到这个词，我还以为它和MEAN有什么联系。事实上，它们是截然不同的两个东西。
+YEOMAN由YO（脚手架）、grunt（构建工具）、bower（包管理器），
+它代表的是一种工作流，与框架开发的思维方式完全不同。具体的介绍可见这里。
+YEOMAN能够和框架达到类似的目的，都是为构建一个Web应用做好准备，
+但是要不要采用YEOMAN，则是见仁见智。我个人的看法是，学习&nbsp;YEOMAN本身就需要不少时间，
+并且有一定的学习门槛。至少在目前，使用框架开发还是相对经济的，而如果以后YEOMAN这种模式推广开来，
+再来学习也&nbsp;不迟，更何况有一定的Node.js项目经验之后再来学习YEOMAN要轻松很多。
+事实上，我还是很认可YEOMAN这种Generator+package&nbsp;Manager的模式的，
+这是因为Node.js本身崇尚微模块的&nbsp;概念，即无论是多么小的功能，都将它们模块化，
+甚至大的模块也要拆分成小的模块，然后通过搭积木的方式来构建应用。这样能够彻底的解耦，
+对于不容易调试的&nbsp;Javascript来说，也有助于定位和修复应用中的问题。Generator就是这种理念催生下的产物，
+通过选择不同的配置和选项，将积木搭起来。不&nbsp;过对于这种模式目前大家也还处于实验当中，不急于进行实际应用。</pre><p>&nbsp; 综上所述 其实现在应用最广泛的还是express&nbsp; 已经用了几年了 感觉还是相当不错的&nbsp; 方便引用 入门难度也比较的低<br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="79c289f735ee4f58158ab07d7c2a33fa" data-title="如何选择Node.js Web开发框架" data-url="http://www.niefengjun.cn/blog/79c289f735ee4f58158ab07d7c2a33fa.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/79c289f735ee4f58158ab07d7c2a33fa/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

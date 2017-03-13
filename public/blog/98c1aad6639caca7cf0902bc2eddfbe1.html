@@ -1,0 +1,373 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>浅谈nodejs中的Crypto模块 </title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="浅谈nodejs中的Crypto模块 "/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,浅谈nodejs中的Crypto模块 " name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>浅谈nodejs中的Crypto模块 </h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-08-27 13:37:11
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p>node.js的crypto在0.8版本并没有改版多少，这个模块的主要功能是加密解密。
+node利用 OpenSSL库来实现它的加密技术，这是因为OpenSSL已经是一个广泛被采用的加密算法。它包括了类似MD5 or SHA-1 算法，这些算法你可以利用在你的应用中。</p><p>1、我们先来看hash算法：
+我们可以通过 crypto.createHash() 来创建一个Hash实例。
+我们可以利用以下算法来创建hash实例</p><ol class=" list-paddingleft-2"><li><p>md5</p></li><li><p>sha1</p></li><li><p>sha256</p></li><li><p>sha512</p></li><li><p>ripemd160
+MD5是最常用的，但是他有一定的碰撞的问题，你可以使用更新的sha1算法。
+我们看hash的生成方法，代码如下：</p><blockquote><p>var md5 = crypto.createHash(‘md5’);
+md5.update(‘foo’);
+{}
+md5.digest();
+‘??\u0018?L??\í?eO??¤?’
+md5.digest(‘hex’);
+Error: Not initialized
+at [object Context]:1:5
+at Interface.&lt;anonymous&gt; (repl.js:147:22)
+at Interface.emit (events.js:42:17)
+at Interface._onLine (readline.js:132:10)
+at Interface._line (readline.js:387:8)
+at Interface._ttyWrite (readline.js:564:14)
+at ReadStream.&lt;anonymous&gt; (readline.js:52:12)
+at ReadStream.emit (events.js:59:20)
+at ReadStream._emitKey (tty_posix.js:280:10)
+at ReadStream.onData (tty_posix.js:43:12)
+var md5 = crypto.createHash(‘md5’);
+md5.update(‘foo’);
+{}
+md5.digest(‘hex’);
+‘acbd18db4cc2f85cedef654fccc4a4d8’</p></blockquote></li></ol><p>这里我们生成了一个md5的hash实例，然后直接运行 md5.digest(); 出现了乱码，因为它默认返回的是2进制的数据，然后我们接着 md5.digest(‘hex’); 期望以16进制的形式打印md5值，但是抛出异常了。
+也就是说一旦md5.digest();这个方法被调用了，hash 对象就被清空了是不能被重用的。当然我们可以利用base64格式打印出md5字符串。</p><p>对于hash.update()方法是有记忆功能的，我们看如下代码：</p><pre class="prettyprint">&gt;&nbsp;var&nbsp;sha1&nbsp;=&nbsp;crypto.createHash(&#39;sha1&#39;);&gt;&nbsp;sha1.update(&#39;foo&#39;);{}&gt;&nbsp;sha1.update(&#39;bar&#39;);{}&gt;&nbsp;sha1.digest(&#39;hex&#39;);&#39;8843d7f92416211de9ebb963ff4ce28125932878&#39;&gt;&nbsp;var&nbsp;sha1&nbsp;=&nbsp;crypto.createHash(&#39;sha1&#39;);&gt;&nbsp;sha1.update(&#39;foobar&#39;);{}&gt;&nbsp;sha1.digest(&#39;hex&#39;);&#39;8843d7f92416211de9ebb963ff4ce28125932878&#39;&gt;</pre><p>这2次sha1加密结果是一样的，也就是说hash.update()方法就是将字符串相加，然后在hash.digest()将字符串加密返回</p><p>2、HMAC
+HMAC全名是 keyed-Hash Message Authentication Code，中文直译就是密钥相关的哈希运算消息认证码，HMAC运算利用哈希算法，以一个密钥和一个消息为输入，生成一个加密串作为输出。HMAC可以有效防止一些类似md5的彩虹表等攻击，比如一些常见的密码直接MD5存入数据库的，可能被反向破解。
+crypto.createHmac(algorithm, key)
+这个方法返回和createHash一样，返回一个HMAC的实例，有update和digest方法。我们来看下实际的应用：</p><pre class="prettyprint">&gt;&nbsp;var&nbsp;crypto&nbsp;=&nbsp;require(&#39;crypto&#39;);&gt;&nbsp;var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);&gt;&gt;&nbsp;var&nbsp;pem&nbsp;=&nbsp;fs.readFileSync(&#39;key.pem&#39;);&gt;&nbsp;var&nbsp;key&nbsp;=&nbsp;pem.toString(&#39;ascii&#39;);&gt;&gt;&nbsp;var&nbsp;hmac&nbsp;=&nbsp;crypto.createHmac(&#39;sha1&#39;,&nbsp;key);&gt;&gt;&nbsp;hmac.update(&#39;foo&#39;);{}&gt;&nbsp;hmac.digest(&#39;hex&#39;);&#39;7b058f2f33ca28da3ff3c6506c978825718c7d42&#39;&gt;</pre><p>我们先通过 fs.readFileSync 方法读取了key.pem密钥，然后将它转为ascii码，最后通过 createHmac(&#39;sha1’, key) 方法获得HMAC实例，然后执行update和digest，生成一串密钥字符串。
+由于key的不同，所以同样的字符串’foo’经过hmac加密后生成的16进制字符串也是不同的，从而更加保障了数据的安全性。</p><p>关于key.pem是什么，我们可以利用opensll命令来创建一个key.pem，简单命令如下：</p><pre class="prettyprint">[root[@localhost](/user/localhost)&nbsp;test]#&nbsp;openssl&nbsp;genrsa&nbsp;&nbsp;-out&nbsp;server.pem&nbsp;1024Generating&nbsp;RSA&nbsp;private&nbsp;key,&nbsp;1024&nbsp;bit&nbsp;long&nbsp;modulus...............................++++++....................++++++e&nbsp;is&nbsp;65537&nbsp;(0x10001)[root[@localhost](/user/localhost)&nbsp;test]#&nbsp;vi&nbsp;server.pem-----BEGIN&nbsp;RSA&nbsp;PRIVATE&nbsp;KEY-----MIICXQIBAAKBgQCoWUIOtZAA4EB/bBpKBiHzDRdPCsSqTkR0Bva5kUUjVQ/2y6mieZl244GGTwfiFtbHdu0eum4MkIes6IL/kJ8IDeyg4za26fEcO2mfty6BQbSo2SRrZdIGVCZ2atvuc2ObzgVpJ+p1GGoFeNS1HOhw0Hq2GoeKt2rMdXceklXaLQIDAQABAoGASC/t+Wy1UQrX3Uu3giJbEGN+qTAO4JArHi2WQkAei2YAMG1oUfkeazJm6fad
+hL8SXfmK9/AtHEolQ2l4MqoK5rD5kvoLNOWs+sIOd1Zi9jLow8F8x+ctphn5FdZz
+J444Mk3M3ua5ZS1YCy12pEbdO6urNMgUpqYcEla0BHIJ8MECQQDaxG9UyId5CgOHPCXy2oT3dSAa3XJeQ7fC5Tl4Tb4lKezho0Lk/g369cU3O6LWM9g65QQk/VewtbpefKoOtQcFAkEAxQAciOPbASojxZDiyy0CTbgj4PGaPBFwJis/wetAyBQcOKOM7l1h
+wHg8fUSXNYLHi6paDqtjaOvVfDOnRdMfCQJBAJg/4WNV88JvD6mMWLS9E5DMeL15pGCqLDd9JBPvtwdSOEOIRcPsc3pWlRwtatQ8XJ4QSGQd1Gts7flYNVnq7qkCQQC03txUBrfNwu3i95pyppll1/oBDnHoUq5gLPc1yRPKX0Rl8Ct1soEMYJhQ/wfBlpg1MCvNKih0bYqtpRMgNa1ZAkAT5kLpwW5Rb0OxVkHLwtOvixgKABPeGg8JuQS/POHS
+lEWvqaaUKdcVcje5YgMg6hDjWHTFJRQ1UEUubYTLFU/D-----END&nbsp;RSA&nbsp;PRIVATE&nbsp;KEY-----</pre><p>这样我们就生成了一个密钥，具体openssl命令可以参考相关文案，openssl的命令很多，多的如天上的繁星！这里给大家简单介绍一下ssl的知识。
+其实整个ssl知识很多，我查阅了一些资料，目前
+SSL(SecureSocketLayer)是netscape公司提出的主要用于web的安全通信标准，.TLS(TransportLayerSecurity)是IETF的TLS工作组在SSL3.0基础之上提出的安全通信标准，SSL/TLS提供的安全机制可以保证应用层数据在互联网络传输不被监听,伪造和窜改。</p><p>在介绍 SSL/TLS 知识的之前，我们有必要了解下加密算法的知识：
+1、什么是加密算法
+加密算法很容易理解，就是把明文变成人家看不懂的东西，然后送给自己想要的送到的地方，接收方用配套的解密算法又把密文解开成明文，这样就不怕密文给人家截获而泄密。
+2、加密算法的种类
+大致分为2类，一种是基于key的，一种不是基于key的。
+不基于key的算法就是消息双方都通过一定的加密和解密算法来进行通信，这种算法缺点很明显如果加密算法被破解了就泄露了。
+3、基于key的加密算法
+key是一个什么东西呢？随便你，可以是一个随机产生的数字，或者一个单词，啥都行，只要你用的算法认为你选来做key的东西合法就行。所以基于key的加密算法又分为2类：对称加密和不对称加密。对称加密算法的原理很容易理解，通信一方用KEK加密明文，另一方收到之后用同样的KEY来解密就可以得到明文。
+4、不对称加密算法
+不对称加密指双方用不同的KEY加密和解密明文，通信双方都要有自己的公共密钥和私有密钥。举个例子比较容易理解，我们们假设通信双方分别是A,B. A,拥有KEY_A1,KEY_A2,其中KEY_A1是A的私有密钥，KEY_A2是A的公共密钥。 B,拥有KEY_B1,KEY_B2,其中KEY_B1是B的私有密钥，KEY_B2是B的公共密钥。公共密钥和私有密钥的特点是，经过其中任何一把加密过的明文，只能用另外一把才能够解开。也就是说经过KEY_A1加密过的明文，只有KEY_A2才能够解密，反之亦然。
+5、不对称加密算法通信过程：
+A--------&gt;;KEY_A2------------&gt;B
+A&lt;--------KEY_B2&lt;------------A
+这个过程叫做公共密钥交换，老外管这叫keyexchange。之后A和B就分别用对方的公共密钥解密，用自己的私有密钥加密。
+一般公共密钥是要发布出去的，这就是SSL使用的验证机制（注意不是数据传输机制）。常用的不对称加密一般有RSA,DSA,DH等。我们一般使用RSA。</p><p>关于SSL:
+一般情况下的网络协议应用中，数据在机器中经过简单的由上到下的几次包装，就进入网络，如果这些包被截获的话，那么可以很容易的根据网络协议得到里面的数据.由网络监听工具可以很容易的做到这一点。</p><p>SSL就是为了加密这些数据而产生的协议，可以这么理解，它是位与应用层和 TCP/IP之间的一层，数据经过它流出的时候被加密，再往TCP/IP送，而数据从TCP/IP流入之后先进入它这一层被解密，同时它也能够验证网络连接两端的身份（根据我们之前学习的不对称加密算法只是可知）。</p><p>SSL协议包含2个子协议，一个是包协议，一个是握手协议。包协议位于握手协议更下一层，我们暂时对包协议的内容没有兴趣。SSL握手过程说简单点就是：<strong>通信双方通过不对称加密算法来协商好一个对称加密算法以及使用的key，然后用这个算法加密以后所有的数据完成应用层协议的数据交换。</strong></p><p>SSL通信流程：
+握手一般都是由client发起的，SSL也不例外。
+1、client送给server它自己本身使用的ssl的version(ssl一共有三个version)，加密算法的一些配置，和一些随机产生的数据，以及其他在SSL协议中需要用到的信息。
+2、server送给client它自己的SSL的version，加密算法的配置，随机产生的数据，还会用自己的私有密钥加密SERVER-HELLO信息。Server还同时把自己的证书文件给送过去。同时有个可选的项目，就是server可以要求需要客户的certificate。
+3、client就用server送过来的certificate来验证server的身份。如果server身份验证没通过，本次通信结束。通过证书验证之后，得到server的公共密钥，解开server送来的被其用私有密钥加密过的SERVER-HELLO信息，看看对头与否。如果不对，说明对方只有该server的公共密钥而没有私有密钥，必是假的。通信告吹。
+4、client使用到目前为止所有产生了的随机数据(sharedsecret)，client产生本次握手中的premastersecret(这个步骤是有可能有server的参与的，由他们使用的加密算法决定)，并且把这个用server的公共密钥加密，送回给server.如果server要求需要验证client,那么client也需要自己把自己的证书送过去，同时送一些自己签过名的数据过去。
+RSA就是我们上一章说过的一种不对称加密算法。首先server把自己的RSA公共密钥送给client，client于是用这个key加密一个随机产生的值(这个随机产生的值就是sharedsecret)，再把结果送给server.
+5、Server验证完client的身份之后，然后用自己的私有密钥解密得到premastersecret然后双方利用这个premastersecret来共同协商，得到mastersecret.
+6、双方用master一起产生真正的sessionkey,着就是他们在剩下的过程中的对称加密的key了。这个key还可以用来验证数据完整性。双方再交换结束信息。握手结束。</p><p>回过头来我们看openssl，openssl就是实现ssl的一个软件，下面我就讨论刚才的命令，生成一个私有密钥：
+openssl genrsa -des3 -out server.key 1024
+genras表示生成RSA私有密钥文件，-des3表示用DES3加密该文件，1024是我们的key的长度。一般用512就可以了，784可用于商业行为了，1024可以用于军事用途了。生成server.key的时候会要你输入一个密码，这个密钥用来保护你的server.key文件，这样即使人家偷走你的server.key文件，也打不开，拿不到你的私有密钥。</p><p>Public Key Cryptography
+公开密钥加密包括4个类，Cipher, Decipher,Sign, and Verify，即加密，解密，签名，验证。
+我们先看Cipher, Decipher这个加密和解密，这里是使用对称加密算法。
+看如下代码：</p><pre class="prettyprint">&gt;&nbsp;var&nbsp;crypto&nbsp;=&nbsp;require(&#39;crypto&#39;);&gt;&nbsp;var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);&gt;&gt;&nbsp;var&nbsp;pem&nbsp;=&nbsp;fs.readFileSync(&#39;key.pem&#39;);&gt;&nbsp;var&nbsp;key&nbsp;=&nbsp;pem.toString(&#39;ascii&#39;);&gt;&gt;&nbsp;var&nbsp;cipher&nbsp;=&nbsp;crypto.createCipher(&#39;blowfish&#39;,&nbsp;key);&gt;&gt;&nbsp;cipher.update(new&nbsp;Buffer(4),&nbsp;&#39;binary&#39;,&nbsp;&#39;hex&#39;);&#39;&#39;&gt;&nbsp;cipher.update(new&nbsp;Buffer(4),&nbsp;&#39;binary&#39;,&nbsp;&#39;hex&#39;);&#39;ff57e5f742689c85&#39;&gt;&nbsp;cipher.update(new&nbsp;Buffer(4),&nbsp;&#39;binary&#39;,&nbsp;&#39;hex&#39;);&#39;&#39;&gt;&nbsp;cipher.final(&#39;hex&#39;)&#39;96576b47fe130547&#39;</pre><p>我们看下代码，我们读取之前生成的key，然后利用 blowfish 加密算法生成 cipher 实例，接着update内容到cipher实例，最后通过cipher.final()方法输出加密串。
+其中有几个方法我们要看下api的解释
+crypto.createCipher(algorithm, password) crypto.createCipheriv(algorithm, key, iv)
+上面这2个方法都返回cipher实例，第一个参数 algorithm 表示用何种加密算法，可以利用 openssl list-cipher-algorithms 命令来查看你的系统支持哪些加密算法。password和key, iv表示密钥，即利用何种密钥加密，password是用来派生key和iv的，key的话是算法原生的key，iv表示初始化向量。</p><pre class="prettyprint">[root[@localhost](/user/localhost)&nbsp;~]#&nbsp;openssl&nbsp;list-cipher-algorithmsopenssl:Error:&nbsp;&#39;list-cipher-algorithms&#39;&nbsp;is&nbsp;an&nbsp;invalid&nbsp;command.Standard&nbsp;commands
+asn1parse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ciphers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crl2pkcs7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dgst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dhparam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dsa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dsaparam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+enc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;engine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errstr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gendh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gendsa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+genrsa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nseq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ocsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;passwd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pkcs12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pkcs7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pkcs8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rand&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;req&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+rsa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rsautl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sess_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;speed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spkac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verify&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x509&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+Message&nbsp;Digest&nbsp;commands&nbsp;(see&nbsp;the&nbsp;`dgst&#39;&nbsp;command&nbsp;for&nbsp;more&nbsp;details)
+md2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;md4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;md5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rmd160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sha&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sha1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+Cipher&nbsp;commands&nbsp;(see&nbsp;the&nbsp;`enc&#39;&nbsp;command&nbsp;for&nbsp;more&nbsp;details)
+aes-128-cbc&nbsp;&nbsp;&nbsp;&nbsp;aes-128-ecb&nbsp;&nbsp;&nbsp;&nbsp;aes-192-cbc&nbsp;&nbsp;&nbsp;&nbsp;aes-192-ecb&nbsp;&nbsp;&nbsp;&nbsp;aes-256-cbc&nbsp;&nbsp;&nbsp;&nbsp;
+aes-256-ecb&nbsp;&nbsp;&nbsp;&nbsp;base64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bf-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bf-cfb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bf-ecb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bf-ofb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast5-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cast5-cfb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast5-ecb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cast5-ofb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+des-cfb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des-ecb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des-ede&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des-ede-cbc&nbsp;&nbsp;&nbsp;&nbsp;des-ede-cfb&nbsp;&nbsp;&nbsp;&nbsp;
+des-ede-ofb&nbsp;&nbsp;&nbsp;&nbsp;des-ede3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des-ede3-cbc&nbsp;&nbsp;&nbsp;des-ede3-cfb&nbsp;&nbsp;&nbsp;des-ede3-ofb&nbsp;&nbsp;&nbsp;
+des-ofb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;des3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;desx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2-40-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+rc2-64-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2-cbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2-cfb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2-ecb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc2-ofb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+rc4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc4-40</pre><p>cipher.update(data, [input_encoding], [output_encoding])
+往cipher实例中添加数据，第一个参数是填充的数据，第二个参数表示传入数据的格式，可以是’utf8’, ‘ascii’ 或 &#39;binary’，默认是 &#39;binary’。第三个参数是返回block的数据格式。
+注意这里我们update了 new Buffer(4),表示通过随机内存中的4byte字节的内容填充进去。为什么第一次update没有block返回呢，因为4byte不够生成一个block，所以这点我们要注意下。
+最后我们通过final方法和之前digest方法一样，生成加密过后的串。</p><p>最后还有一个api：
+decipher.setAutoPadding(auto_padding=true)
+如果这些加密块不是使用标准的填充块的话，你可以把自动填充关闭。这么做是为了防止执行 decipher.final()的时候监察和去除标准填充块，从而可能出错，一般这个方法不会去用。必须在执行update之前执行它。</p><p>下面我们看2个完整的加密和解密的代码示例，代码很容易理解不解释了。</p><pre class="prettyprint">var&nbsp;crypto&nbsp;=&nbsp;require(&#39;crypto&#39;);var&nbsp;cipher&nbsp;=&nbsp;crypto.createCipher(&#39;aes-256-cbc&#39;,&#39;InmbuvP6Z8&#39;)var&nbsp;text&nbsp;=&nbsp;&quot;123|123123123123123&quot;;var&nbsp;crypted&nbsp;=&nbsp;cipher.update(text,&#39;utf8&#39;,&#39;hex&#39;)crypted&nbsp;+=&nbsp;cipher.final(&#39;hex&#39;)var&nbsp;decipher&nbsp;=&nbsp;crypto.createDecipher(&#39;aes-256-cbc&#39;,&#39;InmbuvP6Z8&#39;)var&nbsp;dec&nbsp;=&nbsp;decipher.update(crypted,&#39;hex&#39;,&#39;utf8&#39;)dec&nbsp;+=&nbsp;decipher.final(&#39;utf8&#39;)</pre><p>第二段代码</p><pre class="prettyprint">&gt;&nbsp;var&nbsp;crypto&nbsp;=&nbsp;require(&#39;crypto&#39;);&gt;&nbsp;var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);&gt;&gt;&nbsp;var&nbsp;pem&nbsp;=&nbsp;fs.readFileSync(&#39;key.pem&#39;);&gt;&nbsp;var&nbsp;key&nbsp;=&nbsp;pem.toString(&#39;ascii&#39;);&gt;&gt;&nbsp;var&nbsp;plaintext&nbsp;=&nbsp;new&nbsp;Buffer(&#39;abcdefghijklmnopqrstuv&#39;);&gt;&nbsp;var&nbsp;encrypted&nbsp;=&nbsp;&quot;&quot;;&gt;&nbsp;var&nbsp;cipher&nbsp;=&nbsp;crypto.createCipher(&#39;blowfish&#39;,&nbsp;key);&gt;&nbsp;..&gt;&nbsp;encrypted&nbsp;+=&nbsp;cipher.update(plaintext,&nbsp;&#39;binary&#39;,&nbsp;&#39;hex&#39;);&gt;&nbsp;encrypted&nbsp;+=&nbsp;cipher.final(&#39;hex&#39;);&gt;&gt;&nbsp;var&nbsp;decrypted&nbsp;=&nbsp;&quot;&quot;;&gt;&nbsp;var&nbsp;decipher&nbsp;=&nbsp;crypto.createDecipher(&#39;blowfish&#39;,&nbsp;key);&gt;&nbsp;decrypted&nbsp;+=&nbsp;decipher.update(encrypted,&nbsp;&#39;hex&#39;,&nbsp;&#39;binary&#39;);&gt;&nbsp;decrypted&nbsp;+=&nbsp;decipher.final(&#39;binary&#39;);&gt;&gt;&nbsp;var&nbsp;output&nbsp;=&nbsp;new&nbsp;Buffer(decrypted);&gt;&gt;&nbsp;output&lt;Buffer&nbsp;61&nbsp;62&nbsp;63&nbsp;64&nbsp;65&nbsp;66&nbsp;67&nbsp;68&nbsp;69&nbsp;6a&nbsp;6b&nbsp;6c&nbsp;6d&nbsp;6e&nbsp;6f&nbsp;70&nbsp;71&nbsp;72&nbsp;73&nbsp;74&nbsp;75&nbsp;76&gt;&gt;&nbsp;plaintext&lt;Buffer&nbsp;61&nbsp;62&nbsp;63&nbsp;64&nbsp;65&nbsp;66&nbsp;67&nbsp;68&nbsp;69&nbsp;6a&nbsp;6b&nbsp;6c&nbsp;6d&nbsp;6e&nbsp;6f&nbsp;70&nbsp;71&nbsp;72&nbsp;73&nbsp;74&nbsp;75&nbsp;76&gt;&gt;</pre><p>最后我们看下签名和验证 Class: Signer 和 &nbsp;Class: Verify
+还记得我们之前说的不对称加密算法么，这里我们就利用私钥和公钥来做个简单的例子，我先通过openssl命令生成公钥：</p><pre class="prettyprint">[root[@localhost](/user/localhost)&nbsp;test]#&nbsp;openssl&nbsp;req&nbsp;-key&nbsp;server.pem&nbsp;-new&nbsp;-x509&nbsp;-out&nbsp;cert.pemYou&nbsp;are&nbsp;about&nbsp;to&nbsp;be&nbsp;asked&nbsp;to&nbsp;enter&nbsp;information&nbsp;that&nbsp;will&nbsp;be&nbsp;incorporatedinto&nbsp;your&nbsp;certificate&nbsp;request.What&nbsp;you&nbsp;are&nbsp;about&nbsp;to&nbsp;enter&nbsp;is&nbsp;what&nbsp;is&nbsp;called&nbsp;a&nbsp;Distinguished&nbsp;Name&nbsp;or&nbsp;a&nbsp;DN.There&nbsp;are&nbsp;quite&nbsp;a&nbsp;few&nbsp;fields&nbsp;but&nbsp;you&nbsp;can&nbsp;leave&nbsp;some&nbsp;blankFor&nbsp;some&nbsp;fields&nbsp;there&nbsp;will&nbsp;be&nbsp;a&nbsp;default&nbsp;value,If&nbsp;you&nbsp;enter&nbsp;&#39;.&#39;,&nbsp;the&nbsp;field&nbsp;will&nbsp;be&nbsp;left&nbsp;blank.-----Country&nbsp;Name&nbsp;(2&nbsp;letter&nbsp;code)&nbsp;[GB]:State&nbsp;or&nbsp;Province&nbsp;Name&nbsp;(full&nbsp;name)&nbsp;[Berkshire]:Locality&nbsp;Name&nbsp;(eg,&nbsp;city)&nbsp;[Newbury]:Organization&nbsp;Name&nbsp;(eg,&nbsp;company)&nbsp;[My&nbsp;Company&nbsp;Ltd]:Organizational&nbsp;Unit&nbsp;Name&nbsp;(eg,&nbsp;section)&nbsp;[]:Common&nbsp;Name&nbsp;(eg,&nbsp;your&nbsp;name&nbsp;or&nbsp;your&nbsp;server&#39;s&nbsp;hostname)&nbsp;[]:
+Email&nbsp;Address&nbsp;[]:
+[root[@localhost](/user/localhost)&nbsp;test]#&nbsp;
+[root[@localhost](/user/localhost)&nbsp;test]#&nbsp;ls
+cert.pem&nbsp;&nbsp;len.js&nbsp;&nbsp;server.key&nbsp;&nbsp;server.pem
+[root[@localhost](/user/localhost)&nbsp;test]#</pre><p>node.js代码：</p><pre class="prettyprint">&gt;&nbsp;var&nbsp;crypto&nbsp;=&nbsp;require(&#39;crypto&#39;);&gt;&nbsp;var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);&gt;&gt;&nbsp;var&nbsp;privatePem&nbsp;=&nbsp;fs.readFileSync(&#39;server.pem&#39;);&gt;&nbsp;var&nbsp;publicPem&nbsp;=&nbsp;fs.readFileSync(&#39;cert.pem&#39;);&gt;&nbsp;var&nbsp;key&nbsp;=&nbsp;privatePem.toString();&gt;&nbsp;var&nbsp;pubkey&nbsp;=&nbsp;publicPem.toString();&gt;&gt;&nbsp;var&nbsp;data&nbsp;=&nbsp;&quot;abcdef&quot;&gt;&gt;&nbsp;var&nbsp;sign&nbsp;=&nbsp;crypto.createSign(&#39;RSA-SHA256&#39;);&gt;&nbsp;sign.update(data);{}&gt;&nbsp;var&nbsp;sig&nbsp;=&nbsp;sign.sign(key,&nbsp;&#39;hex&#39;);&gt;&gt;&nbsp;var&nbsp;verify&nbsp;=&nbsp;crypto.createVerify(&#39;RSA-SHA256&#39;);&gt;&nbsp;verify.update(data);{}&gt;&nbsp;verify.update(data);{}&gt;&nbsp;verify.verify(pubkey,&nbsp;sig,&nbsp;&#39;hex&#39;);1</pre><p>首先通过，crypto.createVerify(algorithm)和crypto.createSign(algorithm)方法生成实例，然后利用update方法更新数据，最后利用key（私钥）生成签名，同样的验证也是如此，最后通过 verify.verify(pubkey, sig, ‘hex’); 函数签名。</p><p>另外几个api 像 createDiffieHellman 等下次再研究吧</p><p>本文例子参考部分：node up and running
+本文示例代码我都跑通过，请放心参考</p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="98c1aad6639caca7cf0902bc2eddfbe1" data-title="浅谈nodejs中的Crypto模块 " data-url="http://www.niefengjun.cn/blog/98c1aad6639caca7cf0902bc2eddfbe1.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/98c1aad6639caca7cf0902bc2eddfbe1/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

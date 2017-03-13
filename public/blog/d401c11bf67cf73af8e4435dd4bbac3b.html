@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>专门针对初学者的Node.js教程</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专门针对初学者的Node.js教程"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,专门针对初学者的Node.js教程" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>专门针对初学者的Node.js教程</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-05-21 15:32:09
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p>Node.js的教程并不缺乏，但有大部分教程针对已有Node.js基础的开发者。“我已下载了Node.js，可我如何开始呢？”以下教程是专门针对Node.js初学者，文中将通过实例分享，一步步教你如何开始Node.js之旅。 &nbsp;</p><p><strong style="background-color: rgb(255, 255, 255);"><span style="color: #7f6000;">什么是Node.js?</span></strong></p><p>很多初学者并没有真正地理解Node.js到底是什么。<a href="http://nodejs.org/" target="_blank">nodejs.org</a>网站中的描述也没有多大帮助。</p><p>首
+先要清楚Node不是一个Web服务器，这十分重要。它本身并不能做任何事情。它无法像Apache那样工作。如果你希望它成为一个HTTP服务器，你必
+须借助它内置库自己编写。Node.js只是计算机上执行代码的另一种方式，它是一个简单的JavaScript Runtime.</p><p><strong><span style="color: #7f6000;">安装Node.js</span></strong></p><p>Node.js的安装十分容易。只需<a href="http://nodejs.org/download" target="_blank">在这里下载</a>满足你需要的安装程序即可。</p><p><strong><span style="color: #7f6000;">已安装好Node.js，下一步做什么？</span></strong></p><p>安装结束后，你可以输入一个新命令“node”。使用该“node”命令有两种不同的方法。第一种不带任何参数，将打开一个交互式Shell“&gt;”（REPL： read-eval-print-loop），你可以在这里执行JavaScript代码。</p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;node&nbsp;&nbsp;</p></li><li><p>&gt;&nbsp;console.log(<span class="string">&#39;Hello&nbsp;World&#39;</span>);&nbsp;&nbsp;</p></li><li><p>Hello&nbsp;World&nbsp;&nbsp;</p></li><li><p>undefined&nbsp;&nbsp;</p></li></ol><p><a href="http://cms.csdnimg.cn/article/201308/28/521d9e4f51ad7.jpg" target="_blank"><img src="http://cms.csdnimg.cn/article/201308/28/521d9e4f51ad7.jpg" style="" border="0"/></a><br/></p><p>上
+面案例中，我在Shell中键入了“console.log(&#39;Hello 
+World&#39;)”，并敲回车。Node便开始执行该代码，并显示刚才记录的信息，同时打印出“undefined”。这是因为每条命令都会返回一个值，而
+console.log没有任何返回，故输出“undefined”。</p><p>Node命令的另一种用法是执行一个JavaScript文件。这是我们平时最常用的方法。</p><p><strong>hello.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;console.log(<span class="string">&#39;Hello&nbsp;World&#39;</span>);&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;$&nbsp;node&nbsp;hello.js&nbsp;&nbsp;</p></li><li><p>Hello&nbsp;World&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p><a href="http://cms.csdnimg.cn/article/201308/28/521d9e6f77456.jpg" target="_blank"><img src="http://cms.csdnimg.cn/article/201308/28/521d9e6f77456.jpg" style="" border="0"/></a><br/></p><p>该案例中，我将“console.log(&#39;Hello World&#39;);”命令存入一个文件中，并将该文件作为node命令的参数。Node运行文件中JavaScript代码，并输出“Hello World”。</p><p><strong><span style="color: #7f6000;">案例一：文件的输入与输出</span></strong></p><p>Node.js包含一组<a href="http://nodejs.org/api/" target="_blank">强大的库</a>（模块），可以帮助我们做很多事。第一个案例中，我将打开一个Log文件，并对它进行解析。</p><p><strong>example_log.txt</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;2013-08-09T13:50:33.166Z&nbsp;A&nbsp;2&nbsp;&nbsp;</p></li><li><p>2013-08-09T13:51:33.166Z&nbsp;B&nbsp;1&nbsp;&nbsp;</p></li><li><p>2013-08-09T13:52:33.166Z&nbsp;C&nbsp;6&nbsp;&nbsp;</p></li><li><p>2013-08-09T13:53:33.166Z&nbsp;B&nbsp;8&nbsp;&nbsp;</p></li><li><p>2013-08-09T13:54:33.166Z&nbsp;B&nbsp;5&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>该Log数据什么意思并不重要，基本可以确定每条信息都包含一条数据、一个字母和一个值。我希望将每个字母后面的值进行累加。</p><p>我们要做的第一件事是读出文件的内容。</p><p><strong>my_parser.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="comment">//&nbsp;Load&nbsp;the&nbsp;fs&nbsp;(filesystem)&nbsp;module</span>&nbsp;&nbsp;</p></li><li><p><span class="keyword">var</span>&nbsp;fs&nbsp;=&nbsp;require(<span class="string">&#39;fs&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Read&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;file&nbsp;into&nbsp;memory.</span>&nbsp;&nbsp;</p></li><li><p>fs.readFile(<span class="string">&#39;example_log.txt&#39;</span>,&nbsp;<span class="keyword">function</span>&nbsp;(err,&nbsp;logData)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;If&nbsp;an&nbsp;error&nbsp;occurred,&nbsp;throwing&nbsp;it&nbsp;will</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;display&nbsp;the&nbsp;exception&nbsp;and&nbsp;end&nbsp;our&nbsp;app.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(err)&nbsp;<span class="keyword">throw</span>&nbsp;err;&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;logData&nbsp;is&nbsp;a&nbsp;Buffer,&nbsp;convert&nbsp;to&nbsp;string.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;text&nbsp;=&nbsp;logData.toString();&nbsp;&nbsp;</p></li><li><p>});&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>通过内置的<a href="http://nodejs.org/api/fs.html" target="_blank">文件（fs）模块</a>，我们可以很容易进行文件的输入/输出操作。fs模块有一个<a href="http://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback" target="_blank">readFile</a>方法，该方法以文件路径、回调函数为参数。该回调函数在完成文件读取后调用。文件数据读取后存储在<a href="http://nodejs.org/api/buffer.html" target="_blank">Buffer</a>类型中，为基本的字节数组。我们可以通过<a href="http://nodejs.org/api/buffer.html#buffer_buf_tostring_encoding_start_end" target="_blank">toString</a>（）方法将它转化为字符串。</p><p>现在我们对它进行解析。</p><p><strong>my_parser.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="comment">//&nbsp;Load&nbsp;the&nbsp;fs&nbsp;(filesystem)&nbsp;module.</span>&nbsp;&nbsp;</p></li><li><p><span class="keyword">var</span>&nbsp;fs&nbsp;=&nbsp;require(<span class="string">&#39;fs&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Read&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;file&nbsp;into&nbsp;memory.</span>&nbsp;&nbsp;</p></li><li><p>fs.readFile(<span class="string">&#39;example_log.txt&#39;</span>,&nbsp;<span class="keyword">function</span>&nbsp;(err,&nbsp;logData)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;If&nbsp;an&nbsp;error&nbsp;occurred,&nbsp;throwing&nbsp;it&nbsp;will</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;display&nbsp;the&nbsp;exception&nbsp;and&nbsp;kill&nbsp;our&nbsp;app.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(err)&nbsp;<span class="keyword">throw</span>&nbsp;err;&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;logData&nbsp;is&nbsp;a&nbsp;Buffer,&nbsp;convert&nbsp;to&nbsp;string.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;text&nbsp;=&nbsp;logData.toString();&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;results&nbsp;=&nbsp;{};&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;Break&nbsp;up&nbsp;the&nbsp;file&nbsp;into&nbsp;lines.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;lines&nbsp;=&nbsp;text.split(<span class="string">&#39;\n&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;lines.forEach(<span class="keyword">function</span>(line)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;parts&nbsp;=&nbsp;line.split(<span class="string">&#39;&nbsp;&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;letter&nbsp;=&nbsp;parts[1];&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;count&nbsp;=&nbsp;parseInt(parts[2]);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>(!results[letter])&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;results[letter]&nbsp;=&nbsp;0;&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;results[letter]&nbsp;+=&nbsp;parseInt(count);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;});&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;console.log(results);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;{&nbsp;A:&nbsp;2,&nbsp;B:&nbsp;14,&nbsp;C:&nbsp;6&nbsp;}</span>&nbsp;&nbsp;</p></li><li><p>});&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>现在，当你将该文件作为node命令的参数时，执行该命令将打印出如下结果，执行完毕后退出。</p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;node&nbsp;my_parser.js&nbsp;&nbsp;</p></li><li><p>{&nbsp;A:&nbsp;2,&nbsp;B:&nbsp;14,&nbsp;C:&nbsp;6&nbsp;}&nbsp;&nbsp;</p></li></ol><p><a href="http://cms.csdnimg.cn/article/201308/28/521d9e87af1e3.jpg" target="_blank"><img src="http://cms.csdnimg.cn/article/201308/28/521d9e87af1e3.jpg" style="" border="0"/></a><br/></p><p>我大部时候将Node.js作为脚本使用，正如上面所展示的那样。它更易于使用，是脚本程序有力的替代者。</p><p><strong><span style="color: #7f6000;">异步回调</span></strong></p><p>正如在上例中看到的那样，Node.js典型的模式是使用异步回调。基本上，你告诉Node.js要做的事，它执行完后便会调用你的函数（回调函数）。这是因为Node是单线程的。在你等待回调函数执行过程中，Node可继续执行其他事务，不必被阻塞直到该请求完毕。</p><p>这对于Web服务器尤其重要。在现代Web应用访问数据库的过程中特别普遍。当你等待数据库返回结果的过程中，Node可以处理更多请求。与每次连接仅处理一个线程相比，它使你以很小的开销来处理成千上万个并行连接。</p><p><strong><span style="color: #7f6000;">案例二：HTTP服务器</span></strong></p><p>Node内建有一个模块，利用它可以很容易创建基本的<a href="http://nodejs.org/api/http.html#http_http_createserver_requestlistener" target="_blank">HTTP服务器</a>。请看下面案例。</p><p><strong>my_web_server.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="keyword">var</span>&nbsp;http&nbsp;=&nbsp;require(<span class="string">&#39;http&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>http.createServer(<span class="keyword">function</span>&nbsp;(req,&nbsp;res)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;res.writeHead(200,&nbsp;{<span class="string">&#39;Content-Type&#39;</span>:&nbsp;<span class="string">&#39;text/plain&#39;</span>});&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;res.end(<span class="string">&#39;Hello&nbsp;World\n&#39;</span>);&nbsp;&nbsp;</p></li><li><p>}).listen(8080);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>console.log(<span class="string">&#39;Server&nbsp;running&nbsp;on&nbsp;port&nbsp;8080.&#39;</span>);&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>在
+上面，我说是的基本HTTP服务器。该例中所创建的并不是一个功能全面的HTTP服务器，它并不能处理任何HTML文件、图片。事实上，无论你请求什么，
+它都将返回“Hello World”。你运行该代码，并在浏览器中输入“http://localhost:8080”，你将看见该文本。</p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;node&nbsp;my_web_server.js&nbsp;&nbsp;</p></li></ol><p>现在你可能已经注意到一些不一样的东西。你的Node.js应用并没有退出。这是因为你创建了一个服务器，你的Node.js应用将继续运行，并响应请求，直到你关闭它。</p><p>如果你希望它成为一个全功能的Web服务器，你必须检查所收到的请求，读取合适的文件，并返回所请求的内容。值得高兴的是，有人已经帮你做了这个艰难的工作。</p><p><strong><span style="color: #7f6000;">案例三：Express框架</span></strong></p><p><a href="http://expressjs.com/" target="_blank">Express</a>为一个框架，可使创建网站的过程十分简单。你首先需要安装它。除了node命令，你还需要访问“npm”命令。利用该工具，你可以访问社区所创建的庞大模块集。其中之一就是Express。</p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;cd&nbsp;/my/app/location&nbsp;&nbsp;</p></li><li><p>$&nbsp;npm&nbsp;install&nbsp;express&nbsp;&nbsp;</p></li></ol><p>当你安装了一个模块，它将出现在应用程序所在目录的“node_modules”文件夹中。现在我们可以利用Express来创建一个基本的静态文件服务器。</p><p><strong>my_static_file_server.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="keyword">var</span>&nbsp;express&nbsp;=&nbsp;require(<span class="string">&#39;express&#39;</span>),&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;app&nbsp;=&nbsp;express();&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>app.use(express.<span class="keyword">static</span>(__dirname&nbsp;+&nbsp;<span class="string">&#39;/public&#39;</span>));&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>app.listen(8080);&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;node&nbsp;my_static_file_server.js&nbsp;&nbsp;</p></li></ol><p>现
+在你已创建了一个强大的静态文件服务器。你可以通过浏览器请求访问你放在public文件夹中任何文件，并进行展示，包括HTML、图片等任何东西。比
+如，把一个名为“my_image.png”的图片放在public文件夹中，你可以在浏览器中输入“http://localhost:8080
+/my_image.png”来访问该图片。当然，Express还有很多特性，你可以在以后的开发中继续探索。</p><p><strong><span style="color: #7f6000;">NPM</span></strong></p><p>上面我们已经接触到了<a href="https://npmjs.org/" target="_blank">npm</a>，但我仍想强调一下在Node.js开发过程中该工具的重要性。它有成千上万个模块可帮我们解决遇到的大部分典型问题。在重新发明轮子之前，记得检查一下npm中是否有相应功能。&nbsp;</p><p>上一例中，我们手动安装了Express。如果你的程序包含很多“依赖”（Dependency），那再利用该方法安装它们就不合适了。为此npm提供了一个package.json文件。</p><p><strong>package.json</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="string">&quot;name&quot;</span>&nbsp;:&nbsp;<span class="string">&quot;MyStaticServer&quot;</span>,&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="string">&quot;version&quot;</span>&nbsp;:&nbsp;<span class="string">&quot;0.0.1&quot;</span>,&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="string">&quot;dependencies&quot;</span>&nbsp;:&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">&quot;express&quot;</span>&nbsp;:&nbsp;<span class="string">&quot;3.3.x&quot;</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;}&nbsp;&nbsp;</p></li><li><p>}&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p><a href="https://npmjs.org/doc/files/package.json.html" target="_blank">package.json</a>文件包含了应用程序的基本信息。其中“dependencies”部分描述了你想安装模块的名称和版本。该案例，接受Express 3.3的任何版本。你可以在该部分列出你想要的所有依赖。</p><p>代替之前一个个安装每个依赖，现在我们可以运行一个命令，即可将它们全部安装完成。</p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>$&nbsp;npm&nbsp;install&nbsp;&nbsp;</p></li></ol><p>运行该命令，npm将在当下文件夹中查找“package.json”文件。一旦找到，即可安装所列出的所有依赖。</p><p><strong><span style="color: #7f6000;">代码的组织</span></strong></p><p>在大部分应用程序中，你的代码往往被分割到几个文件中。现在让我们把最开始案例中的Log分析脚本分离出来。这样该程序将更易于测试与维护。</p><p><strong>parser.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="comment">//&nbsp;Parser&nbsp;constructor.</span>&nbsp;&nbsp;</p></li><li><p><span class="keyword">var</span>&nbsp;Parser&nbsp;=&nbsp;<span class="keyword">function</span>()&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>};&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Parses&nbsp;the&nbsp;specified&nbsp;text.</span>&nbsp;&nbsp;</p></li><li><p>Parser.prototype.parse&nbsp;=&nbsp;<span class="keyword">function</span>(text)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;results&nbsp;=&nbsp;{};&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;Break&nbsp;up&nbsp;the&nbsp;file&nbsp;into&nbsp;lines.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;lines&nbsp;=&nbsp;text.split(<span class="string">&#39;\n&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;lines.forEach(<span class="keyword">function</span>(line)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;parts&nbsp;=&nbsp;line.split(<span class="string">&#39;&nbsp;&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;letter&nbsp;=&nbsp;parts[1];&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;count&nbsp;=&nbsp;parseInt(parts[2]);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>(!results[letter])&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;results[letter]&nbsp;=&nbsp;0;&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;&nbsp;&nbsp;results[letter]&nbsp;+=&nbsp;parseInt(count);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;});&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;results;&nbsp;&nbsp;</p></li><li><p>};&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Export&nbsp;the&nbsp;Parser&nbsp;constructor&nbsp;from&nbsp;this&nbsp;module.</span>&nbsp;&nbsp;</p></li><li><p>module.exports&nbsp;=&nbsp;Parser;&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>在此创建了一个新文件，来存放Log分析脚本。这仅仅是一种标准JavaScript，还有很多方法可用来封装该代码。我选择重新定义一个JavaScript对象，这样更容易进行单元测试。</p><p>该程序中最重要的部分是“module.exports = Parser;”这一行代码。它告诉Node从该文件中要输出的内容。在该例中，我输出了构造函数，用户可以用Parser对象来创建实例。你可以输出任何你想要的。</p><p>现在我们看一下，如何导入该文件，来使用Parser对象。</p><p><strong>my_parser.js</strong></p><p><strong>[js]</strong> <a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="ViewSource" title="view plain">view plain</a><a href="http://www.csdn.net/article/2013-08-28/2816731-absolute-beginners-guide-to-nodejs#" class="CopyToClipboard" title="copy">copy</a></p><ol class="dp-c list-paddingleft-2" start="1"><li><p>&lt;b&gt;<span class="comment">//&nbsp;Require&nbsp;my&nbsp;new&nbsp;parser.js&nbsp;file.</span>&nbsp;&nbsp;</p></li><li><p><span class="keyword">var</span>&nbsp;Parser&nbsp;=&nbsp;require(<span class="string">&#39;./parser&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Load&nbsp;the&nbsp;fs&nbsp;(filesystem)&nbsp;module.</span>&nbsp;&nbsp;</p></li><li><p><span class="keyword">var</span>&nbsp;fs&nbsp;=&nbsp;require(<span class="string">&#39;fs&#39;</span>);&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p><span class="comment">//&nbsp;Read&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;file&nbsp;into&nbsp;memory.</span>&nbsp;&nbsp;</p></li><li><p>fs.readFile(<span class="string">&#39;example_log.txt&#39;</span>,&nbsp;<span class="keyword">function</span>&nbsp;(err,&nbsp;logData)&nbsp;{&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;If&nbsp;an&nbsp;error&nbsp;occurred,&nbsp;throwing&nbsp;it&nbsp;will</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;display&nbsp;the&nbsp;exception&nbsp;and&nbsp;kill&nbsp;our&nbsp;app.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;(err)&nbsp;<span class="keyword">throw</span>&nbsp;err;&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;logData&nbsp;is&nbsp;a&nbsp;Buffer,&nbsp;convert&nbsp;to&nbsp;string.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;text&nbsp;=&nbsp;logData.toString();&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;Create&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;Parser&nbsp;object.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="keyword">var</span>&nbsp;parser&nbsp;=&nbsp;<span class="keyword">new</span>&nbsp;Parser();&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;Call&nbsp;the&nbsp;parse&nbsp;function.</span>&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;console.log(parser.parse(text));&nbsp;&nbsp;</p></li><li><p>&nbsp;&nbsp;<span class="comment">//&nbsp;{&nbsp;A:&nbsp;2,&nbsp;B:&nbsp;14,&nbsp;C:&nbsp;6&nbsp;}</span>&nbsp;&nbsp;</p></li><li><p>});&lt;/b&gt;&nbsp;&nbsp;</p></li></ol><p>如模块一样，文件被引入其中，你需要输入路径，而非名称。</p><p><strong><span style="color:#7f6000">总结</span></strong></p><p>希望该教程可以帮助到你。Node.js是一个强大、灵活的技术，可以帮助解决各种各样的问题。它已经超出了我们的想像。</p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="d401c11bf67cf73af8e4435dd4bbac3b" data-title="专门针对初学者的Node.js教程" data-url="http://www.niefengjun.cn/blog/d401c11bf67cf73af8e4435dd4bbac3b.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/d401c11bf67cf73af8e4435dd4bbac3b/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

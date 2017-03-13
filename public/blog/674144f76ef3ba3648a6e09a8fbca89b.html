@@ -1,0 +1,304 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>原型链的原理</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="原型链的原理"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,原型链的原理" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>原型链的原理</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-05-21 15:16:58
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p><br/></p><p>说到prototype，就不得不先说下new的过程。</p><p>我们先看看这样一段代码：</p><pre class="code">&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;Person&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;p&nbsp;=&nbsp;new&nbsp;Person();&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;</pre><p>很简单的一段代码，我们来看看这个new究竟做了什么？我们可以把new的过程拆分成以下三步：</p><p>&lt;1&gt; var p={}; 也就是说，初始化一个对象p。</p><p>&lt;2&gt; p.__proto__=Person.prototype;</p><p>&lt;3&gt; Person.call(p);也就是说构造p，也可以称之为初始化p。</p><p>关键在于第二步，我们来证明一下：</p><pre class="code">&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;Person&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;p&nbsp;=&nbsp;new&nbsp;Person();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(p.__proto__&nbsp;===&nbsp;Person.prototype);&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;</pre><p>这段代码会返回true。说明我们步骤2的正确。</p><p>那么__proto__是什么？我们在这里简单地说下。每个对象都会在其内部初始化一个属性，就是__proto__，当我们访问一个对象的属性
+时，如果这个对象内部不存在这个属性，那么他就会去__proto__里找这个属性，这个__proto__又会有自己的__proto__，于是就这样
+一直找下去，也就是我们平时所说的原型链的概念。</p><p>按照标准，__proto__是不对外公开的，也就是说是个私有属性，但是Firefox的引擎将他暴露了出来成为了一个共有的属性，我们可以对外访问和设置。</p><p>好，概念说清了，让我们看一下下面这些代码：</p><pre class="code">&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;Person&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Person.prototype.Say&nbsp;=&nbsp;function&nbsp;()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&quot;Person&nbsp;say&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;p&nbsp;=&nbsp;new&nbsp;Person();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.Say();&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;</pre><p>这段代码很简单，相信每个人都这样写过，那就让我们看下为什么p可以访问Person的Say。</p><p>首先var p=new 
+Person()；可以得出p.__proto__=Person.prototype。那么当我们调用p.Say()时，首先p中没有Say这个属性，
+于是，他就需要到他的__proto__中去找，也就是Person.prototype，而我们在上面定义了
+Person.prototype.Say=function(){}; 于是，就找到了这个方法。</p><p>好，接下来，让我们看个更复杂的。</p><pre class="code">&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;type=&quot;text/javascript&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;Person&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Person.prototype.Say&nbsp;=&nbsp;function&nbsp;()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&quot;Person&nbsp;say&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Person.prototype.Salary&nbsp;=&nbsp;50000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;Programmer&nbsp;=&nbsp;function&nbsp;()&nbsp;{&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Programmer.prototype&nbsp;=&nbsp;new&nbsp;Person();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Programmer.prototype.WriteCode&nbsp;=&nbsp;function&nbsp;()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&quot;programmer&nbsp;writes&nbsp;code&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Programmer.prototype.Salary&nbsp;=&nbsp;500;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;p&nbsp;=&nbsp;new&nbsp;Programmer();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.Say();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.WriteCode();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(p.Salary);&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;</pre><p>我们来做这样的推导：</p><p>var p=new Programmer()可以得出p.__proto__=Programmer.prototype;</p><p>而在上面我们指定了Programmer.prototype=new Person();我们来这样拆分，var p1=new Person();Programmer.prototype=p1;那么:</p><p>p1.__proto__=Person.prototype;</p><p>Programmer.prototype.__proto__=Person.prototype;</p><p>由根据上面得到p.__proto__=Programmer.prototype。可以得到p.__proto__.__proto__=Person.prototype。</p><p>好，算清楚了之后我们来看上面的结果,p.Say()。由于p没有Say这个属性，于是去p.__proto__，也就是
+Programmer.prototype，也就是p1中去找，由于p1中也没有Say，那就去p.__proto__.__proto__，也就是
+Person.prototype中去找，于是就找到了alert(“Person say”)的方法。</p><p>其余的也都是同样的道理。</p><p>这也就是原型链的实现原理。</p><p>最后，其实prototype只是一个假象，他在实现原型链中只是起到了一个辅助作用，换句话说，他只是在new的时候有着一定的价值，而原型链的本质，其实在于__proto__！</p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="674144f76ef3ba3648a6e09a8fbca89b" data-title="原型链的原理" data-url="http://www.niefengjun.cn/blog/674144f76ef3ba3648a6e09a8fbca89b.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/674144f76ef3ba3648a6e09a8fbca89b/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

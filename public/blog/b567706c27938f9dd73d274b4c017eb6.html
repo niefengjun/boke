@@ -1,0 +1,270 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>从携程瘫痪事件看运维的 85 条军规 </title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="从携程瘫痪事件看运维的 85 条军规 "/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,从携程瘫痪事件看运维的 85 条军规 " name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>从携程瘫痪事件看运维的 85 条军规 </h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-06-08 16:08:14
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p><span style="color: rgb(192, 0, 0);"><strong>运维85条军规</strong></span></p><p><br/></p><p>1) 承载能力优先 ——随后再进行优化 —— 不遵守这条规则必定带来故障停机时间。不要在故障停机时间的压力下进行优化——要先集中精力提高承载能力。</p><p><br/></p><p>2) 以Postgres为例，一定要确保你的每一个网络都能匹配得上你的WAL文件、Slony复制、快照技术以及基于磁盘的DB版本化（快照的衍生品）</p><p><br/></p><p>3) 不要把问题‘优化’到你的架构之中。为了解决问题而新加进来的一些东西往往后来都会变成运维沉重的负担。 要确保在运维工程化中开发出来的工具交接完整。过后再回头进行进一步的开发往往不灵。更重要的是，变更请求可能会破坏已经安排好的工程计划。</p><p><br/></p><p>4） 保持简单。保持简单，因为你很聪明 别把事搞的太复杂 因为你行的。</p><p><br/></p><p>(译者:KISS 原则 Keep It Simple, Stupid)</p><p><br/></p><p>5）应该非常谨慎地使用 缓存 ，为了保护资源一致性，它很难进行水平缩放。</p><p>如果你作的是一个可以横向扩展的东西，</p><p>明智或审慎的做法是不要添加的缓存层。</p><p>如果非要使用，它应该是为最终用户获得性能，</p><p>不是为了赢得一个网站的容量;</p><p><br/></p><p>6） 不要所有代码都自己写; 不要所有东西都外包; &nbsp;在合适的时间使用合适的工具,完成你的工作.</p><p><br/></p><p>(译者: 不要重复造轮子)</p><p><br/></p><p>7)协商-真正有效的谈判唯一方式是先作一些调研,制定一些可行的性方案.这样你可以挑选你的首席开发商,如果你真的需要. 别虚张声势.</p><p><br/></p><p>8）一直保持N+1。如果N=1，无论任何情况下不要轻易使用+1，这个1只用于当N down机情况下。当使用冗余服务器来承载负载时候，不要让你的系统超过49%的负荷。当有机会能只用N+2的架构时候，使用它。</p><p><br/></p><p>9）数据丢失不是任何一个公司所能承担的风险–这是举世所知的真理。数据丢失造成的损失远远大于保持数据不丢失所花的成本。</p><p><br/></p><p>10）无论何时何地尽可能并行化。这是复路考虑最重要的手段。比如，如果利用MogileFS来做位置感知，并且需要实时的复制数据，一个可行的方法是每一台MogileFS服务器可以复制它的数据去MogileFS的负载均衡中心。尽可能多的启用多的平行。</p><p><br/></p><p>11）阅读手册。至今，我还是坚持要先通读RAID卡的手册，以确认是否有什么细微的差别。恶魔都隐藏在细节里。做足功课吧！</p><p><br/></p><p>12）知道瓶颈所在，并知道怎么去定位它，一层层排查，查找是不是硬盘、内存或者cpu的阻塞了。通常这个很简单。</p><p><br/></p><p>13)定期做系统容量管理程序。积极一点。如果没有容量数据的曲线，你很难知道你系统的薄弱之处。</p><p><br/></p><p>14）不要促成失败，不要害怕改变。</p><p><br/></p><p>15）别挖陷阱给自己跳。不要认为你的工作成果将能作为未来的工作的动力。</p><p><br/></p><p>16 ）运维人员写的代码应该是运维工具，而不是应用软件。</p><p><br/></p><p>17）在运维团队中，不要低估了项目管理、文档撰写以及财务分析人员的价值。他们比给予工资更有价值。</p><p><br/></p><p>18）监控一切。报警异常问题。其他部分记录数据用来做趋势分析信息。</p><p><br/></p><p>19）定期的流程查看各个地方的趋势数据。</p><p><br/></p><p>20）不要把监控弄的很乱，不然他就没有啥意义了。</p><p><br/></p><p>21）要确保监控系统简单到让公司的每个人都能上手。你可能会很吃惊监控数据指标转换成为业务指标、市场指标和销售等等指标有多频繁。</p><p><br/></p><p>22 ） 只在可以做出相应改善的地方做检查。 否则就不要浪费时间了。 23）公开你的检查报告，并附上相关数据，以便他人可以容易的阅读到关键点，并能关联到响应的数据。</p><p><br/></p><p>24）在每一个技术点都分配人手。</p><p><br/></p><p>25）要给重要人员配备后备人手。</p><p><br/></p><p>26）要不断的招聘。甚至是当你没有名额，也要一直招聘。</p><p><br/></p><p>27）要严于律己。无论你有多聪明或者你认为你多NB，你也要不断的提高自己。</p><p><br/></p><p>28 ）要尽可能多的把自己和其他公司做比较。眼光要往外看。 29) 挑选一个展会或回忆，只有一个，一年一次，去参加。如果展会一年举办多次，之参加一次。</p><p><br/></p><p>30) 购买你需要的，而非你想要的。永远都不要摘掉企业这顶帽子带上“什么对我是最简单最安全的”这顶帽子。</p><p><br/></p><p>31)永远只做最生意有益的事情，即使这意味着你需要离开。</p><p><br/></p><p>32)正式问责机制——记录承诺，标记它们，揭示为兑现的承诺。</p><p><br/></p><p>33) 你不应失败两次以上。恐惧感有点好处。但要知道长期犯错和无意犯错的区别。</p><p><br/></p><p>34无情一些——你的对手如此。</p><p><br/></p><p>35)视工作为在你完成时需要签上你的名字。这也意味着完成你的工作。</p><p><br/></p><p>36)变得对别人有用。</p><p><br/></p><p>37)与初创公司合作——提供你的专业技术和规模，你将获得免费的产品作为回报，有时甚或一生。</p><p><br/></p><p>38）容量是一个业务/产品问题。这意外着每个页面、每个请求、每次登录的网络成本等等在做正确的业务/产品决策时候都必须是都透明</p><p><br/></p><p>39)一直打破预算。运维团队通常是最大的花费者。通常没有收入没有达到预算，但是运维团队可以有很多方法来延期采购。</p><p><br/></p><p>40）过去能正常的做的事，不见得现在或者未来都会正常。所以做的时候，先用工具测试一下。</p><p><br/></p><p>41）文档化。把所有东西都写成文档。要让新人挨个去问怎么做事。</p><p><br/></p><p>42）用一张大尺寸的图绘制你数据中心的网络拓扑。</p><p><br/></p><p>43 ）用一张图描绘出你每一个产品的业务流程图。 44) Faq-O-Matic, Wiki, 在这里人们可以很容易的发布“这是如何修复这个”的文章，并让它容易被找到的地方。这里是技术编写者能派上用场的地方，但是，最重要的是使文档更容易，即使是非正式的。</p><p><br/></p><p>45) 确保所有人，任何人都可以被替换。</p><p><br/></p><p>46)多数人在家里做的比在办公室里更多，有些人则不然。</p><p><br/></p><p>47)捆绑下单——你可以要求更多折扣，更好的条款等等。当你成批购进硬件时。你可以要求一切——最低价格，备件包，租赁期限，只要他们还没有得到订单。</p><p><br/></p><p>48)同你的供货商保持长期关系——确保你在下份工作时依然能够联系他们。</p><p><br/></p><p>49）给运维团队的每一个人配置可以用来远程工作的超级装备：掌上电脑、无线上网卡、24英寸液晶显示器等等。雇佣大拿得到回报要远大于远程雇佣的本地人员。记住运维工程师都是用电达人，能充分的利用屏幕上的每一个像素点。</p><p><br/></p><p>50)完全陷入IT标准的泥潭。直到Mac运行office 2007和outlook，你必须运行windows。间断的。除非全用mac本，否则这会破坏会议日程表、联系人或者邮件列表的办公效率。如果有个员工愿意工作的在 xp环境。这是非常少。这条法则，现在是陈旧的/未公认的，陷入泥潭不一定是最好的方法。这个列表非常的07化。</p><p><br/></p><p>51 ）有个合理的采购流程。知道你的预算，确信能管好它。从财务得到实际的金额。在技术驱动的预算/报告和财务驱动的预算/报告直接往往有一定的差距。作为一个搞的运维管理者要能形成模型把这些差距计入销售总成本中。一个理解这些事情的CFO有助于推动业务决策。</p><p><br/></p><p>52）周会一定要持续进行。对上次会议的事件逐一落实结果和追责。</p><p><br/></p><p>53）建立一个分离的逐级升级系统，用以消除由于开发者代码的问题对线上系统的不良影响。这主要是运维问题、代码问题都存在的情况下在开发跟踪系统或者运维跟踪系统中往往会丢掉，最后无人理睬。建立一个独立的跟踪系统来解决这些问题可以使得问题简单清晰。</p><p><br/></p><p>54 ）产品开发从设计开始的每个阶段都要和运维相结合。这样，扩展性，监控和可靠性都融入到产品里。这样同时也可以确保运维负责的硬件采购、监控系统按时到位，运维手册得到及时更新，最后产品按照预计时间上线运行并且都符合运维标准。</p><p><br/></p><p>55）在公司真正的实践——Sarbanes，WebTrust 安全审计认证，SAS 70 审计标准，Visa 和银行等等。如果你真的成功了，这些都是你不得不打交道的。早点开始这些准备其实很简单，不需要太多的知识。部署一个工单/任务跟踪工具，使用它。把变更控制和变更管理纳入同样的系统里，使用它。其他信息也可以放进来。系统就可以帮助我们找出像“上周变更了什么”这类信息。</p><p><br/></p><p>56）简化给冗余留和多点登录的流程。一开始或许很难，但是一个没有真正的扩展性和可靠性的系统，才会真正耽误你获得成功的时间。</p><p><br/></p><p>57）Oracle 标准版(SQL Server 标准版)是值得购买的。如果你可以限制住自己不超过标准版的需求，那就绝对值得买，哪怕你刚刚开始创业还不需要他。</p><p><br/></p><p>58）Postgres 和 MySQL 是一个免费的考虑。如果你不是特别在意事务完整性，MySQL 是很好的选择。直到”真空”和Postgres单词的强制链被打断，Postgres代表一个不可预知的，通常消极诡异的数据库。</p><p><br/></p><p>59）容量设计应该按照每日峰值再上抛 20% ～ 30% 的冗余。除非你是个迁移技术热衷者。</p><p><br/></p><p>60）尽量多读一些经济杂志。它们通常是免费的，只需你填写一些调查问卷就可以免费获得。新闻的价值是巨大的。让他们投递到你家里，工作的时候读杂志的机会趋近于零。</p><p><br/></p><p>61）保障安全。开发人员不应该有线上环境的权限，应该做代码复核。这是和运维之间的职责分离。运维团队中应该有人控制其他运维人员权限的权限。制定员工手册，告知违反安全条例所带来的严重后果。从开始就要从物理的、逻辑的、功能的各个方面来保护客户的数据安全和隐私。万一有客户要和你对峙起来，你发现起来发现自己只是靠勇气和勤奋来保护客户数据，那你就傻了。</p><p><br/></p><p>62） 控制好访问入口。首先要保证大家可以正常完成工作；其次要确保你知道他们是从哪里登录的。启用双因素身份验证方法。</p><p><br/></p><p>63）对于人们访问生产环境必经之路的壁垒和网关宿主，击键记录很重要。对于 Windows 可能稍微有点难度，不过有些网关可以提供自动截屏功能。</p><p><br/></p><p>64）如果有状况的情况下，确保有冗余登录点连线到生产环境。不要期望公司的 VPN 在网络中断的时候还能连上生产环境。直接把 VPN 架设在线上环境里。</p><p><br/></p><p>65）使用 LDAP 认证，哪怕你只有 10 台机器，通过复制 passwd 和 shadow 文件的方式来管理，你也需要 LDAP 认证。</p><p><br/></p><p>66）不要低估在 UNIX 环境中一台 Windows Server 2003（2008）设备的作用。如果只是因为不懂 Windows，那么去学，而不是排斥它。</p><p><br/></p><p>67）不要在无效的无线方案上浪费大家的时间。人们都机动的，他们希望在沙发上，会议室里，门口，到处都要上网。一定要保证无线ad的可靠。</p><p><br/></p><p>68） 总有人把额外的精力和时间都投入到工作上——直接通过他们的请假单好了。而另一些人恰恰相反只把注意力放在怎么通过自己的请假单。在个人时间安排上，运维人员总是做出巨大的牺牲，他们随时准备凌晨3点爬起床快速响应排障需求。</p><p><br/></p><p>69）通过集中式的关系数据库管理你所有的产品成果。然后通过数据复制分发到资产，人员，网络，合同等所有数据到异地。没错，要的是一个在线的实时可用的复制，而不是每天晚上备份到磁带。</p><p><br/></p><p>70）尽可使用自动化流程以确保安全，包括操作系统或者产品的上线，文件的分发，日志的分析等。</p><p><br/></p><p>71）自动化操作通过运维数据库获得配置（真理来源）。</p><p><br/></p><p>72）服务器通常有三种状态——离线，在线，产品态。在线就是说正在通过 cfengine、rsync 或者其他你在使用的工具完成配置。产品态表示已经走流量了。同时还需要一个状态，这个状态下的设备可以在不提供生产服务的情况下收集或者测试数据。</p><p><br/></p><p>73）注重日志数据。在设备下线或者重建之前，一定要先导出日志。</p><p><br/></p><p>74）如果规模发展太快以至于没有太多时间来做优化，那就尽力锁定一切——流程还能进行即可，就不要改变它，直到后来有了绝对必要的理由。总之，锁定默认值，等待成长到必要时再审视。</p><p><br/></p><p>75）你永远无法避免运维工程师在你基础设施最关键的地方犯错——比如在哪台机器上不小心执行 rm -rf / 命令。</p><p><br/></p><p>76）为团队保持好玩和有趣的气氛——如果他们不再享受他们的工作，他们就会找别的事情来消遣。要让团队有主人翁意识，运维不是哪个经理的个人任务。</p><p><br/></p><p>77）提供 99.999% 可用性的真正价值在于让我们有能力保持灵活。这意味着当你需要的时候可以充分利用冗余。这会让物理变更、设备登入点变化、代码修改和回退等等都游刃有余。这个对于公司本身价值巨大，甚至比对客户还大。</p><p><br/></p><p>78）如果你能做到 99.999%，给客户100% 的服务承诺。</p><p><br/></p><p>79） 不要丢掉按流程发布软件的能力。应该丢掉的是你自己回滚或者转移到旧版本代码的能力。压根就不应该“处理”这种徒劳的失败转移。当事情变得不 如人意的时候，你更应该做的是找个大玩意儿来挡住你的肥屁股。CYA = 保持敏捷 = 成功的公司。</p><p><br/></p><p>80） 在脑子里要清楚知道为什么以及这样做的为了达到的目的，为客户构建产品每一个具体步骤。不管你部署给最终用户的是什么，把这些放在最先考虑，即你所有（基础设施、流程和人员）的设计都是为了提供最好的服务和产品。</p><p><br/></p><p>81）第一次就要做对了。很少有机会让你回去在做一遍的。重做是对公司资源的巨大浪费。要提高命中率，一次就要成功。</p><p><br/></p><p>82）接触业内人士、盟友和类似的企业，看看他们的运维是怎么做的。很可能他们碰到了跟你一样的挑战，而解决的方法更好。不要害怕分享自己的经验和处理过程，因为别人也会回馈的。他山之石，可以攻玉！</p><p><br/></p><p>83）招人要招那些好到可以让你担心位子不保的那样的人，招你欣赏和可以学习的榜样，招那些你愿意和他一起工作的。这感觉甚至超过你招聘一个工作考评为A的员工。</p><p><br/></p><p>84） IT 和运维是完全不同的两个概念。一个不错的运维经理应该可以管理好企业IT，但是一个传统的 IT工程师很难有能力处理互联网运维任务。</p><p><br/></p><p>85）当你开始一份新工作或者在每年的起始，都应该去争取预算。这不是说推车那老破车往前走，而应该是基 于历史数据做出最佳推荐方案。如果你正在评估一份新工作，请确认你完完全全的知道预算以及预算的来源。同时，还应该有完善这份预算的权利。</p><p><br/></p><p>&nbsp;&nbsp; 不管如何 一定要把用户安全放在第一位 <br/></p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="b567706c27938f9dd73d274b4c017eb6" data-title="从携程瘫痪事件看运维的 85 条军规 " data-url="http://www.niefengjun.cn/blog/b567706c27938f9dd73d274b4c017eb6.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/b567706c27938f9dd73d274b4c017eb6/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> 使用npm制作nodejs模块包 </title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=" 使用npm制作nodejs模块包 "/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程, 使用npm制作nodejs模块包 " name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3> 使用npm制作nodejs模块包 </h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-02-11 11:12:21
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <pre class="brush:as3;toolbar:false">NodeJS&nbsp;
+是一门年轻的语言，扩展模块并不太全，经常我们想用某个模块但是却找不到合适的。比如前两天我需要使用hmac和sha1来做签名，就没有找到一个比较好
+用的模块，这时候就需要我们自己来实现相应的功能了。自己写完之后，再把它打包成一个模块分享给大家来用，即方便了其他人，又能让自己有点小小的成就感，
+实在是一件一举多得的好事情。接下来，我就为大家介绍一下如何封装一个NodeJS模块并把它分享给其他人。
+NPM
+
+&nbsp;(Node&nbsp;Package&nbsp;Manager,&nbsp;http://npmjs.org&nbsp;)&nbsp;是&nbsp;NodeJS&nbsp;的模块管理软件，除&nbsp;NodeJS&nbsp;
+内置的核心模块外，其他模块的安装、卸载等管理操作都要通过&nbsp;NPM&nbsp;来进行，我们自己写的模块，就要发布到NPM上来供其他人使用。
+接下来，我们做一个非常简单的模块&nbsp;“hello”，这个模块的功能只有一个：提供一个参数&nbsp;“name”&nbsp;，它在控制台输出&nbsp;“Hello&nbsp;name”。在开始之前，我们首先要把node和npm装好，安装方法在其官方网站都有介绍，这里就不再多说了。
+首先，我们创建一个名为”hello”的目录，作为模块的主目录。进入该目录，开始我们的工作。
+然后，写模块的核心代码，很简单，只有以下三行：
+exports.Hello&nbsp;=&nbsp;function&nbsp;(&nbsp;name&nbsp;)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&nbsp;&quot;Hello&nbsp;&quot;&nbsp;+&nbsp;name&nbsp;);
+}
+把它保存为&nbsp;hello.js。
+NodeJS每个扩展模块中都有一个package.json文件，用来描述模块的一些基本属性，比如模块名称、作者、版本号等等。关于package.json写法的详细说明，可以使用&nbsp;“npm&nbsp;help&nbsp;json”&nbsp;命令来查看。
+我们可以在模块主目录下执行&nbsp;npm&nbsp;init&nbsp;来生成一个最基本的package.json。按照命令的提示依次输入信息即可。以下是在&nbsp;hello&nbsp;目录下执行&nbsp;npm&nbsp;init&nbsp;并填入相关信息后的结果：
+
+[plain]&nbsp;view&nbsp;plaincopy
+&lt;span&nbsp;style=&quot;color:#333333;&quot;&gt;$&nbsp;npm&nbsp;init&nbsp;&nbsp;
+Package&nbsp;name:&nbsp;(hello)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//模块名字，npm&nbsp;init会自动取当前目录名作为默认名字，这里不需要改，直接确认即可&nbsp;&nbsp;
+Description:&nbsp;A&nbsp;example&nbsp;for&nbsp;write&nbsp;a&nbsp;module&nbsp;&nbsp;&nbsp;&nbsp;//模块说明&nbsp;&nbsp;
+Package&nbsp;version:&nbsp;(0.0.0)&nbsp;0.0.1&nbsp;&nbsp;&nbsp;&nbsp;//模块版本号，这个大家按自己习惯来定就可以&nbsp;&nbsp;
+Project&nbsp;homepage:&nbsp;(none)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//模块的主页，如果有的话可以填在这里，也可以不填&nbsp;&nbsp;
+Project&nbsp;git&nbsp;repository:&nbsp;(none)&nbsp;&nbsp;&nbsp;&nbsp;//模块的git仓库，选填。npm的用户一般都使用github做为自己的git仓库&nbsp;&nbsp;
+Author&nbsp;name:&nbsp;Elmer&nbsp;Zhang&nbsp;&nbsp;&nbsp;&nbsp;//模块作者名字&nbsp;&nbsp;
+Author&nbsp;email:&nbsp;(none)&nbsp;niefengjun@niefengjun.cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//模块作者邮箱&nbsp;&nbsp;
+Author&nbsp;url:&nbsp;(none)&nbsp;http://www.niefengjun.cn&nbsp;&nbsp;&nbsp;&nbsp;//模块作者URL&nbsp;&nbsp;
+Main&nbsp;module/entry&nbsp;point:&nbsp;(none)&nbsp;hello.js&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+模块的入口文件，我们这里是hello.js&nbsp;&lt;/span&gt;&lt;span&nbsp;style=&quot;color:#ff6666;&quot;&gt;(这
+个必填)&lt;/span&gt;&lt;span&nbsp;style=&quot;color:#333333;&quot;&gt;&nbsp;&nbsp;
+Test&nbsp;command:&nbsp;(none)&nbsp;&nbsp;&nbsp;&nbsp;//测试脚本，选填&nbsp;&nbsp;
+What&nbsp;versions&nbsp;of&nbsp;node&nbsp;does&nbsp;it&nbsp;run&nbsp;on?&nbsp;(~v0.5.7)&nbsp;*&nbsp;&nbsp;&nbsp;//依赖的node版本号，我们这个脚本可以运行在任何版本的node上，因此填&nbsp;*&nbsp;&nbsp;
+About&nbsp;to&nbsp;write&nbsp;to&nbsp;/home/elmer/hello/package.json&nbsp;&nbsp;
+//&nbsp;以下是生成的package.json文件内容预览&nbsp;&nbsp;
+{&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;author&quot;:&nbsp;&quot;niefengjun&nbsp;&lt;niefengjun@niefengjun.cn&gt;&nbsp;(http://www.niefengjun.cn)&quot;,&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;name&quot;:&nbsp;&quot;hello&quot;,&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;description&quot;:&nbsp;&quot;A&nbsp;example&nbsp;for&nbsp;write&nbsp;a&nbsp;module&quot;,&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;version&quot;:&nbsp;&quot;0.0.1&quot;,&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;repository&quot;:&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;url&quot;:&nbsp;&quot;&quot;&nbsp;&nbsp;
+&nbsp;&nbsp;},&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;main&quot;:&nbsp;&quot;hello.js&quot;,&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;engines&quot;:&nbsp;{&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;node&quot;:&nbsp;&quot;*&quot;&nbsp;&nbsp;
+&nbsp;&nbsp;},&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;dependencies&quot;:&nbsp;{},&nbsp;&nbsp;
+&nbsp;&nbsp;&quot;devDependencies&quot;:&nbsp;{}&nbsp;&nbsp;
+}&nbsp;&nbsp;
+&nbsp;&nbsp;
+Is&nbsp;this&nbsp;ok?&nbsp;(yes)&nbsp;&nbsp;&nbsp;//对以上内容确认无误后，就可以直接回车确认了&lt;/span&gt;&nbsp;&nbsp;
+
+
+到此为止，我们这个模块就写完了。这时hello目录下应该有两个文件：hello.js和package.json。
+我们可以返回到hello的上级目录，来测试安装一下这个模块：
+$&nbsp;npm&nbsp;install&nbsp;hello/
+hello@0.0.1&nbsp;./node_modules/hello
+显示安装成功。简单的测试一下：
+$&nbsp;node
+&gt;&nbsp;var&nbsp;Hello&nbsp;=&nbsp;require(&#39;hello&#39;).Hello;
+&gt;&nbsp;Hello(&#39;world&#39;);
+Hello&nbsp;world
+正确输出了”Hello&nbsp;world”。
+接下来我们把它发布到NPM上。
+首先，我们需要有一个NPM帐号，可以使用npm&nbsp;adduser来注册一个：
+$&nbsp;npm&nbsp;adduser
+Username:&nbsp;xxxxx
+Password:
+Email:&nbsp;niefengjun@niefengjun.cn
+简单三步，一个NPM用户注册成功。
+最后回到&nbsp;hello&nbsp;根目录，执行一下npm&nbsp;publish，如果没有任何错误提示，那么就发布成功了。去http://search.npmjs.org/上看一下吧，你的模块应该已经显示在”Latest
+&nbsp;Updates”一栏里了。
+至此，一个NodeJS模块成功发布到NPM，以后就可以在任何能访问npm库的地方通过npm&nbsp;install来安装你的模块了。</pre><div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd"></div>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="b0497cedc650bcdf8323b9a44c2d6ee8" data-title=" 使用npm制作nodejs模块包 " data-url="http://www.niefengjun.cn/blog/b0497cedc650bcdf8323b9a44c2d6ee8.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/b0497cedc650bcdf8323b9a44c2d6ee8/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

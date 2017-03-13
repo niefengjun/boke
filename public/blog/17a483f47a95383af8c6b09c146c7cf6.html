@@ -1,0 +1,347 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>一个前端工程师眼里的NodeJS</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个前端工程师眼里的NodeJS"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,一个前端工程师眼里的NodeJS" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>一个前端工程师眼里的NodeJS</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-05-21 15:39:26
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <h2>JavaScript单线程的误解</h2><p>　　在我接触JavaScript（无论浏览器还是NodeJS）的时间里，总是遇到有朋友有多线程的需求。而在NodeJS方面，有朋友甚至直接说到，NodeJS是单线程的，无法很好的利用多核CPU。</p><p>　　诚然，在前端的浏览器中，由于前端的JavaScript与UI占据同一线程，执行JavaScript确实为UI响应造成了一定程度上的麻
+烦。但是，除非用到超大的循环语句执行JavaScript，或是用阻塞式的Ajax，或是太过频繁的定时器执行外，JavaScript并没有给前端应
+用带来明显的问题，所以也很少有朋友抱怨JavaScript是单线程而不能很好利用多核CPU的问题，因为没有因此出现性能瓶颈。</p><p>　　但是，我们可以用Ajax和Web 
+Worker回应这个误解。当Ajax请求发送之后，除非是同步请求，否则其余的JavaScript代码会很快被执行到。在Ajax发送完成，直到接收
+到响应的这段时间里，这个网络请求并不会阻塞JavaScript的执行，而网络请求已经发生，这是必然的事。那么，答案就很明显
+了，JavaScript确实是执行在单线程上的，但是，整个Web应用执行的宿主（浏览器）并非以单线程的方式在执行。而Web 
+Worker的诞生，就是直接为了解决JavaScript与UI占用同一线程造成的UI响应问题的，它能新开一条线程去执行JavaScript。</p><p>　　同理，NodeJS中的JavaScript也确实是在单线程上执行，但是作为宿主的NodeJS，它本身并非是单线程的，NodeJS在
+I/O方面又动用到一小部分额外的线程协助实现异步。程序员没有机会直接创建线程，这也是有的同学想当然的认为NodeJS的单线程无法很好的利用多核
+CPU的原因，他们甚至会说，难以想象由多人一起协作开发一个单线程的程序。</p><p>　　NodeJS封装了内部的异步实现后，导致程序员无法直接操作线程，也就造成所有的业务逻辑运算都会丢到JavaScript的执行线程上，这
+也就意味着，在高并发请求的时候，I/O的问题是很好的解决了，但是所有的业务逻辑运算积少成多地都运行在JavaScript线程上，形成了一条拥挤的
+JavaScript运算线程。NodeJS的弱点在这个时候会暴露出来，单线程执行运算形成的瓶颈，拖慢了I/O的效率。这大概可以算得上是密集运算情
+况下无法很好利用多核CPU的缺点。这条拥挤的JavaScript线程，给I/O形成了性能上限。</p><p>　　但是，事情又并非绝对的。回到前端浏览器中，为了解决线程拥挤的情况，Web 
+Worker应运而生。而同样，Node也提供了child_process.fork来创建Node的子进程。在一个Node进程就能很好的解决密集
+I/O的情况下，fork出来的其余Node子进程可以当作常驻服务来解决运算阻塞的问题（将运算分发到多个Node子进程中上去，与Apache创建多
+个子进程类似）。当然child_process/Web 
+Worker的机制永远只能解决单台机器的问题，大的Web应用是不可能一台服务器就能完成所有的请求服务的。拜NodeJS在I/O上的优势，跨OS的
+多Node之间通信的是不算什么问题的。解决NodeJS的运算密集问题的答案其实也是非常简单的，就是将运算分发到多个CPU上。请参考文章后的
+multi-node的性能测试，可以看到在多Node进程的情景下，响应请求的速度被大幅度提高。</p><p>　　在文章的写作中，Node最新发布的0.5.10版本新增了cluster启动参数。参数的使用方式如下：</p><pre>node&nbsp;cluster&nbsp;server.js</pre><p>　　启动Node的时候，在附加了该参数的情况下，Node会检测机器上的CPU数量来决定启动多少进程实例，这些实例会自动共享相同的侦听端口。详情请参阅<a href="http://%e2%80%8bhttp//nodejs.org/docs/v0.5.10/api/cluster.html">官方文档</a>。在之前的解决运算密集问题中，工程师需要multi-node这样的库或者其他方案去手动分发请求，在cluster参数的支持下，可以释放掉工程师在解决此问题上的大部分精力。</p><h2>　　事件式编程</h2><p>　　延续上一节的讨论。我们知道NodeJS/JavaScript具有异步的特性，从NodeJS的API设计中可以看出来，任何涉及I/O的操
+作，几乎都被设计成事件回调的形式，且大多数的类都继承自EventEmitter。这么做的好处有两个，一个是充分利用无阻塞I/O的特性，提高性能；
+另一个好处则是封装了底层的线程细节，通过事件消息留出业务的关注点给编程者，从而不用关注多线程编程里牵扯到的诸多技术细节。</p><p>　　从现实的角度而言，事件式编程也更贴合现实。举一个业务场景为例：家庭主妇在家中准备中餐，她需要完成两道菜，一道拌黄瓜，一道西红柿蛋汤。以
+PHP为例，家庭主妇会先做完拌黄瓜，接着完成西红柿蛋汤，是以顺序/串行执行的。但是现在突然出了一点意外，凉拌黄瓜需要的酱油用光了，需要她儿子出门
+帮她买酱油回来。那么PHP家庭主妇在叫她儿子出门打酱油的这段时间都是属于等待状态的，直到酱油买回来，才会继续下一道菜的制作。那么，在NodeJS
+的家庭主妇又会是怎样一个场景呢，很明显，在等待儿子打酱油回来的时间里，她可以暂停凉拌黄瓜的制作，而直接进行西红柿蛋汤的过程，儿子打完酱油回来，继
+续完成她的凉拌黄瓜。没有浪费掉等待的时间。实例伪代码如下：</p><pre>&nbsp;mother&nbsp;=&nbsp;&nbsp;People();
+&nbsp;child&nbsp;=&nbsp;&nbsp;People();
+child.buySoy(&nbsp;(soy)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;mother.cook(&quot;cucumber&quot;,&nbsp;soy);
+});
+mother.cook(&quot;tomato&quot;);</pre><p>　　接下来，将上面这段代码转换为基于事件/任务异步模式的代码：</p><pre>&nbsp;proxy&nbsp;=&nbsp;&nbsp;EventProxy();
+&nbsp;mother&nbsp;=&nbsp;&nbsp;People();
+proxy.bind(&quot;cook_cucumber&quot;,&nbsp;&nbsp;(soy)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;mother.cook(&quot;cucumber&quot;,&nbsp;soy);
+});
+proxy.bind(&quot;cook_tomato&quot;,&nbsp;&nbsp;()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;mother.cook(&quot;tomato&quot;);
+});
+&nbsp;child&nbsp;=&nbsp;&nbsp;People();
+child.buySoy(&nbsp;(soy)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;proxy.trigger(&quot;cucumber&quot;,&nbsp;soy);
+});
+proxy.trigger(&quot;tomato&quot;);</pre><p>　　代码量多了很多，但是业务逻辑点都是很清楚的：通过bind方法预定义了cook_cucumber和cook_tomato两个任务。这里的bind方法可以认为是await的消息式实现，需要第一个参数来标识该任务的名字，流程在执行的过程中产生的消息会触发这些任务执行。可以看出，事件式编程中，用户只需要关注它所需要的几个业务事件点就可以，中间的等待都由底层为你调配好了。这里的代码只是举例事件/任务异步模式而用，在简单的场景中，第一段代码即可。做NodeJS的编程，会更感觉是在做现实的业务场景设计和任务调度，没有顺序保证，程序结构更像是一个状态机。</p><p>　　个人觉得在事件式编程中，程序员需要转换一下思维，才能接受和发挥好这种异步/无阻塞的优势。同样，这种事件式编程带来的一个问题就在于业务逻辑是松散和碎片式的。这对习惯了顺序式，Promise式编程的同学而言，接受它是比较痛苦的事情，而且这种散布的业务逻辑对于非一开始就清楚设计的人而言，阅读存在相当大的问题。</p><p>　　我提到事件式编程更贴近于现实生活，是更自然的，所以这种编程风格也导致你的代码跟你的生活一样，是一件复杂的事情。幸运的是，自己的生活要自己去面对，对于一个项目而言，并不需要每个人都去设计整个大业务逻辑，对于架构师而言，业务逻辑是明了的，借助事件式编程带来的业务逻辑松耦合的好处，在设定大框架后，将业务逻辑划分为适当的粒度，对每一个实现业务点的程序员而言，并没有这个痛苦存在。二八原则在这个地方非常有效。</p><h2>　　深度嵌套回调问题</h2><p>　　JavaScript/NodeJS对单个异步事件的处理十分容易，但容易出现问题出现的地方是“多个异步事件之间的结果协作”。以NodeJS服务端渲染页面为例，渲染需要数据，模板，本地化资源文件，这三个部分都是要通过异步来获取的，原生代码的写法会导致嵌套，因为只有这样才能保证渲染的时候数据，模板，本地化资源都已经获取到了。但问题是，这三个步骤之间实际是无耦合的，却因为原生代码没有promise的机制，将可以并行执行（充分利用无阻塞I/O）的步骤，变成串行执行的过程，直接降低了性能。代码如下：</p><pre>&nbsp;render&nbsp;=&nbsp;&nbsp;(template,&nbsp;data)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;_.template(template,&nbsp;data);
+};
+$.get(&quot;template&quot;,&nbsp;&nbsp;(template)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.get(&quot;data&quot;,&nbsp;&nbsp;(data)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$.get(&quot;l10n&quot;,&nbsp;&nbsp;(l10n)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;render(template,&nbsp;data);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});
+&nbsp;&nbsp;&nbsp;&nbsp;});
+});</pre><p>　　面对这样的代码，许多工程师都表示不爽。这个弱点也形成了对NodeJS推广的一个不大不小的障碍。对于追求性能和维护性的同学，肯定不满足于以上的做法。本人对于JavaScript的事件和回调都略有偏爱，并且认为事件，回调，并行，松耦合是可以达成一致的。以下一段代码是用<a href="http://%e2%80%8bhttps//github.com/JacksonTian/eventproxy">EventProxy</a>实现的：</p><pre>&nbsp;proxy&nbsp;=&nbsp;&nbsp;EventProxy();
+&nbsp;render&nbsp;=&nbsp;&nbsp;(template,&nbsp;data,&nbsp;l10n)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;_.template(template,&nbsp;data);
+};
+proxy.assign(&quot;template&quot;,&nbsp;&quot;data&quot;,&nbsp;&quot;l10n&quot;,&nbsp;render);
+$.get(&quot;template&quot;,&nbsp;&nbsp;(template)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy.trigger(&quot;template&quot;,&nbsp;template);
+});
+$.get(&quot;data&quot;,&nbsp;&nbsp;(data)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy.trigger(&quot;data&quot;,&nbsp;data);
+});
+$.get(&quot;l10n&quot;,&nbsp;&nbsp;(l10n)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy.trigger(&quot;l10n&quot;,&nbsp;l10n);
+});</pre><p>　　代码量看起来比原生实现略多，但是从逻辑而言十分清晰。模板、数据、本地化资源并行获取，性能上的提高不言而喻，assign方法充分利用了事件机制来保证最终结果的正确性。在事件，回调，并行，松耦合几个点上都达到期望的要求。</p><p>　　关于更多EventProxy的细节可参考其<a href="http://%e2%80%8bhttps//github.com/JacksonTian/eventproxy">官方页面</a>。</p><h2>　　深度回调问题的延伸</h2><p>　　EventProxy解决深度回调的方式完全基于事件机制，这需要建立在事件式编程的认同上，那么必然也存在对事件式编程不认同的同学，而且习惯顺序式，promise式，向其推广bind/trigger模式实在难以被他们接受。<a href="http://%e2%80%8bhttps//github.com/JeffreyZhao/jscex">Jscex</a>和<a href="http://%e2%80%8bhttps//github.com/Sage/streamlinejs%E2%80%8B">Streamline.js</a>是目前比较成熟的同步式编程的解决方案。可以通过同步式的思维来进行编程，最终执行的代码是通过编译后的目标代码，以此通过工具来协助用户转变思维。</p><h2>　　结语</h2><p>　　对于优秀的东西，我们不能因为其表面的瑕疵而弃之不用，总会有折衷的方案来满足需求。NodeJS在实时性方面的功效有目共睹，即便会有一些明显的缺点，但是随着一些解决方案的出现，相信没有什么可以挡住其前进的脚步。</p><h2>　　附录（多核环境下的并发测试）</h2><p>　　服务器环境：</p><ul class=" list-paddingleft-2"><li><p>网络环境：内网</p></li><li><p>压力测试服务器：</p></li><li><p>服务器系统：Linux 2.6.18</p></li><li><p>服务器配置：Intel(R) Xeon(TM) CPU 3.40GHz 4 CPUS</p></li><li><p>内存：6GB</p></li><li><p>NodeJS版本: v0.4.12</p></li></ul><p>　　客户端测试环境：</p><ul class=" list-paddingleft-2"><li><p>发包工具：apache 2.2.19自带的ab测试工具</p></li><li><p>服务器系统：Linux 2.6.18</p></li><li><p>服务器配置：Pentium(R) Dual-Core CPU E5800 @ 3.20GHz 2CPUS</p></li><li><p>内存：1GB</p></li></ul><p>　　单线程Node代码：</p><pre>&nbsp;http&nbsp;=&nbsp;require(&#39;http&#39;);
+&nbsp;server&nbsp;=&nbsp;http.createServer(&nbsp;(request,&nbsp;response)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&amp;&nbsp;lt;&nbsp;100000;&nbsp;i++)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&nbsp;+=&nbsp;2&nbsp;/&nbsp;3;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;response.end(j&nbsp;+&nbsp;&#39;&#39;);
+});
+server.listen(8881);
+console.log(&#39;Server&nbsp;running&nbsp;at&nbsp;http://10.1.10.150:8881/&#39;);</pre><p>　　四进程Node代码：</p><pre>&nbsp;http&nbsp;=&nbsp;require(&#39;http&#39;);
+&nbsp;server&nbsp;=&nbsp;http.createServer(&nbsp;(request,&nbsp;response)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&nbsp;=&nbsp;0;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&amp;&nbsp;lt;&nbsp;100000;&nbsp;i++)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&nbsp;+=&nbsp;2&nbsp;/&nbsp;3;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;response.end(j&nbsp;+&nbsp;&#39;&#39;);
+});
+&nbsp;nodes&nbsp;=&nbsp;require(&quot;./lib/multi-node&quot;).listen({
+&nbsp;&nbsp;&nbsp;&nbsp;port:&nbsp;8883,
+&nbsp;&nbsp;&nbsp;&nbsp;nodes:&nbsp;4
+},&nbsp;server);
+console.log(&#39;Server&nbsp;running&nbsp;at&nbsp;http://10.1.10.150:8883/&#39;);</pre><p>　　这里简单介绍一下multi-node这个插件，这个插件就是利用require(&quot;child_process&quot;).spawn()方法来创建多个子线程。由于浮点计算和字符串拼接都是比较耗CPU的运算，所以这里我们循环10W次，每次对j加上0.66666。最后比较一下，开多子进程node到底比单进程node在CPU密集运算上快多少。</p><p>　　以下是测试结果：</p><table cellpadding="6" cellspacing="0"><tbody><tr class="firstRow"><td id="zw-1335ab229d5n69KDw3ec83" valign="top"><p id="zw-1335ab229d5aUpq13ec83"><span id="zw-1335ab229d50skKQ53ec83">Comm.</span></p></td><td id="zw-1335ab229d5ossnm63ec83" valign="top"><p id="zw-1335ab229d5zS0HtN3ec83"><span id="zw-1335ab229d5jtnzIc3ec83">500/30</span></p></td><td id="zw-1335ab229d5PQ_UuZ3ec83" valign="top"><p id="zw-1335ab229d6dq9xzt3ec83"><span id="zw-1335ab229d6YivqZa3ec83">500/30</span></p></td><td id="zw-1335ab229d62FcHBm3ec83" valign="top"><p id="zw-1335ab229d67efaQv3ec83"><span id="zw-1335ab229d6CJmXGX3ec83">1000/30</span></p></td><td id="zw-1335ab229d6PGjVGZ3ec83" valign="top"><p id="zw-1335ab229d6tAhR4E3ec83"><span id="zw-1335ab229d6VvI7gO3ec83">1000/30</span></p></td><td id="zw-1335ab229d6AzuF6z3ec83" valign="top"><p id="zw-1335ab229d6P6IYZa3ec83"><span id="zw-1335ab229d6UyKCO3ec83">3000/30</span></p></td><td id="zw-1335ab229d6D499hy3ec83" valign="top"><p id="zw-1335ab229d6QiCFd3ec83"><span id="zw-1335ab229d7guQXJm3ec83">3000/30</span></p></td></tr><tr id="zw-1335ab229d7P7297-3ec83"><td id="zw-1335ab229d7ZUVvBw3ec83" valign="top"><p id="zw-1335ab229d7fszTV83ec83">Type</p></td><td id="zw-1335ab229d7HJZt3r3ec83" valign="top"><p id="zw-1335ab229d7obRz6o3ec83"><span id="zw-1335ab229d7tdYvc53ec83">单进程</span></p></td><td id="zw-1335ab229d7UPw6v3ec83" valign="top"><p id="zw-1335ab229d7VVEaHU3ec83"><span id="zw-1335ab229d7kSSS623ec83">多子进程</span></p></td><td id="zw-1335ab229d7caBmby3ec83" valign="top"><p id="zw-1335ab229d7sRH4L3ec83"><span id="zw-1335ab229d8VitHsS3ec83">单进程</span></p></td><td id="zw-1335ab229d86OVhT3ec83" valign="top"><p id="zw-1335ab229d87nKq_r3ec83"><span id="zw-1335ab229d89lkDQx3ec83">多子进程</span></p></td><td id="zw-1335ab229d87NFI3l3ec83" valign="top"><p id="zw-1335ab229d84dVn1M3ec83"><span id="zw-1335ab229d8kikMtY3ec83">单进程</span></p></td><td id="zw-1335ab229d86d_Ev3ec83" valign="top"><p id="zw-1335ab229d82EkEKs3ec83"><span id="zw-1335ab229d8VMTVXt3ec83">多子进程</span></p></td></tr><tr id="zw-1335ab229d8s2SPQN3ec83"><td id="zw-1335ab229d8DJMDtc3ec83" valign="top"><p id="zw-1335ab229d9dpYpOv3ec83"><span id="zw-1335ab229d9788gjk3ec83">RPS</span></p></td><td id="zw-1335ab229d9ExPtwf3ec83" valign="top"><p id="zw-1335ab229d9OhjCs83ec83"><span id="zw-1335ab229d9pZ11zE3ec83">2595</span></p></td><td id="zw-1335ab229d9lN85jr3ec83" valign="top"><p id="zw-1335ab229d9Ua_-IZ3ec83"><span id="zw-1335ab229dagIHHz53ec83">5597</span></p></td><td id="zw-1335ab229daedo7J3ec83" valign="top"><p id="zw-1335ab229damdZXA3ec83"><span id="zw-1335ab229dabzkgDm3ec83">2540</span></p></td><td id="zw-1335ab229dac-wSmH3ec83" valign="top"><p id="zw-1335ab229daJ1x6a83ec83"><span id="zw-1335ab229daWWtHtI3ec83">5509</span></p></td><td id="zw-1335ab229daWpAnxS3ec83" valign="top"><p id="zw-1335ab229daDQy5zm3ec83"><span id="zw-1335ab229dbwweCrn3ec83">2571</span></p></td><td id="zw-1335ab229dbR5O3cY3ec83" valign="top"><p id="zw-1335ab229dbVGp5cx3ec83"><span id="zw-1335ab229dbApFsZs3ec83">5560</span></p></td></tr><tr id="zw-1335ab229dbB8vodE3ec83"><td id="zw-1335ab229dbHg8m7r3ec83" valign="top"><p id="zw-1335ab229dbnzl2n3ec83"><span id="zw-1335ab229dbYpN52Y3ec83">TPQ</span></p></td><td id="zw-1335ab229dbN0ggKr3ec83" valign="top"><p id="zw-1335ab229dbTbp49C3ec83"><span id="zw-1335ab229dcffr8nl3ec83">0.38</span></p></td><td id="zw-1335ab229dcglYuh3ec83" valign="top"><p id="zw-1335ab229dcr9HJ53ec83"><span id="zw-1335ab229dc5caxdV3ec83">0.18</span></p></td><td id="zw-1335ab229dciqVVVD3ec83" valign="top"><p id="zw-1335ab229dcVw2Lb3ec83"><span id="zw-1335ab229dc1760tw3ec83">0.39</span></p></td><td id="zw-1335ab229dcFZDq3L3ec83" valign="top"><p id="zw-1335ab229dcos8PO93ec83"><span id="zw-1335ab229dcfAPKF3ec83">0.19</span></p></td><td id="zw-1335ab229dcyGkkHj3ec83" valign="top"><p id="zw-1335ab229dcC3YkFb3ec83"><span id="zw-1335ab229dcIanCpN3ec83">0.39</span></p></td><td id="zw-1335ab229ddGuM3da3ec83" valign="top"><p id="zw-1335ab229ddl4wWd43ec83"><span id="zw-1335ab229ddzA62F3ec83">0.18</span></p></td></tr><tr id="zw-1335ab229ddj4DHl23ec83"><td id="zw-1335ab229dd92V7E_3ec83" valign="top"><p id="zw-1335ab229ddPv8Ax3ec83"><span id="zw-1335ab229dd9Ff2bR3ec83">80% REQ</span></p></td><td id="zw-1335ab229ddtPsOBt3ec83" valign="top"><p id="zw-1335ab229dddd7Ocm3ec83"><span id="zw-1335ab229dd_wKna3ec83">72</span></p></td><td id="zw-1335ab229dd4Lo6PA3ec83" valign="top"><p id="zw-1335ab229dd_eTTA3ec83"><span id="zw-1335ab229ddMA-GRg3ec83">65</span></p></td><td id="zw-1335ab229de49-BTY3ec83" valign="top"><p id="zw-1335ab229deCn8j3ec83"><span id="zw-1335ab229detWKP3ec83">102</span></p></td><td id="zw-1335ab229dei6Ymvz3ec83" valign="top"><p id="zw-1335ab229decEsqAH3ec83"><span id="zw-1335ab229de7O85Vx3ec83">85</span></p></td><td id="zw-1335ab229deEQeBcM3ec83" valign="top"><p id="zw-1335ab229deo88SYQ3ec83"><span id="zw-1335ab229deLivNcC3ec83">157</span></p></td><td id="zw-1335ab229demxh7gH3ec83" valign="top"><p id="zw-1335ab229debG0pWa3ec83"><span id="zw-1335ab229deYmzLe3ec83">142</span></p></td></tr><tr id="zw-1335ab229deaxXcGJ3ec83"><td id="zw-1335ab229dfVK-9bW3ec83" valign="top"><p id="zw-1335ab229dfkj6zr3ec83"><span id="zw-1335ab229dfJmj7lW3ec83">Fail</span></p></td><td id="zw-1335ab229dfYSLwog3ec83" valign="top"><p id="zw-1335ab229dfqImvxk3ec83"><span id="zw-1335ab229dfoeC7Fx3ec83">0</span></p></td><td id="zw-1335ab229df6zmvi3ec83" valign="top"><p id="zw-1335ab229dfTix_g3ec83"><span id="zw-1335ab229dfUXAuQV3ec83">0</span></p></td><td id="zw-1335ab229dfyNsbfn3ec83" valign="top"><p id="zw-1335ab229df22hz_Y3ec83"><span id="zw-1335ab229df3LbgIx3ec83">0</span></p></td><td id="zw-1335ab229df5rBVbI3ec83" valign="top"><p id="zw-1335ab229e0JWcF1C3ec83"><span id="zw-1335ab229e0_9OZuI3ec83">0</span></p></td><td id="zw-1335ab229e0fHY8G3ec83" valign="top"><p id="zw-1335ab229e0xseMOg3ec83"><span id="zw-1335ab229e0FQ8psY3ec83">0</span></p></td><td id="zw-1335ab229e0-wMv3ec83" valign="top"><p id="zw-1335ab229e0NVA303ec83"><span id="zw-1335ab229e0ClHKVJ3ec83">0</span></p></td></tr></tbody></table><p>　　说明：</p><ul class=" list-paddingleft-2"><li><p>单进程：只开一个node.js进程。</p></li><li><p>多子进程：开一个node.js进程，并且开3个它的子进程。</p></li><li><p>3000/30：代表命令 ./ab -c 3000 -t 30 http://10.1.10.150:8888/。3000个客户端，最多发30秒，最多发5W个请求。</p></li><li><p>RPS：代表每秒处理请求数，并发的主要指标。</p></li><li><p>TPQ：每个请求处理的时间，单位毫秒。</p></li><li><p>Fail：代表平均处理失败请求个数。</p></li><li><p>80% Req：代表80%的请求在多少毫秒内返回。</p></li></ul><p>　　从结果及图1～3上看：开多个子进程可以显著缓解node.js的CPU利用率不足的情况，提高node.js的CPU密集计算能力。</p><p><strong>　　图1：单个进程的node.js在压力测试下的情况，无法充分利用4核CPU的服务器性能。</strong></p><p class="image-wide"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://pic001.cnblogs.com/images/2011/24634/2011111414182865.png" alt="" width="660"/></p><p><strong>　　图2：多进程node，可以充分利用4核CPU榨干服务器的性能。</strong></p><p class="image-wide"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://pic001.cnblogs.com/images/2011/24634/2011111414185756.png" alt="" width="660"/></p><p><strong>　　图3：多子进程截图，可以看到一共跑了4个进程。</strong></p><p class="image-wide"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://pic001.cnblogs.com/images/2011/24634/2011111414190828.png" alt="" width="660"/></p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="17a483f47a95383af8c6b09c146c7cf6" data-title="一个前端工程师眼里的NodeJS" data-url="http://www.niefengjun.cn/blog/17a483f47a95383af8c6b09c146c7cf6.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/17a483f47a95383af8c6b09c146c7cf6/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

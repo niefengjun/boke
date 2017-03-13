@@ -1,0 +1,289 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NodeJS学习笔记</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NodeJS学习笔记"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,NodeJS学习笔记" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>NodeJS学习笔记</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-09-26 10:07:28
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <h2>一.概述</h2><p>Node.js 是一种建立在Google Chrome’s v8 engine上的 non-blocking (非阻塞）, event-driven （基于事件的） I/O平台.</p><p>以事件驱动为核心，单线程，单进程。Node.js 最大的特点就是采用异步式 I/O 
+与事件驱动的架构设计。对于高并发的解决方案，传统的架构是多线程模型，也就是为每个业务逻辑提供一个系统线程，通过系统线程切换来弥补同步式 I/O 
+调用时的时间开销。Node.js 使用的是单线程模型，对于所有 I/O 都采用异步式的请求方式，避免了频繁的上下文切换。Node.js 
+在执行的过程中会维护一个事件队列，程序在执行时进入事件循环等待下一个事件到来，每个异步式 I/O 
+请求完成后会被推送到事件队列，等待程序进程进行处理。事件驱动机制是Node.js通过内部单线程高效率地维护事件循环队列来实现的，没有多线程的资源
+占用和上下文切换，这意味着面对大规模的http请求，Node.js凭借事件驱动搞定一切。因为Node是基于事件驱动和无阻塞的，所以非常适合处理并
+发请求。可以通过运行多个Node.js进程的方式来有效利用多个CPU。</p><p>&nbsp;</p><h2>二.Node.js选择的异步I/O方案</h2><p>1.在Linux下，node.js靠libev和libeio配合使用来实现异步I/O。</p><p>(1).什么是libev?</p><p>• libev是一个事件驱动库，提供高性能事件循环</p><p>• 主要用于事件驱动的网络编程</p><p>(2).什么是libeio?</p><p>libeio为C提供异步版本的POSIX API</p><p>• 主要提供文件I/O操作</p><p>• 异步操作通过线程实现</p><p>• libeio仅依赖pthread，跨平台能力非常好</p><p>• 可以和任何事件库配合使用，比如libev 。</p><p>(3).为什么不用libev实现异步文件操作？</p><p>对于Regular File 来说，是不能够用采用 poll/epoll 的，即O_NOBLOCK 方式对于传统文件句柄是无效的，也就是说我们的 open ,read, mkdir 之类的Regular File操作必定会导致阻塞.</p><p>&nbsp;</p><p>2.Windows有一种独有的内核异步IO方案：IOCP。IOCP的思路是真正的异步I/O方案，调用异步方法，然后等待I/O完成通知。
+IOCP内部依旧是通过线程实现，不同在于这些线程由系统内核接手管理。IOCP的异步模型与Node.js的异步调用模型已经十分近似。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>3.由于Windows平台和*nix平台的差异，Node.js提供了libuv来作为抽象封装层，使得所有平台兼容性的判断都由这一层次来完
+成，保证上层的Node.js与下层的libeio/libev及IOCP之间各自独立。Node.js在编译期间会判断平台条件，选择性编译unix目
+录或是win目录下的源文件到目标程序中。</p><p>对于 POSIX①操作系统，libuv 通过封装 libev 和 libeio 来利用 epoll 或 kqueue。而在 Windows
+ 下，libuv 使用了 Windows 的 IOCP（Input/Output Completion 
+Port，输入输出完成端口）机制，以在不同平台下实现同样的高性能。</p><p>① POSIX（Portable Operating System Interface）是一套操作系统 API 规范。一般而言，遵守 POSIX 规范的操作系统指的是 UNIX、Linux、Mac OS X 等。</p><p><a href="http://images.cnitblog.com/blog/311379/201310/07225739-c49b9a781b9b4194a99cfcd70cf76ad8.png"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="arch" src="http://images.cnitblog.com/blog/311379/201310/07225740-a1ebe78653494c62a55d8a545f0b4286.png" alt="arch" height="382" border="0" width="472"/></a></p><p>&nbsp;</p><p>下面是Node.JS架构示意图</p><p><a href="http://images.cnitblog.com/blog/311379/201310/07225740-049b395cacc247edb7b729e7541bb2d9.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="1-2" src="http://images.cnitblog.com/blog/311379/201310/07225741-e394258c0e4b40c4985e8c15b4655777.jpg" alt="1-2" height="315" border="0" width="502"/></a></p><p>&nbsp;</p><h2>三.异步式 I/O 与事件驱动</h2><p>Node.js 的异步机制是基于事件的，所有的磁盘 I/O、网络通信、数据库查询都以非阻塞的方式请求，返回的结果由事件循环来处理。图1-1
+ 描述了这个机制。Node.js 进程在同一时刻只会处理一个事件，完成后立即进入事件循环检查并处理后面的事件。这样做的好处是，CPU 
+和内存在同一时间集中处理一件事，同时尽可能让耗时的 I/O 操作并行执行。对于低速连接攻击，Node.js 
+只是在事件队列中增加请求，等待操作系统的回应，因而不会有任何多线程开销，很大程度上可以提高 Web 应用的健壮性，防止恶意攻击。</p><p><a href="http://images.cnitblog.com/blog/311379/201310/07225746-90654b737b4043c68b55a02c3b69f6ca.jpg"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="1-1" src="http://images.cnitblog.com/blog/311379/201310/07225746-f18b435c77aa413599a790d1ceba1b9b.jpg" alt="1-1" height="286" border="0" width="458"/></a></p><p>图1-1 事件循环</p><p>&nbsp;</p><p>以在Windows平台下的实现中，启动Node.js时，便创建了一个基于IOCP的事件循环loop，并一直处于执行状态。</p><p>uv_run(uv_default_loop());</p><p>每次循环中，它会调用IOCP相关的GetQueuedCompletionStatus方法检查是否线程池中有执行完的请求，如果存在，poll
+操作会将请求对象加入到loop的pending_reqs_tail属性上。 
+另一边这个循环也会不断检查loop对象上的pending_reqs_tail引用，如果有可用的请求对象，就取出请求对象的result属性作为结果
+传递给oncomplete_sym执行，以此达到调用JavaScript中传入的回调函数的目的。 至此，整个异步I/O的流程完成结束。</p><p>事件循环和请求对象构成了Node.js的异步I/O模型的两个基本元素，这也是典型的消费者生产者场景。在Windows下通过IOCP的
+GetQueuedCompletionStatus、PostQueuedCompletionStatus、QueueUserWorkItem方法
+与事件循环实。对于*nix平台下，这个流程的不同之处在与实现这些功能的方法是由libeio和libev提供。</p><p>&nbsp;</p><h2>四.多线程阻塞服务器 vs 事件驱动、无阻塞服务器</h2><p><a href="http://images.cnitblog.com/blog/311379/201310/07225741-97267b1ccd744dc7b2a957f4a99d440e.png"><img title="clipboard" src="http://images.cnitblog.com/blog/311379/201310/07225742-4013a064e9654192b9272a13ab4932dc.png" alt="clipboard" height="488" border="0" width="745"/></a></p><p><a href="http://images.cnitblog.com/blog/311379/201310/07225743-2c235b36f2cd43f1b46821cb095d5c67.png"><img title="clipboard[1]" src="http://images.cnitblog.com/blog/311379/201310/07225745-77c1a9ced4e1430e8c56b201a7382c6e.png" alt="clipboard[1]" height="511" border="0" width="741"/></a></p><p>&nbsp;</p><p>&nbsp;</p><p>参考：</p><p>&nbsp;</p><p>1. <a href="http://www.nodebeginner.org/index-zh-cn.html">http://www.nodebeginner.org/index-zh-cn.html</a> Node入门</p><p>2. <a href="http://www.infoq.com/cn/articles/what-is-nodejs">http://www.infoq.com/cn/articles/what-is-nodejs</a>&nbsp; 深入浅出Node.js（一）：什么是Node.js</p><p>3. <a href="http://www.infoq.com/cn/articles/nodejs-asynchronous-io">http://www.infoq.com/cn/articles/nodejs-asynchronous-io</a>&nbsp; 深入浅出Node.js（五）：初探Node.js的异步I/O实现</p><p>4. <a href="http://www.ituring.com.cn/article/5779">http://www.ituring.com.cn/article/5779</a>&nbsp; 异步式 I/O 与事件驱动 《Node.js开发指南》</p><p>5. <a href="http://www.codingguy.net/?p=195">http://www.codingguy.net/?p=195</a>&nbsp; Node.js代码阅读笔记之libeio</p><p>6.PM编程语言与架构专场 Node.js简介 Chinese.pdf</p><p>7.nodejs异步_原理和缺陷.pdf</p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="ff3c82562df9291d70ab0e4a5e216cf1" data-title="NodeJS学习笔记" data-url="http://www.niefengjun.cn/blog/ff3c82562df9291d70ab0e4a5e216cf1.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/ff3c82562df9291d70ab0e4a5e216cf1/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

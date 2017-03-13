@@ -1,0 +1,276 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>linux清理内存命令 </title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="linux清理内存命令 "/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,linux清理内存命令 " name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>linux清理内存命令 </h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-05-26 16:33:46
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p>1.清理前内存使用情况&nbsp;<br/><span style="color:rgb(0,0,255)">free -m<br/><br/></span></p><p style="margin:5px auto; font-family:Verdana,&#39;Lucida Grande&#39;,Arial,Helvetica,sans-serif; font-size:15px; line-height:17px">2.开始清理&nbsp;&nbsp;<br/><span style="color:rgb(0,0,255)"></span></p><pre class="brush:bash;toolbar:false">echo&nbsp;1&nbsp;&gt;&nbsp;/proc/sys/vm/drop_caches</pre><p style="margin:5px auto; font-family:Verdana,&#39;Lucida Grande&#39;,Arial,Helvetica,sans-serif; font-size:15px; line-height:17px"><span style="color:rgb(0,0,255)"></span><br/><br/>3.清理后内存使用情况&nbsp;<br/><span style="color:rgb(0,0,255)">free -m</span><br/><br/>4.完成!<br/><br/><strong>查看内存条数命令：</strong><br/><br/></p><pre class="brush:as3;toolbar:false">dmidecode&nbsp;|&nbsp;grep&nbsp;-A16&nbsp;&quot;Memory&nbsp;Device$&quot;</pre><p><span style="font-size:12px; line-height:1.5; color:rgb(128,0,0)"></span><br/></p><p style="margin:5px auto; font-family:Verdana,&#39;Lucida Grande&#39;,Arial,Helvetica,sans-serif; font-size:15px; line-height:17px"><br/></p><p style="margin:5px auto; font-family:Verdana,&#39;Lucida Grande&#39;,Arial,Helvetica,sans-serif; font-size:15px; line-height:17px">+++++++++++++++++++++++++++++++++++</p><p style="margin:5px auto; font-family:Verdana,&#39;Lucida Grande&#39;,Arial,Helvetica,sans-serif; font-size:15px; line-height:17px">&nbsp;</p><pre class="brush:as3;toolbar:false">#&nbsp;sync
+#&nbsp;echo&nbsp;1&nbsp;&gt;&nbsp;/proc/sys/vm/drop_caches
+&nbsp;
+&nbsp;echo&nbsp;2&nbsp;&gt;&nbsp;/proc/sys/vm/drop_caches
+&nbsp;
+&nbsp;
+echo&nbsp;3&nbsp;&gt;&nbsp;/proc/sys/vm/drop_caches</pre><p style="margin:5px auto">cache释放：<br/><span style="font-weight:bold">To free pagecache:</span><br/><span style="color:rgb(0,0,255)">echo 1 &gt; /proc/sys/vm/drop_caches</span><br/><br/><span style="font-weight:bold">To free dentries and inodes:</span><br/><span style="color:rgb(0,0,255)">echo 2 &gt; /proc/sys/vm/drop_caches</span><br/><br/><span style="font-weight:bold">To free pagecache, dentries and inodes:</span><br/><span style="color:rgb(0,0,255)">echo 3 &gt; /proc/sys/vm/drop_caches</span></p><p style="margin:5px auto">说明，释放前最好<span style="color:rgb(0,0,255)">sync</span>一下，防止丢数据。</p><p style="margin:5px auto">因为LINUX的内核机制，一般情况下不需要特意去释放已经使用的cache。这些cache起来的内容可以增加文件以及的读写速度。<br/>先说下free命令怎么看内存</p><p><br/></p><p><span class="cnblogs_code_copy" style="font-size:12px; padding-right:5px; line-height:1.5"><a href="http://www.cnblogs.com/52linux/archive/2012/03/08/2385399.html" title="复制代码" style="color:rgb(29,88,209); text-decoration:none; border:none!important"></a></span></p><p>[root@yuyii&nbsp;proc]<span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">#</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">&nbsp;free</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)"><br/></span><br/>total&nbsp;&nbsp;&nbsp;used&nbsp;&nbsp;&nbsp;free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shared&nbsp;buffers&nbsp;cached<br/>Mem:&nbsp;515588&nbsp;295452&nbsp;220136&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2060&nbsp;&nbsp;&nbsp;64040<br/>-/+&nbsp;buffers/cache:&nbsp;229352&nbsp;286236<br/>Swap:&nbsp;682720&nbsp;112&nbsp;682608</p><p></p><p style="margin:5px auto">其中第一行用全局角度描述系统使用的内存状况：<br/><span style="color:rgb(0,0,255)">total</span>——总物理内存<br/><span style="color:rgb(0,0,255)">used</span>——已使用内存，一般情况这个值会比较大，因为这个值包括了cache+应用程序使用的内存<br/><span style="color:rgb(0,0,255)">free</span>——完全未被使用的内存<br/><span style="color:rgb(0,0,255)">shared</span>——应用程序共享内存<br/><span style="color:rgb(0,0,255)">buffers</span>——缓存，主要用于目录方面,inode值等（ls大目录可看到这个值增加）<br/><span style="color:rgb(0,0,255)">cached</span>——缓存，用于已打开的文件<br/>note:<br/>&nbsp;&nbsp;&nbsp; total=used+free<br/>&nbsp;&nbsp;&nbsp; used=buffers+cached (maybe add shared also)</p><p style="margin:5px auto">第二行描述应用程序的内存使用：<br/>前个值表示-buffers/cache——应用程序使用的内存大小，used减去缓存值<br/>后个值表示+buffers/cache——所有可供应用程序使用的内存大小，free加上缓存值<br/>note:<br/>&nbsp;&nbsp; -buffers/cache=used-buffers-cached<br/>&nbsp;&nbsp; +buffers/cache=free+buffers+cached</p><p style="margin:5px auto">第三行表示swap的使用：<br/><span style="color:rgb(0,0,255)">used</span>——已使用<br/><span style="color:rgb(0,0,255)">free</span>——未使用</p><p style="margin:5px auto">手动执行sync命令(描述:sync 命令运行 sync 子例程。如果必须停止系统，则运行 sync 命令以确保文件系统的完整性。sync 命令将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件)<br/><br/></p><p>[root@server&nbsp;test]<span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">#</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">&nbsp;echo&nbsp;3&nbsp;&gt;&nbsp;/proc/sys/vm/drop_caches</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)"><br/></span>[root@server&nbsp;test]<span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">#</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)">&nbsp;cat&nbsp;/proc/sys/vm/drop_caches</span><span style="font-size:12px; line-height:1.5; color:rgb(0,128,0)"><br/></span>3&nbsp;</p><p style="margin:5px auto"><wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/><br/>！将/proc/sys/vm/drop_caches值设为3</p><p style="margin:5px auto">&nbsp;<wbr/></p><p>有关/proc/sys/vm/drop_caches的用法在下面进行了说明<br/>/proc/sys/vm/drop_caches (since Linux 2.6.16)<br/>Writing to this file causes the kernel to drop clean caches,<br/>dentries and inodes from memory, causing that memory to become<br/>free.<br/><br/>To free pagecache, use echo 1 &gt; /proc/sys/vm/drop_caches; to<br/>free dentries and inodes, use echo 2 &gt; /proc/sys/vm/drop_caches;<br/>to free pagecache, dentries and inodes, use echo 3 &gt;<br/>/proc/sys/vm/drop_caches.<br/><br/>Because this is a non-destructive operation and dirty objects</p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="0b8fd129433105b14663d8e43f695f8a" data-title="linux清理内存命令 " data-url="http://www.niefengjun.cn/blog/0b8fd129433105b14663d8e43f695f8a.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/0b8fd129433105b14663d8e43f695f8a/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

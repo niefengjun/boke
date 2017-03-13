@@ -1,0 +1,309 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>为什么选择 Yeoman 及 Yeoman 的安装</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="为什么选择 Yeoman 及 Yeoman 的安装"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,为什么选择 Yeoman 及 Yeoman 的安装" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>为什么选择 Yeoman 及 Yeoman 的安装</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-09-06 17:15:21
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p><br/> 今天向您介绍一个我刚接触到的比较新的网络前端开发工具： Yeoman 。<br/> <br/> 什么是Yeoman？<br/> <br/> Yeoman是Google的团队和外部贡献者团队合作开发的一个项目。通过内部三个工具(yo,grunt,bower)的协<br/> <br/> 同工作，为开发者创建一个易用的工作流。它可以让网络前端开发者快速打造一个漂亮的网络应用(web<br/> <br/> applications) 。<br/> <br/> Yeoman的目的不仅是要为新项目建立工作流，同时还是为了解决前端开发所面临的诸多严重问题，例如零<br/> <br/> 散的依赖关系。<br/> <br/> Yeoman主要有三部分组成：yo、grunt、bower。这三个工具是分别独立开发的，但是需要配合使用，来实<br/> <br/> 现我们高效的工作流模式。因为Yeoman其实是三个工具的集合： YO 、 GRUNT 、 BOWER ，所以需要先解<br/> <br/> 释下这三个工具的用途。<br/> <br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>YO ：Yeoman核心工具，项目工程依赖目录和文件生成工具，项目生产环境和编译环境生成工具<br/> <br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>BOWER ：Web开发的包管理器，概念上类似npm，npm专注于nodeJs模块，而bower专注于CSS、<br/> <br/> JavaScript、图像等前端相关内容的管理。需要注意的是，Bower的运行，依赖于版本控制工具git，从<br/> <br/> github拉取以来信息。 如《Node.js介绍》所说，很多前端工具，都是由Node.js所编写的，Bower也不例<br/> <br/> 外。所以要想成功安装Yeoman,需先安装 Git。<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/><br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>GRUNT ：前端构建工具，jquery就是使用这个工具打包的。<br/> <br/> <br/> 下面将我实际安装Yeoman的过程记录如下：<br/> <br/> 我们现在就用Yeoman来建一个演示app,名字叫 My todos, 这个app的功能有添加todo、删除todo,用拖曳<br/> <br/> 功能重组你的todo,还有离线保存 todos。<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPcTSRRSe0" target="_blank"><img src="http://s1.sinaimg.cn/mw690/002a6REizy6IPcTSRRSe0&690" name="image_operate_15961399900270483" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="720" width="655"/></a><br/> <br/> 先总览一下步骤：<br/> <br/> 步骤1：建立开发环境<br/> 步骤2：安装 Yeoman generator<br/> 步骤3: 用generator 构建你的app<br/> 步骤4: Yeoman 创建的文件目录结构一览<br/> 步骤5: 在浏览器中预览你的app<br/> 步骤6：开始写我们的 AngularJS 应用<br/> 步骤7: 用 Bower 来安装包 (packages)<br/> 步骤8: 用 Karma 和Jasmine 测试<br/> 步骤9: 使 todo 与本地存储一致<br/> 步骤10: 准备发布你的app!<br/> <br/> 让我们开始吧！<br/> <br/> <span style="color:#990030"><strong>步骤1：建立开发环境</strong></span><br/> <br/> 在安装Yeoman之前，你需要如下：<br/> 1. NodeJS v0.10.x+<br/> 2. npm v1.3.7+<br/> <br/> 最简单的方法是去 <a href="http://nodejs.org/download/" target="_blank">NodeJS website</a>.网站，window 系统下载.msi, Mac系统下载.pkg, 安装后以上就全有了。<br/> 检查一下是否装好了(运行-&gt;cmd 进入Dos窗口写命令，这里不用写像下图中的&quot;$&quot;，图中用$是因为用的Cygwin)(另：本文中的图有的是Yeoman官网的，有的是我机器上的)：<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPaKkXxibc" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6IPaKkXxibc&690" name="image_operate_48681399897687843" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="34" width="527"/></a><br/> <br/> 安装Yeoman 工具包<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPaXIipz49" target="_blank"><img src="http://s10.sinaimg.cn/mw690/002a6REizy6IPaXIipz49&690" name="image_operate_77271399897634296" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="30" width="488"/></a><br/> <br/> 检查一下是否都安装上了：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPb2JcVM46" target="_blank"><img src="http://s7.sinaimg.cn/mw690/002a6REizy6IPb2JcVM46&690" name="image_operate_60451399897603664" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="34" width="501"/></a><br/> <br/> 装好后会显示各工具版本：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPb5gao42c" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6IPb5gao42c&690" name="image_operate_91471399897766002" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="91" width="501"/></a><br/> <span style="color:#990030"><strong><br/> 步骤2：安装 Yeoman generator</strong></span><br/> <br/> 敲入Yeoman 交互式命令：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPbTxXp8ca" target="_blank"><img src="http://s11.sinaimg.cn/mw690/002a6REizy6IPbTxXp8ca&690" name="image_operate_38731399898076918" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装"/></a><br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPbZtTWd3d" target="_blank"><img src="http://s14.sinaimg.cn/mw690/002a6REizy6IPbZtTWd3d&690" name="image_operate_78471399899523572" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="145" width="559"/></a><br/> 用上下箭头选中 install a generator<br/> <br/> 这里我们安装AngularJS generator<br/> <img alt="" name="image_operate_53521399897796791" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装"/><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPbOK3qS9e" target="_blank"><img src="http://s15.sinaimg.cn/mw690/002a6REizy6IPbOK3qS9e&690" name="image_operate_88151399899523992" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="274" width="580"/></a><br/> <br/> <span style="color:#990030"><strong>步骤3: 用generator 构建你的app</strong></span><br/> <br/> 首先建立一个项目目录来存放你的 app<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPcf2edSb4" target="_blank"><img src="http://s5.sinaimg.cn/mw690/002a6REizy6IPcf2edSb4&690" name="image_operate_16791399898756450" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="57" width="420"/></a><br/> <br/> 这时我们已在C盘建立了一个文件夹：mytodo<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPcqVgPqcc" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6IPcqVgPqcc&690" name="image_operate_87151399899548293" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="200" width="445"/></a><br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPcvpjY541" target="_blank"><img src="http://s2.sinaimg.cn/mw690/002a6REizy6IPcvpjY541&690" name="image_operate_46171399899548512" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="326" width="614"/></a><br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPcxA9J43e" target="_blank"><img src="http://s15.sinaimg.cn/mw690/002a6REizy6IPcxA9J43e&690" name="image_operate_98521399900050855" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="363" width="613"/></a><br/> 我们就默认全选module, 回车！等着瞧好了！神奇的事就要发生了！<br/> Yeoman自动将app需要的所有文件都建造好啦！<br/> <strong><br/> <span style="color:#990030">步骤4: Yeoman 创建的文件目录结构一览</span></strong><br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPdjiRUx45" target="_blank"><img src="http://s6.sinaimg.cn/mw690/002a6REizy6IPdjiRUx45&690" name="image_operate_81011399899669230" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="350" width="690"/></a><br/> <br/> 这是我装后的文件目录，下图是Yeoman网上的例子里的<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPdnqUnW6c" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6IPdnqUnW6c&690" name="image_operate_95901399900237618" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="584" width="582"/></a><br/> <br/> 我比它多了两个文件夹.git and .temp, 不管了，没少就行。刚开始装时，在app文件夹里总少一个bower_components 文件夹。在网上查了下，应该是Git没装全。把Git装好后，重走一次前面的步骤，就会好了。所以，切记，先安装好Git，再装Yeoman。<br/> <br/> <span style="color:#990030"><strong>步骤5: 在浏览器中预览你的app</strong></span><br/> <br/> 在命令行键入“grunt serve”，运行一个grunt task 以创建一个基于node的本地http服务器，localhost:9000 (有的为 127.0.0.1:9000 ）<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/><br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPecQdGBa5" target="_blank"><img src="http://s6.sinaimg.cn/mw690/002a6REizy6IPecQdGBa5&690" name="image_operate_7441399900223492" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="405" width="469"/></a><br/> <br/> 然后浏览器就会出现你新做的App啦！<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6IPesgWz0a2" target="_blank"><img src="http://s3.sinaimg.cn/mw690/002a6REizy6IPesgWz0a2&690" name="image_operate_73801399900223131" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="481" width="690"/></a><br/> <br/> <br/> <br/> 未完待续......<br/> 接上：<br/> <br/> 若想停止服务器，按 ctrl+C<br/> <br/> 让我们来编辑一下首页文件：main.html，它在view 文件夹下。<br/> 用任何一个你喜爱的文本编辑器打开main.html, 我用的是Sublime Text 2。每当你改动保存后，你会发现浏览器会自动刷新，省事儿吧？这就叫“实时载入” (live reloading),这真的很方便，能实时看到你编辑的结果。<br/> 这个功能是Gruntfile.js 实现的。<br/> <strong><br/> <span style="color:#990030">步骤6：开始写我们的 AngularJS 应用</span></strong><br/> <br/> 打开views/main.html&nbsp;<wbr/>编辑，代码现在看起来如下：<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxbyglFF6b" target="_blank"><img src="http://s12.sinaimg.cn/mw690/002a6REizy6JxbyglFF6b&690" name="image_operate_97071402282721648" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="119" width="619"/></a><br/> <br/> 如想copy 代码,请参见源代码出处： <a href="http://yeoman.io/codelab/write-app.html" target="_blank">Yeoman</a><br/> <br/> 再打开 scripts/controllers/main.js ， 编辑如下：<br/> <br/> &#39;use strict&#39;;<br/> <br/> angular.module(&#39;mytodoApp&#39;)<br/> &nbsp;<wbr/>.controller(&#39;MainCtrl&#39;, function ($scope) {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos = [&#39;Item 1&#39;, &#39;Item 2&#39;, &#39;Item 3&#39;];<br/> &nbsp;<wbr/>});<br/> <br/> 保存，我们的应用现在看起来是这样的：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxbqKRSg88" target="_blank"><img src="http://s9.sinaimg.cn/mw690/002a6REizy6JxbqKRSg88&690" name="image_operate_14991402281090019" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="693" width="601"/></a><br/> <br/> <strong>添加一个 TODO</strong><br/> <br/> 编辑main.html, 编辑好后如下：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxdHoniHf3" target="_blank"><img src="http://s4.sinaimg.cn/mw690/002a6REizy6JxdHoniHf3&690" name="image_operate_71831402283028116" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="401" width="686"/></a><br/> <br/> 保存，浏览器更新：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxdNjldP45" target="_blank"><img src="http://s6.sinaimg.cn/mw690/002a6REizy6JxdNjldP45&690" name="image_operate_53251402283162117" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="711" width="627"/></a><br/> <br/> 如果现在点 &quot;Add&quot;,什么也不会发生，我们下面来改变一下。<br/> 编辑main.js， 现在代码应该如下：<br/> <br/> &#39;use strict&#39;;<br/> <br/> angular.module(&#39;mytodoApp&#39;)<br/> &nbsp;<wbr/>.controller(&#39;MainCtrl&#39;, function ($scope) {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos = [&#39;Item 1&#39;, &#39;Item 2&#39;, &#39;Item 3&#39;];<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.addTodo = function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos.push($scope.todo);<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todo = &#39;&#39;;<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>};<br/> &nbsp;<wbr/>});<br/> <br/> 保存，在浏览器第一个表单输入框中写点什么，点“Add&#39;, 它会马上出现在你的 todo List 中！<br/> <br/> <span style="color:#6F3198">注意：如果你连续两次输入空白内容，或连续两次输入相同内容，应用便会自动终止！</span><br/> <strong><br/> 删除一个TODO</strong><br/> <br/> 编辑main.html, 让我们在每个输入框后面添加一个button, 代码变成如下：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxevxNH61c" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6JxevxNH61c&690" name="image_operate_47951402283776386" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="156" width="629"/></a><br/> <br/> 保存！看看你的浏览器，哇，你的 app 看起来好棒啊！<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxeEA1S981" target="_blank"><img src="http://s2.sinaimg.cn/mw690/002a6REizy6JxeEA1S981&690" name="image_operate_24521402284362798" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="718" width="673"/></a><br/> 接下来我们编辑main.js，以便删除功能好用， 编好后代码是这样了：<br/> <br/> &#39;use strict&#39;;<br/> <br/> angular.module(&#39;mytodoApp&#39;)<br/> &nbsp;<wbr/>.controller(&#39;MainCtrl&#39;, function ($scope) {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos = [&#39;Item 1&#39;, &#39;Item 2&#39;, &#39;Item 3&#39;];<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.addTodo = function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos.push($scope.todo);<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todo = &#39;&#39;;<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>};<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.removeTodo = function (index) {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope.todos.splice(index, 1);<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>};<br/> &nbsp;<wbr/>});<br/> <br/> 保存！回到浏览器，现在你可以按 X 去删除项目了，太神奇啦！<br/> 你可能注意到，我们所做的修改并不能被保存，每当我们刷新页面时，就回到了初始状态，没关系，我们会在第九步修正这个问题，不过我们先得到下一步学学如何用bower 安装相应的packages。<br/> <br/> <span style="color:#990030"><strong>步骤7: 用Bower 来安装包(packages)</strong></span>。<br/> <br/> 让我们加上顺序，使我们的 list 可以排序或分类，要实现这个，得用bower 安装 AngularUI Sortable module， 这个是Angular 的一个指令集。<br/> <br/> 我们可以用下面的命令来看看我们已经装了什么包<br/></p><pre>
+&nbsp;
+&nbsp;
+&nbsp;下面我们安装它，一并安装jQuery&nbsp;UI
+&nbsp;
+&nbsp;
+&nbsp;其中&nbsp;--save&nbsp;选项帮助你更新&nbsp;bower.jason,省却你以后手动更新的麻烦。
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;或者用一个命令行安装：
+&nbsp;bower&nbsp;install&nbsp;--save&nbsp;angular-ui-sortable&nbsp;jquery-ui
+&nbsp;
+&nbsp;据我的机器运行来看，现在不用俩一起写，我只用了</pre><p><strong>确认安装</strong><br/> <br/> 我们来看看 <em><strong>bower_components</strong></em> 文件夹以确保安装正确<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxhracRe14" target="_blank"><img src="http://s5.sinaimg.cn/mw690/002a6REizy6JxhracRe14&690" name="image_operate_85021402286229543" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="104" width="380"/></a><br/> <br/> 这些新安装的包必须被列入index.html, 你可以手动将上述两项填入index.html, 但是Yeoman 将会为你自动填加。先使用ctrl+c 停止目前的命令行，再重启服务器，即再运行grunt serve。你将会看到 script 部分已填加上了 jquery-ui/ui/jquery-ui.js 和 angular-ui-sortable/sortable.js<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxvPsaMV31" target="_blank"><img src="http://s2.sinaimg.cn/mw690/002a6REizy6JxvPsaMV31&690" name="image_operate_10221402300858249" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="199" width="571"/></a><br/> <br/> 同时在 <em>scripts/app.js</em> 文件里加上 <code>ui.sortable</code>代码，如下图：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxycwR0H3f" target="_blank"><img src="http://s16.sinaimg.cn/mw690/002a6REizy6JxycwR0H3f&690" name="image_operate_12061402301106287" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="353" width="492"/></a><br/> <br/> 最后，我们该编辑main.html了，加上相应的代码后，整个 todo list部分代码如下：<br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6Jxym2iRJ1b" target="_blank"><img src="http://s12.sinaimg.cn/mw690/002a6REizy6Jxym2iRJ1b&690" name="image_operate_25591402301106379" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装"/></a><br/> <br/> 回到浏览器，现在我们可以随意拖动排序各项目啦。<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JxyTB05a08" target="_blank"><img src="http://s9.sinaimg.cn/mw690/002a6REizy6JxyTB05a08&690" name="image_operate_60361402301485150" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="736" width="690"/></a><br/> <br/> 太酷了！这么简单就能做出这么棒的应用？简直让人不敢相信！<br/> <br/> <span style="color:#990030"><strong>步骤8: 用 Karma 和Jasmine 测试</strong></span><br/> <br/> Karma是JavaScript 的测试执行器(JavaScript test runner), Jasmine 是 Angular的一个测试框架。我们在之前已经运行过 yo angular, 一个叫 test 的文件夹已经被部署在目录 mytodo 中，还产生了一个<strong><em>karma.conf</em></strong> 文件及Karma需要的 node 模块，我们马上就可以用 Jasmine来测试了，不过我们得先看看怎么来运行测试。<br/> <br/> 运行单元测试<br/> 在命令窗口输入ctrl + C 停止grunt server。然后输入 grunt test, 你会看到浏览器打开又关闭，并有警告，不过没关系，我们来fix一下。<br/> <br/> 打开文件<strong><em>karma.conf.js</em></strong> 并用以下代码替换 <code>files</code> array :<br/> &nbsp;<wbr/>files: [<br/> &nbsp;<wbr/>&#39;app/bower_components/jquery/jquery.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/jquery-ui/ui/jquery-ui.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular/angular.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-ui-sortable/sortable.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-mocks/angular-mocks.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-local-storage/angular-local-storage.js&#39;,<br/> &nbsp;<wbr/>&#39;app/scripts*.js&#39;,<br/> &nbsp;<wbr/>&#39;test/mock*.js&#39;,<br/> &nbsp;<wbr/>&#39;test/spec*.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-resource/angular-resource.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-cookies/angular-cookies.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-sanitize/angular-sanitize.js&#39;,<br/> &nbsp;<wbr/>&#39;app/bower_components/angular-route/angular-route.js&#39;<br/> ],<br/> <br/> 打开<strong>test/spec/controllers/main.js</strong>. 删掉下面语句：<br/> <br/> it(&#39;should attach a list of awesomeThings to the scope&#39;, function () {<br/> &nbsp;<wbr/>expect(scope.awesomeThings.length).toBe(3);<br/> });<br/> 替换成：<br/> it(&#39;should have no items to start&#39;, function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>expect(scope.todos.length).toBe(0);<br/> });<br/> 再次输入命令：<br/> grunt test<br/> <br/> 到这步，我的机器并没有像Yeoman网站教程上那样出现相应的信息，而是提示：<br/> </p><pre style="margin: 0px 0px 10px;padding: 5px;border: 0px;font-size: 14px;vertical-align: baseline;font-family: Consolas, Menlo, Monaco, &#39;Lucida Console&#39;, &#39;Liberation Mono&#39;, &#39;DejaVu sans Mono&#39;, &#39;Bitstream Vera sans Mono&#39;, &#39;Courier new&#39;, monospace, serif;overflow: auto;width: auto;max-height: 600px;word-wrap: normal;color: rgb(0, 0, 0);font-style: normal;font-variant: normal;font-weight: normal;letter-spacing: normal;line-height: 17.804800033569336px;orphans: auto;text-align: left;text-indent: 0px;widows: auto;word-spacing: 0px;-webkit-text-stroke-width: 0px;background: rgb(238, 238, 238)">
+&nbsp;
+&nbsp;
+&nbsp;这回再输入命令：
+&nbsp;grunt&nbsp;test</pre><p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JAPh5YkAf4" target="_blank"><img src="http://s5.sinaimg.cn/mw690/002a6REizy6JAPh5YkAf4&690" name="image_operate_13481402481426204" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="433" width="647"/></a><br/> <br/> 又提示Can not load Chrome, it is not registered<br/> <br/> 解决办法：<br/> 用下面的命令填加 karma-chrome-launcher 到package.json文件中<br/> npm install karma-chrome-launcher --save-dev<br/> <br/> 我机器上仍有错，先略过，按Yeoman 网站上的教程继续：<br/> <br/> 再运行grunt test, 这回应该pass<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JB4qvPYc48" target="_blank"><img src="http://s9.sinaimg.cn/mw690/002a6REizy6JB4qvPYc48&690" name="image_operate_84311402491734320" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="471" width="690"/></a><br/> <br/> 下面再多加些test:<br/> <br/> 你的 MainCtrl test script (test/spec/controllers/main.js)应该看起来是这样的:<br/> <br/> &#39;use strict&#39;;<br/> <br/> describe(&#39;Controller: MainCtrl&#39;, function () {<br/> <br/> &nbsp;<wbr/>// load the controller&#39;s module<br/> &nbsp;<wbr/>beforeEach(module(&#39;mytodoApp&#39;));<br/> <br/> &nbsp;<wbr/>var MainCtrl,<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope;<br/> <br/> &nbsp;<wbr/>// Initialize the controller and a mock scope<br/> &nbsp;<wbr/>beforeEach(inject(function ($controller, $rootScope) {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope = $rootScope.$new();<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>MainCtrl = $controller(&#39;MainCtrl&#39;, {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>$scope: scope<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>});<br/> &nbsp;<wbr/>}));<br/> <br/> &nbsp;<wbr/>it(&#39;should have no items to start&#39;, function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>expect(scope.todos.length).toBe(0);<br/> &nbsp;<wbr/>});<br/> <br/> &nbsp;<wbr/>it(&#39;should add items to the list&#39;, function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope.todo = &#39;Test 1&#39;;<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope.addTodo();<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>expect(scope.todos.length).toBe(1);<br/> &nbsp;<wbr/>});<br/> <br/> &nbsp;<wbr/>it(&#39;should add items to the list&#39;, function () {<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope.todo = &#39;Test 1&#39;;<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope.addTodo();<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>scope.removeTodo(0);<br/> &nbsp;<wbr/>&nbsp;<wbr/>&nbsp;<wbr/>expect(scope.todos.length).toBe(0);<br/> &nbsp;<wbr/>});<br/> <br/> });<br/> <br/> 再次运行grunt test ：<em><strong><br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JB4Ish0U9c" target="_blank"><img src="http://s13.sinaimg.cn/mw690/002a6REizy6JB4Ish0U9c&690" name="image_operate_43671402492243225" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="452" width="690"/></a><br/> <br/></strong></em>你会看到三个测试项目都通过了，太棒啦！<br/> 当你的应用程序越来越庞大，以及有更多的开发人员加入时，进行单元测试，会使得找bug变得容易起来。而Yeoman 的自动搭建功能则会助你一臂之力。<br/> <br/> <span style="color:#990030"><strong>步骤9: 使 todo 与本地存储一致</strong></span><br/> <br/> 安装bower package<br/> 我们需要另一个Angular 的module&nbsp;<wbr/>&quot;angular-local-storage&quot; , 使用下面的命令<br/> </p><pre><code data-lang="js">bower install --save angular-local-storage<br/> <br/> <a href="http://photo.blog.sina.com.cn/showpic.html#blogid=761dcfc60101dii0&url=http://album.sina.com.cn/pic/002a6REizy6JB5mWP7o46" target="_blank"><img src="http://s7.sinaimg.cn/mw690/002a6REizy6JB5mWP7o46&690" name="image_operate_24571402492516146" alt="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" title="为什么选择&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;及&nbsp;&lt;wbr&gt;Yeoman&nbsp;&lt;wbr&gt;的安装" height="456" width="690"/></a><br/> <br/> 添加local storage<br/> ctrl + C 退出当前命令，运行 grunt serve, 这时你会发现你的 index.html 文件底部已加了一句：</code><code data-lang="html"><br/></code> </pre><p></p><pre>
+&nbsp;
+&nbsp;编辑&nbsp;mytodoApp&nbsp;应用模块&nbsp;(scripts/app.js)&nbsp;使它包含&nbsp;LocalStorageModule&nbsp;，最后代码如下:
+&nbsp;
+&nbsp;
+&nbsp;还要编辑main.js,&nbsp;代码最终如下：
+&nbsp;
+&nbsp;
+&nbsp;这时你在浏览器里看到你的应用变成这样：
+&nbsp;
+&nbsp;让我们填加几项：
+&nbsp;现在我们刷新一下浏览器，后添加的几项仍然存在，太好啦！成功啦！
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;我们来做一下发布前的优化工作：只要运行命令：
+&nbsp;grunt
+&nbsp;
+&nbsp;你的准备好发布的文件们现在就在dist文件夹里！你可以用&nbsp;FTP&nbsp;上传到你的服务器发布。
+&nbsp;
+&nbsp;恭喜你！我们的演示&nbsp;app&nbsp;终于完工啦！
+&nbsp;
+&nbsp;想了解更多？请参阅</pre><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="0ad8f4961844cb7a9d96003327b33773" data-title="为什么选择 Yeoman 及 Yeoman 的安装" data-url="http://www.niefengjun.cn/blog/0ad8f4961844cb7a9d96003327b33773.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/0ad8f4961844cb7a9d96003327b33773/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

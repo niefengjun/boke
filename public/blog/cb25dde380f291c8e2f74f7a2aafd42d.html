@@ -1,0 +1,437 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Node.js tls模块使用OpenSSL实现TLS/SSL安全通讯－－构建TLS服务器</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Node.js tls模块使用OpenSSL实现TLS/SSL安全通讯－－构建TLS服务器"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,Node.js tls模块使用OpenSSL实现TLS/SSL安全通讯－－构建TLS服务器" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>Node.js tls模块使用OpenSSL实现TLS/SSL安全通讯－－构建TLS服务器</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-09-06 17:16:40
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p>
+	<br/></p><p>
+	在Node.js中，<code>tls</code>模块使用OpenSSL来提供TLS/SSL，实现加密过的流通讯。TLS/SSL会在传输层上对网络连接进行加密，防止传输数据被窃听和篡改。<code>tls</code>模块创建的TLS服务器和客户端与<code>net</code>模块相似，但对方法进行了扩展，如：对公钥、私钥和证书的设置等。</p><ol class=" list-paddingleft-2"><li><p>
+		<a href="http://itbilu.com/nodejs/core/4k1kRtG6.html#init">初始化服务器</a></p></li><li><p>
+		<a href="http://itbilu.com/nodejs/core/4k1kRtG6.html#listener">监听连接</a></p></li><li><p>
+		<a href="http://itbilu.com/nodejs/core/4k1kRtG6.html#client_data">与客户端交互数据</a></p></li><li><p>
+		<a href="http://itbilu.com/nodejs/core/4k1kRtG6.html#end">断开连接</a></p></li><li><p>
+		<a href="http://itbilu.com/nodejs/core/4k1kRtG6.html#run">运行服务端</a></p></li></ol><p>
+	<br/></p><p>
+	<code>tls.Server</code>继承自<code>net.Server</code>，二者在功能上比较相似。但<code>tls.Server</code>创建服务器时，使用的是安全连接。</p><h3 id="init">
+	1. 初始化服务器</h3><p>
+	初始化服务器可以使用构造函数<code>tls.Server</code>或工厂方法<code>tls.createServer</code>。与创始<code>TCP</code>服务器不同，创建<code>TLS</code>服务器时，需要传服务器私钥和证书等文件。</p><pre>var&nbsp;tls&nbsp;=&nbsp;require(&#39;tls&#39;);
+var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);
+
+//使用服务端私钥和证书创建服务器
+var&nbsp;options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;key:&nbsp;fs.readFileSync(&#39;./ssl/itbilu-key.pem&#39;),
+&nbsp;&nbsp;&nbsp;&nbsp;cert:&nbsp;fs.readFileSync(&#39;./ssl/itbilu-cert.pem&#39;),
+&nbsp;&nbsp;&nbsp;&nbsp;requestCert:&nbsp;true,
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;可接收的客户端自签名证书认证
+&nbsp;&nbsp;&nbsp;&nbsp;ca:&nbsp;[&nbsp;fs.readFileSync(&#39;./ssl/client-cert.pem&#39;)&nbsp;]
+};
+//使用pfx或p12文件创建
+/*
+var&nbsp;options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;pfx:&nbsp;fs.readFileSync(&#39;./ssl/itbilu.pfx&#39;)
+};
+*/
+
+var&nbsp;server&nbsp;=&nbsp;tls.createServer(options);</pre><p>
+	在以上示例中，分别从<code>PEM私钥</code>和<code>pfx</code>证书创建了TLS服务端，创建TLS服务端详细参数如下：</p><p>
+	<strong>tls.createServer(options[, secureConnectionListener])</strong> </p><p>
+	创建一个新的<code>tls.Server</code>。参数<code>connectionListener</code>会自动设置为<code>secureConnection</code> 事件的监听器，也可以创建服务器后单独添加对该事件的监听。</p><ul class=" list-paddingleft-2"><li><p></p><p>
+			<code>pfx</code>：包含私钥、证书和服务器的<code>CA</code>证书（PFX 或 PKCS12 格式）字符串或缓存<code>Buffer</code>。（<code>key</code>, <code>cert</code> 和 <code>ca</code>互斥）。		</p><p>
+	</p></li><li><p></p><p>
+			<code>key</code>：包含服务器私钥（PEM 格式）字符串或缓存<code>Buffer</code>。（可以是keys的数组）（必传）。		</p><p>
+	</p></li><li><p></p><p>
+			<code>passphrase</code>：私钥或<code>pfx</code>的密码字符串		</p><p>
+	</p></li><li><p></p><p>
+			<code>cert</code>：包含服务器证书key（PEM 格式）字符串或缓存<code>Buffer</code>。（可以是certs的数组）（必传）。		</p><p>
+	</p></li><li><p></p><p>
+			<code>ca</code>：信任的证书（PEM 格式）的字符串/缓存数组，用来授权连接。如果忽略这个参数，将会使用&quot;root&quot; CAs，如 ：VeriSign。		</p><p>
+	</p></li><li><p></p><p>
+			<code>crl</code>：不是PEM编码CRLs（Certificate Revocation List，证书撤销列表）的字符串就是字符串列表		</p><p>
+	</p></li><li><p></p><p>
+			<code>ciphers</code>：要使用或排除的密码（cipher）字符串		</p><p>
+	</p></li><li><p></p><p>
+			<code>ecdhCurve</code>：是否包含<code>ECDH</code>秘钥，或<code>false</code>禁用<code>ECDH</code>。
+		默认<code>prime256v1</code>，更多可参考 <a rel="nofollow" href="http://www.rfc-editor.org/rfc/rfc4492.txt" target="_blank">RFC 4492</a> 。		</p><p>
+	</p></li><li><p></p><p>
+			<code>dhparam</code>：<code>DH</code>参数文件，用于<code>DHE</code>秘钥。使用 <code>openssl dhparam</code>命令来创建。如果加载文件失败，该参数会被抛弃。		</p><p>
+	</p></li><li><p></p><p>
+			<code>handshakeTimeout</code>: 握手超时时长，如果<code>SSL/TLS</code>握手事件超过这个参数，会断开连接。超时后，<code>tls.Server</code> 对象会触发 <code>&#39;clientError</code>&#39; 事件。默认是 120 秒。		</p><p>
+	</p></li><li><p></p><p>
+			<code>honorCipherOrder</code>：当选择一个密码（cipher）时，使用服务器配置。		</p><p>
+		</p><p>
+			该参数默认不可用，配合<code>ciphers</code>参数连接使用，可减轻 BEAST 攻击。		</p><p>
+	</p></li><li><p></p><p>
+			<code>requestCert</code>：如果设为 <code>true</code>，服务器会要求连接的客户端发送证书，并尝试验证证书。默认：<code>false</code>。		</p><p>
+	</p></li><li><p></p><p>
+			<code>rejectUnauthorized</code>：如果为<code>true</code>，服务器将会拒绝不在 CAs 授权列表内的连接。仅 <code>requestCert</code>参数为<code>true</code>时这个参数才有效。默认：<code>false</code>。		</p><p>
+	</p></li><li><p></p><p>
+			<code>checkServerIdentity(servername, cert)</code>：提供一个重写的方法来检查证书对应的主机名。如果验证失败，返回<code>error</code>；如果验证通过，返回<code>undefined</code>。		</p><p>
+	</p></li><li><p></p><p>
+			<code>NPNProtocols</code>：一个包含<code>NPN</code>协议的<code>Buffer</code>数组（协议需按优先级排序）。		</p><p>
+	</p></li><li><p></p><p>
+			<code>SNICallback(servername, cb)</code>：如果客户端支持<code>SNI TLS</code>扩展会调用这个方法。该方法接受2个参数：<code>servername</code>和<code>cb</code>。<code>SNICallback</code>回调函数格式为<code>cb(null, ctx)</code>，其中<code>ctx</code> 是<code>SecureContext</code>实例（可以用<code>tls.createSecureContext(...)</code> 来获取相应的 SecureContext上下文）。如果 <code>SNICallback</code> 没有提供，将会使用高级的 API（参见下文）.		</p><p>
+	</p></li><li><p></p><p>
+			<code>sessionTimeout</code>：整数，设定了服务器创建TLS会话标示符（TLS session identifiers）和TLS会话凭证（TLS session tickets）后的超时时间（单位：秒）。更多请参考：<a rel="nofollow" href="http://www.openssl.org/docs/ssl/SSL_CTX_set_timeout.html" target="_blank">SSL_CTX_set_timeout</a>。		</p><p>
+	</p></li><li><p></p><p>
+			<code>ticketKeys</code>：一个 48 字节的 <code>Buffer</code> 实例。由 16 字节的前缀，16 字节的<code>hmac key</code>，16 字节的<code>AES key</code>组成。可用来接受 tls 服务器实例上的 tls会话凭证（tls session tickets）。		</p><p>
+		</p><p>
+			注: 自动在集群<code>cluster</code>进程间共享。		</p><p>
+	</p></li><li><p></p><p>
+			<code>sessionIdContext</code>：会话恢复（session resumption）的标示符字符串。如果 <code>requestCert</code> 为 <code>true</code>，则默认值为命令行生成的 MD5 哈希值，否则不提供该参数默认值。		</p><p>
+	</p></li><li><p></p><p>
+			<code>secureProtocol</code>：SSL 使用的方法。如：<code>SSLv3_method</code> 强制 SSL 版本为3。可传入的值取决于你所安装的 OpenSSL 中的常量，参考：<a rel="nofollow" href="http://www.openssl.org/docs/ssl/ssl.html#DEALING_WITH_PROTOCOL_METHODS" target="_blank">SSL_METHODS</a>。		</p><p>
+	</p></li><li><p>
+		<code>secureOptions</code>：服务器配置项。例如设置<code>SSL_OP_NO_SSLv3</code>可用禁用 SSLv3 协议。所有可用参数请参考：<a rel="nofollow" href="https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html" target="_blank">SSL_CTX_set_options</a></p></li></ul><p>
+	<br/></p><h3 id="listener">
+	2. 监听连接</h3><p>
+	<code>TLS</code>服务器与<code>TCP</code>服务器一样，也需要将其绑定到TCP端口或<code>socket</code>套接字上。下面我们使用端口绑定，更多绑定选项可参考<a href="http://itbilu.com/nodejs/core/Vybf2xkj.html#listen" target="_blank">net.Server</a>。</p><p>
+	在上面创建<code>TLS</code>服务器时，我们没有传入默认的监听方法，因此需要添加对客户端连接事件的监听。当有TLS客户端连接进入时，<code>tls.Server</code>会发射一个<code>&#39;secureConnection&#39;</code>事件，我们可以通过监听此事件来处理客户端请求。</p><pre>//添加&#39;secureConnection&#39;事件监听
+server.on(&#39;secureConnection&#39;,&nbsp;function&nbsp;(clientStream){
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到了客户端的连接&#39;)
+});
+
+//将TLS服务器绑定到3333端口上
+server.listen(3333);</pre><p>
+	<br/></p><h3 id="client_data">
+	3. 与客户端交互数据</h3><p>
+	在<code>&#39;secureConnection&#39;</code>事件的回调函数中，会传入一个<code>tls.TLSSocket</code>对象实例，该实例与<code>net.Socket</code>实例类似。该实例是一个可读写的<a href="http://itbilu.com/nodejs/core/4y3SPWbS.html" target="_blank">Stream</a>流，从客户端读取数据或是向客户端发送数据都，是基于对这个<code>Stream</code>的操作。</p><pre>server.on(&#39;secureConnection&#39;,&nbsp;function&nbsp;(tlsSocket){
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到了客户端的连接&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;//tlsSocket是一个Stream，监听&#39;data&#39;事件可查看客户端数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.on(&#39;data&#39;,&nbsp;function(data){
+	console.log(&#39;收到客户端数据：%s&#39;,&nbsp;data);
+&nbsp;&nbsp;&nbsp;&nbsp;});
+
+&nbsp;&nbsp;&nbsp;&nbsp;//向客户端写入数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.write(&#39;Hello&nbsp;client&nbsp;--&nbsp;from&nbsp;itbilu.com&#39;)
+});</pre><p>
+	<br/></p><h3 id="end">
+	4. 断开连接</h3><p>
+	调用<code>tls.Server</code>对象的<code>end</code>方法可断开<code>TLS</code>服务器与客户端的连接。与<code>TCP</code>服务器一样，该方法也可以接收一个参数，参数为字符串或缓冲区<code>Buffer</code>，这些数据将在发送完毕后断开连接。</p><pre>server.on(&#39;secureConnection&#39;,&nbsp;function&nbsp;(tlsSocket){
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到了客户端的连接&#39;)
+&nbsp;&nbsp;&nbsp;&nbsp;//tlsSocket是一个Stream，监听&#39;data&#39;事件可查看客户端数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.on(&#39;data&#39;,&nbsp;function(data){
+	//客户端发来exit时，将断开服务器与客户端的连接
+	if(data.toString().trim().toLowerCase()&nbsp;===&nbsp;&#39;exit&#39;){
+	&nbsp;&nbsp;&nbsp;&nbsp;server.end(&#39;bye&nbsp;~&nbsp;&#39;);
+	}&nbsp;else&nbsp;{
+	&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到客户端数据：%s&#39;,&nbsp;data);
+	}
+&nbsp;&nbsp;&nbsp;&nbsp;});
+
+&nbsp;&nbsp;&nbsp;&nbsp;//向客户端写入数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.write(&#39;Hello&nbsp;client&nbsp;--&nbsp;from&nbsp;itbilu.com&#39;)
+});</pre><p>
+	<br/></p><h3 id="run">
+	5. 运行服务端</h3><p>
+	完整代码整理如下：</p><pre>var&nbsp;tls&nbsp;=&nbsp;require(&#39;tls&#39;);
+var&nbsp;fs&nbsp;=&nbsp;require(&#39;fs&#39;);
+
+//使用服务端私钥和证书创建服务器
+var&nbsp;options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;key:&nbsp;fs.readFileSync(&#39;./ssl/itbilu-key.pem&#39;),
+&nbsp;&nbsp;&nbsp;&nbsp;cert:&nbsp;fs.readFileSync(&#39;./ssl/itbilu-cert.pem&#39;),
+&nbsp;&nbsp;&nbsp;&nbsp;requestCert:&nbsp;true,
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;可接收的客户端自签名证书认证
+&nbsp;&nbsp;&nbsp;&nbsp;ca:&nbsp;[&nbsp;fs.readFileSync(&#39;./ssl/client-cert.pem&#39;)&nbsp;]
+};
+//使用pfx或p12文件创建
+/*
+var&nbsp;options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;pfx:&nbsp;fs.readFileSync(&#39;./ssl/itbilu.pfx&#39;)
+};
+*/
+
+var&nbsp;server&nbsp;=&nbsp;tls.createServer(options);
+
+//添加&#39;secureConnection&#39;事件监听
+server.on(&#39;secureConnection&#39;,&nbsp;function&nbsp;(tlsSocket){
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到了客户端的连接，该连接：&#39;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.authorized&nbsp;?&nbsp;&#39;已认证&#39;&nbsp;:&nbsp;&#39;未认证&#39;);
+&nbsp;&nbsp;&nbsp;&nbsp;//tlsSocket是一个Stream，监听&#39;data&#39;事件可查看客户端数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.on(&#39;data&#39;,&nbsp;function(data){
+	//客户端发来exit时，将断开服务器与客户端的连接
+	if(data.toString().trim().toLowerCase()&nbsp;===&nbsp;&#39;exit&#39;){
+	&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.end(&#39;bye&nbsp;~&nbsp;&#39;);
+	}&nbsp;else&nbsp;{
+	&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到客户端数据：%s&#39;,&nbsp;data);
+	}
+&nbsp;&nbsp;&nbsp;&nbsp;});
+
+&nbsp;&nbsp;&nbsp;&nbsp;//向客户端写入数据
+&nbsp;&nbsp;&nbsp;&nbsp;tlsSocket.write(&#39;Hello&nbsp;client&nbsp;--&nbsp;from&nbsp;itbilu.com&#39;)
+});
+
+//tls.Server继承自net.Server，所在&#39;connection&#39;事件依然可用
+server.on(&#39;connection&#39;,&nbsp;function&nbsp;(socket){
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;收到非安全连接&#39;)
+});
+
+//将TLS服务器绑定到3333端口上
+server.listen(3333,&nbsp;function()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(&#39;TLS&nbsp;服务器已绑定&#39;);
+});</pre><p>
+	将以上代码保存运行后，可以通过 <code>openssl s_client</code>来连接服务器测试：</p><pre>openssl&nbsp;s_client&nbsp;-connect&nbsp;127.0.0.1:3333</pre><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="cb25dde380f291c8e2f74f7a2aafd42d" data-title="Node.js tls模块使用OpenSSL实现TLS/SSL安全通讯－－构建TLS服务器" data-url="http://www.niefengjun.cn/blog/cb25dde380f291c8e2f74f7a2aafd42d.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/cb25dde380f291c8e2f74f7a2aafd42d/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

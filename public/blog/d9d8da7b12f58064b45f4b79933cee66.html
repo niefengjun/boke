@@ -1,0 +1,311 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>如何系统地学习Node.js？</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="如何系统地学习Node.js？"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,如何系统地学习Node.js？" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>如何系统地学习Node.js？</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-06-17 17:01:50
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p>我想先较为详细的罗列一下， 然后做个计划学习Node，对于具体学习大家有什么建议吗？<br/></p><pre>-&nbsp;包管理&nbsp;Package&nbsp;Management:&nbsp;NPM&nbsp;&nbsp;
+
+-&nbsp;框架&nbsp;Framework:&nbsp;ExpressJS&nbsp;&nbsp;
+&nbsp;&nbsp;-&nbsp;模板&nbsp;Template:&nbsp;Jade&nbsp;&nbsp;
+&nbsp;&nbsp;-&nbsp;中间件&nbsp;Middleware:&nbsp;Connect
+
+-&nbsp;WebSocket:&nbsp;Socket.io&nbsp;&nbsp;
+
+-&nbsp;数据库&nbsp;Database:&nbsp;Mongo&nbsp;DB&nbsp;(选了个自己喜欢的）
+&nbsp;&nbsp;-&nbsp;Mongoose&nbsp;(as&nbsp;a&nbsp;MongoDB&nbsp;ORM)&nbsp;
+
+-&nbsp;调错&nbsp;Debugging:&nbsp;Node&nbsp;Inspector&nbsp;&nbsp;
+
+-&nbsp;测试&nbsp;Test:&nbsp;Mocha&nbsp;+&nbsp;should.js&nbsp;&nbsp;&nbsp;
+
+-&nbsp;控制无止境的内嵌回调&nbsp;(Control&nbsp;the&nbsp;Callback&nbsp;flow):&nbsp;Async</pre><p><br/></p><p>Node：<br/>1.《nodejs入门》,才38页，很好，书中项目做一下，学会基础<br/></p><p>2.《nodejs开发指南》。180多页，很好，书中项目做一下，知道基础，及基本的配合express，jquery，bootstrap，数据库MongoDB</p><p>另附一些node实现书中例子的一些变化<a href="http://www.cnblogs.com/meteoric_cry/archive/2012/07/23/2604890.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">使用Express3.0实现&lt;Node.js开发指南</a><br/></p><p>3.开始看express创建初始项目的源代码对比2中的书，发现express更新后新的特性：<a href="https://github.com/strongloop/express/wiki/Migrating%20from%203.x%20to%204.x" class=" wrap external" target="_blank" rel="nofollow noreferrer">Migrating from 3.x to 4.x · strongloop/express Wiki · GitHub</a></p><p>看express官网api</p><p>英文：<a href="http://expressjs.com/api.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">Express 4.x - API Reference</a></p><p>中文：<a href="http://expressjs.jser.us/api" class=" wrap external" target="_blank" rel="nofollow noreferrer">Express - api参考</a></p><p>4.之后发现，一个系列课程，从零开始nodejs系列文章：<a href="http://blog.fens.me/series-nodejs/" class=" wrap external" target="_blank" rel="nofollow noreferrer">从零开始nodejs系列文章</a></p><p>其中 文章： Node.js开发框架Express4.x：<a href="http://blog.fens.me/nodejs-express4/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js开发框架Express4.x</a> ，详细介绍了express4项目的基本内容，很好</p><p>文章：用Nodejs连接MySQL：<a href="http://blog.fens.me/nodejs-mysql-intro/" class=" wrap external" target="_blank" rel="nofollow noreferrer">用Nodejs连接MySQL</a>，介绍mysql与node基本，及数据库连接池，宕机，连接超时等node问题解决办法，node-mysql官网也有相应英文解决办法</p><p>5.node+json：<a href="https://cnodejs.org/topic/4f81b167827290275d2b7c8f" class=" wrap external" target="_blank" rel="nofollow noreferrer">node.js里面怎么创建和解析JSON格式的文件?</a></p><p>更全的是这一个<a href="http://stackoverflow.com/questions/5726729/how-to-parse-json-using-node-js" class=" wrap external" target="_blank" rel="nofollow noreferrer">How to parse JSON using Node.js?</a> 但要注意如果require json，只加载一次，更新之后，再使用，可能还是老版本</p><p>json不好查看的问题：<a href="https://github.com/zhanhongtao/blog/issues/73" class=" wrap external" target="_blank" rel="nofollow noreferrer">读写 JSON 文件 &nbsp;· Issue #73 · zhanhongtao/blog · GitHub</a></p><p>6.node邮件验证：<a href="http://blog.fens.me/nodejs-email-nodemailer/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Nodejs发邮件组件Nodemailer</a></p><p><a href="http://blog.csdn.net/chszs/article/details/24928985" class=" wrap external" target="_blank" rel="nofollow noreferrer">选择适合的Node.js授权认证策略</a><br/></p><p>7.很全的node module <a href="https://github.com/joyent/node/wiki/Modules#parsers-json" class=" wrap external" target="_blank" rel="nofollow noreferrer">Modules · joyent/node Wiki · GitHub</a></p><p>8.文件操作，要么官方文档：<a href="https://nodejs.org/api/fs.html#fs_fs_writefile_filename_data_options_callback" class=" wrap external" target="_blank" rel="nofollow noreferrer">File System Node.js v0.12.2 Manual &amp; Documentation</a>，</p><p>或者<a href="http://www.cnblogs.com/chyingp/p/node-guide-file-write.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">node基础-文件系统</a><a href="http://www.cnblogs.com/rubylouvre/archive/2011/11/28/2264717.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">node.js 文件操作</a>，
+有一个要注意的是 存储文件时，比如writefile写路径 要使用path.join(__dirname, “相对于当前文件路径”); 
+如path.join(__dirname, &quot;../upload/recordList/&quot; + generateID(&quot;record&quot;) + 
+&quot;.json&quot;);,后端要采用这种dirname的形式，前端可以直接写相对于当前文件路径的形式</p><p><br/>node+express<br/>1.整体介绍框架<a href="http://javascript.ruanyifeng.com/nodejs/express.html#toc5" class=" wrap external" target="_blank" rel="nofollow noreferrer">Express框架 -- JavaScript 标准参考教程（alpha）</a><br/>2.express取值：<a href="https://cnodejs.org/topic/50a333d7637ffa4155c62ddb" class=" wrap external" target="_blank" rel="nofollow noreferrer">使用 NodeJS + Express 從 GET/POST Request 取值</a><br/>3.session+cookie：<a href="http://www.tuicool.com/articles/INbmuy" class=" wrap external" target="_blank" rel="nofollow noreferrer">node.js web开发:EXPRESS 4.x 以上使用session和cookie 的记录</a><br/><a href="http://www.cnblogs.com/chenchenluo/p/4197181.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">express 框架之session</a> &nbsp; express-session官网 <a href="https://www.npmjs.com/package/express-session" class=" wrap external" target="_blank" rel="nofollow noreferrer">npmjs.com 的页面</a><br/><a href="http://my.oschina.net/braveqin/blog/208556" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js Express 从入门到菜鸟（二）——Cookie+Session+三层搭建</a><br/><a href="http://my.oschina.net/u/1466553/blog/294336" class=" wrap external" target="_blank" rel="nofollow noreferrer">express 4.2.0 使用session和cookies</a><br/><a href="https://cnodejs.org/topic/516517a56d38277306c614da" class=" wrap external" target="_blank" rel="nofollow noreferrer">在Express 使用session 做登录控制</a><br/>去
+掉flash之后，可以只用session，在每次post一开始 
+置req.session.error为null，之后，验证过程中，检查错误再设置req.session.error，然后根据结果redirect
+之后，检测是否error为null，来决定是否展示<br/>node session保存的只是中间键值对，不管赋予res.locals.user等，都不是对象，需要在中间件中重新生成对象，才能调用方法，当然如果只是使用属性值，则不需要<br/>4.express基本的中间件官方网站：<a href="https://github.com/senchalabs/connect#middleware" class=" wrap external" target="_blank" rel="nofollow noreferrer">senchalabs/connect · GitHub</a><br/><br/><br/></p><p>node+mysql</p><p>1.node所用的mysql官网：<a href="https://github.com/felixge/node-mysql" class=" wrap external" target="_blank" rel="nofollow noreferrer">felixge/node-mysql · GitHub</a></p><p>2.<a href="http://www.cnblogs.com/zhongweiv/p/nodejs_mysql.html#mysql_curd" class=" wrap external" target="_blank" rel="nofollow noreferrer">Nodejs学习笔记（四）--- 与MySQL交互（felixge/node-mysql）</a></p><p>3.<a href="http://blog.fens.me/nodejs-mysql-intro/" class=" wrap external" target="_blank" rel="nofollow noreferrer">用Nodejs连接MySQL</a></p><p>4.<a href="http://blog.csdn.net/justdb/article/details/8200512" class=" wrap external" target="_blank" rel="nofollow noreferrer">三种常用数据库（Oracle、MySQL、SQLServer）的分页之MySQL分页</a></p><p>5.sq语句注意顺序，order by group by limit..一般放在where后面</p><p><br/></p><p>express+ejs</p><p>1.<a href="http://my.oschina.net/u/1540325/blog/311901" class=" wrap external" target="_blank" rel="nofollow noreferrer">EJS学习总结 - &nbsp;双月通天的个人空间</a></p><p>2.<a href="http://blog.csdn.net/zhangxin09/article/details/18409119" class=" wrap external" target="_blank" rel="nofollow noreferrer">EJS 模板快速入门</a></p><p>3.<a href="http://node-js.diandian.com/post/2012-07-03/40029704518" class=" wrap external" target="_blank" rel="nofollow noreferrer">nodejs express template (模版)的使用 (ejs + express)_node.js 笔记</a></p><p>4.ejs我的总结：</p><p>ejs 写法：</p><pre>普通传入并使用变量：&lt;%=&nbsp;title&nbsp;%&gt;
+普通for执行js代码（for中间的代码一定可以执行到）：
+&lt;%&nbsp;for(var&nbsp;i=0;&nbsp;i&lt;headerNavbar.length;&nbsp;i++)&nbsp;{%&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a&nbsp;href=&quot;/reg&quot;&gt;&lt;%=&nbsp;headerNavbar[i].name&nbsp;%&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;%&nbsp;}&nbsp;%&gt;
+特殊if语句的js代码（if中间的额代码不一定可以执行到）：
+&nbsp;&lt;%&nbsp;if(active==&#39;index&#39;){%&gt;
+class=&quot;active&quot;
+&nbsp;&lt;%&nbsp;}%&gt;&gt;</pre><p><br/></p><p>jquery</p><p>1.<a href="http://www.w3school.com.cn/jquery/index.asp" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery 教程</a></p><p>2.<a href="http://javascript.ruanyifeng.com/jquery/utility.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery工具方法 -- JavaScript 标准参考教程（alpha）</a></p><p>3.<a href="http://tool.oschina.net/apidocs/apidoc?api=jquery" class=" wrap external" target="_blank" rel="nofollow noreferrer">在线文档-jquery</a></p><p>4.<a href="http://www.ruanyifeng.com/blog/2011/07/jquery_fundamentals.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery设计思想</a>!!</p><p><br/></p><p>jquery ui</p><p>1.<a href="https://jqueryui.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery UI</a></p><p>2.中文API:<a href="http://www.css88.com/jquery-ui-api/resizable/" class=" wrap external" target="_blank" rel="nofollow noreferrer">http://www.css88.com/jquery-ui-api/</a></p><p>3.<a href="http://www.w3cschool.cc/jqueryui/example-resizable.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery UI 实例</a></p><p>4.jqueryrain神站：tabs：<a href="http://www.jqueryrain.com/example/jquery-tabs/" class=" wrap external" target="_blank" rel="nofollow noreferrer">80+ Best jQuery Tabs with Examples</a></p><p>js tree 库：<a href="http://www.jqueryrain.com/demo/jquery-treeview/" class=" wrap external" target="_blank" rel="nofollow noreferrer">15+ jQuery Treeview Plugin &amp; jQuery Tree with Example</a></p><p><a href="http://www.jstree.com/api/#/?f=%24.jstree.defaults.core.expand_selected_onload" class=" wrap external" target="_blank" rel="nofollow noreferrer">jsTree</a></p><p><br/></p><p>Bootstrap：</p><p>1.<a href="http://v2.bootcss.com/base-css.html#typography" class=" wrap external" target="_blank" rel="nofollow noreferrer">基本CSS样式 · Bootstrap</a> v2<br/></p><p>2.<a href="http://v3.bootcss.com/css/#type" class=" wrap external" target="_blank" rel="nofollow noreferrer">全局 CSS 样式 · Bootstrap 中文文档</a> v3</p><p>3.bootstrap row等偏移-20px</p><p>4.<a href="http://www.cnblogs.com/niuox/p/3583650.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">补充：学会Twitter Bootstrap不再难</a> ：从2.x升级到3.0版本</p><p><br/></p><p>html5</p><p>1.drag：库：<a href="http://interactjs.io/" class=" wrap external" target="_blank" rel="nofollow noreferrer">interact.js - JavaScript drag and drop, resizing and gestures with inertia and snapping</a><a href="http://skidding.github.io/dragdealer/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Dragdealer.js</a> &nbsp; 教程：<a href="http://w3school.com.cn/html5/html_5_draganddrop.asp" class=" wrap external" target="_blank" rel="nofollow noreferrer">HTML 5 拖放</a><a href="http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/" class=" wrap external" target="_blank" rel="nofollow noreferrer">HTML5 drag &amp; drop 拖拽与拖放简介 « &nbsp;张鑫旭</a></p><p><br/></p><p>git:</p><p>1.<a href="http://blog.csdn.net/iefreer/article/details/7679631" class=" wrap external" target="_blank" rel="nofollow noreferrer">Git:代码冲突常见解决方法</a></p><p>2.<a href="http://www.cnblogs.com/by1990/archive/2013/02/19/2916860.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">使用WebStorm和Git开发Node.js应用</a></p><p>3.<a href="http://riny.net/2014/git-ssh-key/" class=" wrap external" target="_blank" rel="nofollow noreferrer">git生成ssh key及本地解决多个ssh key的问题</a> 写的非常清楚</p><p>4.<a href="https://help.github.com/articles/generating-ssh-keys/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Generating SSH keys</a></p><p><br/></p><p>js：</p><p>1.对象本身方法，可以用于对这类对象的工具类方法，当作对象manager方法</p><p>对象原型中方法，用于每个不同对象实例的方法</p><p>2.<a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">Javascript异步编程的4种方法</a> callback尽量写成return callback()</p><p>3.<a href="http://liaofeng-xiao.iteye.com/blog/697029" class=" wrap external" target="_blank" rel="nofollow noreferrer">JS对象类型的确定</a></p><p>4.js取属性,一般用object.pro ,如果需要动态确定属性,可以使用 object[&#39;dynamic&#39;+pro],动态取属性,包括session,虽然为键值对,但这样也可以</p><p><br/></p><p>json：</p><p>1.jquery操作：<a href="http://blog.csdn.net/abeetle/article/details/8910189" class=" wrap external" target="_blank" rel="nofollow noreferrer">jQuery中读取json文件</a></p><p><br/></p><p>后端更新前端：</p><p>1.<a href="http://www.zhihu.com/question/20255036" class="internal">怎么使用 JavaScript 将网站后台的数据变化实时更新到前端？ - 前端开发</a></p><p>2.<a href="http://blog.fens.me/nodejs-socketio-chat/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Socket.io在线聊天室</a></p><p>3.<a href="https://cnodejs.org/topic/4f32142e69bab4d67601bd1b" class=" wrap external" target="_blank" rel="nofollow noreferrer">迈出nodejs的第二步,用nodejs+socket.io搭建一个websocket聊天室</a></p><p>4.<a href="http://www.cnblogs.com/zhaodongyu/p/3905500.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">使用Node.js实现数据推送</a></p><p>5.<a href="https://github.com/Automattic/socket.io" class=" wrap external" target="_blank" rel="nofollow noreferrer">Automattic/socket.io · GitHub</a></p><p>6.<a href="http://blog.fens.me/nodejs-websocket/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Nodejs实现websocket的4种方式</a></p><p><br/></p><p>RESTFul:</p><p>1.<a href="http://pixelhandler.com/posts/develop-a-restful-api-using-nodejs-with-express-and-mongoose" class=" wrap external" target="_blank" rel="nofollow noreferrer">Pixelhandler&#39;s Blog</a></p><p>2.<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">理解RESTful架构</a></p><p><br/><br/></p><p>杂：</p><p>1. passportJS配置用户验证：<a href="http://blog.ssyog.com/blog/webbuild/passportjs-req-user-is-undefined.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">PassportJS 配置失败：req.user 未定义</a></p><p><a href="http://passportjs.org/guide/configure/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Passport &nbsp;| Configure</a><br/></p><p>2.回调函数：回调函数，就是放在另外一个函数（如 parent）的参数列表中，作为参数传递给这个 parent，然后在 parent 函数体的某个位置执行。<a href="http://www.jb51.net/article/54641.htm" class=" wrap external" target="_blank" rel="nofollow noreferrer">理解javascript中的回调函数(callback)_javascript技巧</a></p><p>3.不再用的req.flsah():<a href="https://cnodejs.org/topic/502b7f61f767cc9a51525b4a" class=" wrap external" target="_blank" rel="nofollow noreferrer">express 版本更新后遇到的问题
+flash()</a></p><p>4.app.locals和res.locals <a href="http://www.ituring.com.cn/article/55098" class=" wrap external" target="_blank" rel="nofollow noreferrer">图灵社区 : 阅读 : express配置项more</a></p><p>5.Crypto加密解密：<a href="http://blog.fens.me/nodejs-crypto/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Node.js加密算法库Crypto</a></p><p>6.<a href="http://www.zhihu.com/question/20392388" class="internal">在 CSS 中如何使用百分比设置页面 Div 高度？ - 前端开发</a></p><p>7.<a href="http://www.cnblogs.com/suzongwei/archive/2009/02/23/1396337.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">HTML:scrollLeft,scrollWidth,clientWidth,offsetWidth之完全详解(转载)</a></p><p>8.<a href="http://www.ruanyifeng.com/blog/2012/08/file_upload.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">文件上传的渐进式增强</a></p><p>拖动上传 js库：<a href="http://www.dropzonejs.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Dropzone.js</a></p><p>9.js diagram 需求图：<a href="http://www.jointjs.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">JointJS - the HTML 5 JavaScript diagramming library.</a></p><p><a href="http://gojs.net/latest/index.html" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">gojs.net/latest/index.h</span><span class="invisible">tml</span><span class="ellipsis"></span></a><br/></p><p>10js 网页分析：<a href="http://www.google.com/analytics/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Google Analytics Official Website</a></p><p>11.js network网状图 ，时间线，2d，3d 库：<a href="http://visjs.org/index.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">vis.js - A dynamic, browser based visualization library.</a></p><p>12.js fileManager：<a href="http://www.sitepoint.com/10-jquery-file-manager-plugins/" class=" wrap external" target="_blank" rel="nofollow noreferrer">10 jQuery Based File Manager Plugins</a></p><p>在线富文本编辑器：<a href="http://www.responsivefilemanager.com/index.php" class=" wrap external" target="_blank" rel="nofollow noreferrer">RESPONSIVE filemanager 9.9.2</a>（php tinyMCE）</p><p>推荐：<a href="http://imperavi.com/redactor/plugins/file-manager/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Redactor Plugins</a>轻量且美观</p><p>13.小型：file explore：<a href="https://github.com/Kloudless/file-explorer" class=" wrap external" target="_blank" rel="nofollow noreferrer">Kloudless/file-explorer · GitHub</a>：可以实现从多处上传，选择文件</p><p><a href="http://tutorialzine.com/2014/09/cute-file-browser-jquery-ajax-php/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Cute File Browser with jQuery and PHP</a> 美观轻量但是需要jquery ajax php</p><p>14. js tree 库：<a href="http://www.jqueryrain.com/demo/jquery-treeview/" class=" wrap external" target="_blank" rel="nofollow noreferrer">15+ jQuery Treeview Plugin &amp; jQuery Tree with Example</a></p><p><a href="http://www.jstree.com/api/#/?f=%24.jstree.defaults.core.expand_selected_onload" class=" wrap external" target="_blank" rel="nofollow noreferrer">jsTree</a><br/></p><p>15.messageBox 通知框 js库：<a href="http://bootboxjs.com/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Bootbox.js—alert, confirm and flexible modal dialogs for the Bootstrap framework</a></p><p>16.<a href="http://www.cnblogs.com/yjzhu/p/3227912.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">【css】清除浮动（clearfix 和 clear）的用法</a></p><p><a href="http://www.w3cplus.com/css/elements-horizontally-center-with-css.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">六种实现元素水平居中</a><br/></p><p>17.button css库：<a href="http://www.bootcss.com/p/buttons/" class=" wrap external" target="_blank" rel="nofollow noreferrer">Buttons - 一个高度可定制的按钮（button） CSS 样式库。</a></p><p>18.<a href="http://blog.csdn.net/maxracer/article/details/6103348" class=" wrap external" target="_blank" rel="nofollow noreferrer">Html 解决长串英文字母显示不能自动换行</a></p><p>19.非input元素使用focus等方法：<a href="http://www.cnblogs.com/rubylouvre/archive/2010/05/03/1726334.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">让元素获得焦点</a></p><p>20.text file等在表单中同时上传时，记得表单设enctype=&quot;multipart/form-data&quot;，否则可能拿不到数据，还有一个，ajax传输data，记得设置data-type为json，尤其jstree使用ajax传输节点</p><p>21.多文件，多图片上传预览，进度等，可以用webuploader，busboy等</p><p>22.busboy <a href="http://www.duanzhihe.com/1178.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">nodejs+busboy实现文件上传</a><a href="https://www.npmjs.com/package/busboy" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://www.</span><span class="visible">npmjs.com/package/busbo</span><span class="invisible">y</span><span class="ellipsis"></span></a></p><p>23.前端字体：<a href="http://www.youziku.com/Home/FontSelect" class=" wrap external" target="_blank" rel="nofollow noreferrer">字体选择_有字库</a></p><p>24.$(&#39;#btn&#39;).on(&#39;click&#39;,function(e){ e.preventDefaults(); &nbsp;or &nbsp;return false; })均能在表单提交之前阻止提交</p><p>24.404 not found 网页设计<a href="http://www.ithome.com/html/it/28489.htm" class=" wrap external" target="_blank" rel="nofollow noreferrer">真没见识过，原来404错误页面可以这样设计</a></p><p>25.<a href="http://www.html5rocks.com/zh/tutorials/file/dndfiles/" class=" wrap external" target="_blank" rel="nofollow noreferrer">阅读以 JavaScript 编写的本地文件</a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" class=" wrap external" target="_blank" rel="nofollow noreferrer">FileReader - Web API 接口</a> 读写客户端本地文件</p><p>26.chrome下 页面退出时发送ajax写法：</p><pre>$(window).on(&#39;beforeunload&#39;,&nbsp;function&nbsp;()
+{
+//this&nbsp;will&nbsp;work&nbsp;only&nbsp;for&nbsp;Chrome
+&nbsp;&nbsp;&nbsp;&nbsp;$.ajax({
+type:&#39;GET&#39;,
+url:&#39;/ajaxRequest/myClassesOfteacherclose&#39;,
+async:false
+&nbsp;&nbsp;&nbsp;&nbsp;});
+});</pre><p>27.前端中下面两个的$(&#39;a&#39;).text()是不一样的，会计算空格</p><pre>&lt;a&nbsp;class=&#39;button&#39;&gt;关注&lt;/a&gt;
+&lt;a&nbsp;class=&#39;button&#39;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;关注
+&lt;/a&gt;</pre><p>性能优化：</p><p>1.!!!<a href="http://www.cnblogs.com/developersupport/p/webpage-performance-best-practices.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">毫秒必争，前端网页性能最佳实践</a></p><p>2.<a href="http://www.w3school.com.cn/html5/html_5_app_cache.asp" class=" wrap external" target="_blank" rel="nofollow noreferrer">HTML 5 应用程序缓存</a></p><p>3.<a href="http://www.appelsiini.net/projects/lazyload" class=" wrap external" target="_blank" rel="nofollow noreferrer">Lazy Load Plugin for jQuery</a></p><p><br/></p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="d9d8da7b12f58064b45f4b79933cee66" data-title="如何系统地学习Node.js？" data-url="http://www.niefengjun.cn/blog/d9d8da7b12f58064b45f4b79933cee66.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/d9d8da7b12f58064b45f4b79933cee66/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

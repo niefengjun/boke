@@ -1,0 +1,295 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>exports 和 module.exports 的区别</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="exports 和 module.exports 的区别"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,exports 和 module.exports 的区别" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>exports 和 module.exports 的区别</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-05-25 12:15:38
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <p><br/></p><p>我理解的exports 和 module.exports 的区别，欢迎大家吐槽~</p><p>为了更好的理解 <code>exports</code> 和 <code>module.exports</code> 的关系，我们先来补点 js 基础。示例：</p><p><strong>app.js</strong></p><pre class="prettyprint">var&nbsp;a&nbsp;=&nbsp;{name:&nbsp;&#39;nswbmw&nbsp;1&#39;};var&nbsp;b&nbsp;=&nbsp;a;console.log(a);console.log(b);b.name&nbsp;=&nbsp;&#39;nswbmw&nbsp;2&#39;;console.log(a);console.log(b);var&nbsp;b&nbsp;=&nbsp;{name:&nbsp;&#39;nswbmw&nbsp;3&#39;};console.log(a);console.log(b);</pre><p>运行 app.js 结果为：</p><p><br/></p><pre class="prettyprint">D:\&gt;node&nbsp;app{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;1&#39;&nbsp;}
+{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;1&#39;&nbsp;}{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;2&#39;&nbsp;}
+{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;2&#39;&nbsp;}{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;2&#39;&nbsp;}
+{&nbsp;name:&nbsp;&#39;nswbmw&nbsp;3&#39;&nbsp;}
+D:\&gt;</pre><p><strong>解释一下</strong>：a 是一个对象，b 是对 a 的引用，即 a 和 b 指向同一个对象，即 a 和 b 指向同一块内存地址，所以前两个输出一样。当对 b 作修改时，即 a 和 b 指向同一块内存地址的内容发生了改变，所以 a 也会体现出来，所以第三四个输出一样。当对 b 完全覆盖时，b 就指向了一块新的内存地址（并没有对原先的内存块作修改），a 还是指向原来的内存块，即 a 和 b 不再指向同一块内存，也就是说此时 a 和 b 已毫无关系，所以最后两个输出不一样。</p><p>明白了上述例子后，我们进入正题。
+我们只需知道三点即可知道 <code>exports</code> 和 <code>module.exports</code> 的区别了：</p><ol class=" list-paddingleft-2"><li><p><code>exports</code> 是指向的 <code>module.exports</code> 的引用</p></li><li><p><code>module.exports</code> 初始值为一个空对象 <code>{}</code>，所以 <code>exports</code> 初始值也是 <code>{}</code></p></li><li><p><code>require()</code> 返回的是 <code>module.exports</code> 而不是 <code>exports</code></p></li></ol><p>所以：</p><ul class=" list-paddingleft-2"><li><p>我们通过</p><pre class="prettyprint">&nbsp;&nbsp;var&nbsp;name&nbsp;=&nbsp;&#39;nswbmw&#39;;
+&nbsp;&nbsp;exports.name&nbsp;=&nbsp;name;
+&nbsp;&nbsp;exports.sayName&nbsp;=&nbsp;function()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(name);
+&nbsp;&nbsp;}</pre><p>给 <code>exports</code> 赋值其实是给 <code>module.exports</code> 这个空对象添加了两个属性而已，上面的代码相当于：</p><pre class="prettyprint">&nbsp;&nbsp;var&nbsp;name&nbsp;=&nbsp;&#39;nswbmw&#39;;
+&nbsp;&nbsp;module.exports.name&nbsp;=&nbsp;name;
+&nbsp;&nbsp;module.exports.sayName&nbsp;=&nbsp;function()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;console.log(name);
+&nbsp;&nbsp;}</pre></li><li><p>我们通常这样使用 <code>exports</code> 和 <code>module.exports</code></p><p>一个简单的例子，计算圆的面积：</p><h3>使用 exports</h3><p><strong>app.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;var&nbsp;circle&nbsp;=&nbsp;require(&#39;./circle&#39;);
+&nbsp;&nbsp;console.log(circle.area(4));</pre><p><strong>circle.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;exports.area&nbsp;=&nbsp;function(r)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;r&nbsp;*&nbsp;r&nbsp;*&nbsp;Math.PI;
+&nbsp;&nbsp;}</pre><h3>使用 module.exports</h3><p><strong>app.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;var&nbsp;area&nbsp;=&nbsp;require(&#39;./area&#39;);
+&nbsp;&nbsp;console.log(area(4));</pre><p><strong>area.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;module.exports&nbsp;=&nbsp;function(r)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;r&nbsp;*&nbsp;r&nbsp;*&nbsp;Math.PI;
+&nbsp;&nbsp;}</pre><p>上面两个例子输出是一样的。你也许会问，为什么不这样写呢？</p><p><strong>app.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;var&nbsp;area&nbsp;=&nbsp;require(&#39;./area&#39;);
+&nbsp;&nbsp;console.log(area(4));</pre><p><strong>area.js</strong></p><pre class="prettyprint">&nbsp;&nbsp;exports&nbsp;=&nbsp;function(r)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;r&nbsp;*&nbsp;r&nbsp;*&nbsp;Math.PI;
+&nbsp;&nbsp;}</pre><p>运行上面的例子会报错。这是因为，前面的例子中通过给 <code>exports</code> 添加属性，只是对 <code>exports</code> 指向的内存做了修改，而</p><pre class="prettyprint">&nbsp;&nbsp;exports&nbsp;=&nbsp;function(r)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;r&nbsp;*&nbsp;r&nbsp;*&nbsp;Math.PI;
+&nbsp;&nbsp;}</pre><p>其实是对 <code>exports</code> 进行了覆盖，也就是说 <code>exports</code> 指向了一块新的内存（内容为一个计算圆面积的函数），也就是说 <code>exports</code> 和 <code>module.exports</code> 不再指向同一块内存，也就是说此时 <code>exports</code> 和 <code>module.exports</code> 毫无联系，也就是说 <code>module.exports</code> 指向的那块内存并没有做任何改变，仍然为一个空对象 <code>{}</code> ，也就是说 area.js 导出了一个空对象，所以我们在 app.js 中调用 area(4) 会报 <code>TypeError: object is not a function</code> 的错误。</p><p>所以，一句话做个总结：当我们想让模块导出的是一个对象时， <code>exports</code> 和 <code>module.exports</code> 均可使用（但 <code>exports</code> 也不能重新覆盖为一个新的对象），而当我们想导出非对象接口时，就必须也只能覆盖 <code>module.exports</code> 。</p></li><li><p>我们经常看到这样的用写法：</p><pre class="prettyprint">&nbsp;&nbsp;exports&nbsp;=&nbsp;module.exports&nbsp;=&nbsp;somethings</pre><p>上面的代码等价于</p><pre class="prettyprint">&nbsp;&nbsp;module.exports&nbsp;=&nbsp;somethings
+&nbsp;&nbsp;exports&nbsp;=&nbsp;module.exports</pre><p>原因也很简单， <code>module.exports = somethings</code> 是对 <code>module.exports</code> 进行了覆盖，此时 <code>module.exports</code> 和 <code>exports</code> 的关系断裂，<code>module.exports</code> 指向了新的内存块，而 <code>exports</code> 还是指向原来的内存块，为了让 <code>module.exports</code> 和 <code>exports</code> 还是指向同一块内存或者说指向同一个 “对象”，所以我们就 <code>exports = module.exports</code> 。</p></li></ul><p><br/></p><p>&nbsp;&nbsp;&nbsp;&nbsp; 原文地址：https://cnodejs.org/topic/5231a630101e574521e45ef8</p>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="77753bb140063b95b3fb3f09475fbdec" data-title="exports 和 module.exports 的区别" data-url="http://www.niefengjun.cn/blog/77753bb140063b95b3fb3f09475fbdec.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/77753bb140063b95b3fb3f09475fbdec/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

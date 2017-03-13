@@ -1,0 +1,355 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>阿里巴巴攻城师分享nodeJS精华：cookie 和 session </title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="阿里巴巴攻城师分享nodeJS精华：cookie 和 session "/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,阿里巴巴攻城师分享nodeJS精华：cookie 和 session " name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>阿里巴巴攻城师分享nodeJS精华：cookie 和 session </h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-03-25 17:18:07
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <h1 style=""><strong><span style="color: rgb(79, 97, 40);">cookie 和 session</span></strong></h1><p style="">众所周知，HTTP 是一个无状态协议，所以客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</p><p style="">比如在淘宝的某个页面中，你进行了登陆操作。当你跳转到商品页时，服务端如何知道你是已经登陆的状态？</p><h3 style=""><strong><span style="color: rgb(79, 97, 40);">cookie</span></strong></h3><p style="">首先产生了 cookie 这门技术来解决这个问题，cookie 是 http 协议的一部分，它的处理分为如下几步：</p><ul class="task-list list-paddingleft-2" style=""><li><p>服务器向客户端发送 cookie。</p></li><ul class="task-list list-paddingleft-2" style="list-style-type: square;"><li><p>通常使用 HTTP 协议规定的 set-cookie 头操作。</p></li><li><p>规范规定 cookie 的格式为 name = value 格式，且必须包含这部分。</p></li></ul><li><p>浏览器将 cookie 保存。</p></li><li><p>每次请求浏览器都会将 cookie 发向服务器。</p></li></ul><p style="">其他可选的 cookie 参数会影响将 cookie 发送给服务器端的过程，主要有以下几种：</p><ul class="task-list list-paddingleft-2" style=""><li><p>path：表示 cookie 影响到的路径，匹配该路径才发送这个 cookie。</p></li><li><p>expires
+ 和 maxAge：告诉浏览器这个 cookie 什么时候过期，expires 是 UTC 格式时间，maxAge 是 cookie 
+多久后过期的相对时间。当不设置这两个选项时，会产生 session cookie，session cookie 是 transient 
+的，当用户关闭浏览器时，就被清除。一般用来保存 session 的 session_id。</p></li><li><p>secure：当 secure 值为 true 时，cookie 在 HTTP 中是无效，在 HTTPS 中才有效。</p></li><li><p>httpOnly：浏览器不允许脚本操作 document.cookie 去更改 cookie。一般情况下都应该设置这个为 true，这样可以避免被 xss 攻击拿到 cookie。</p></li></ul><h3 style=""><strong><span style="color: rgb(79, 97, 40);">express 中的 cookie</span></strong></h3><p style="">express 在 4.x 版本之后，session管理和cookies等许多模块都不再直接包含在express中，而是需要单独添加相应模块。</p><p style="">express4 中操作 cookie 使用 <code style="">cookie-parser</code> 模块(https://github.com/expressjs/cookie-parser )。</p><pre style="">var&nbsp;express&nbsp;=&nbsp;require(&#39;express&#39;);//&nbsp;首先引入&nbsp;cookie-parser&nbsp;这个模块var&nbsp;cookieParser&nbsp;=&nbsp;require(&#39;cookie-parser&#39;);var&nbsp;app&nbsp;=&nbsp;express();
+app.listen(3000);//&nbsp;使用&nbsp;cookieParser&nbsp;中间件，cookieParser(secret,&nbsp;options)//&nbsp;其中&nbsp;secret&nbsp;用来加密&nbsp;cookie&nbsp;字符串（下面会提到&nbsp;signedCookies）//&nbsp;options&nbsp;传入上面介绍的&nbsp;cookie&nbsp;可选参数app.use(cookieParser());
+
+app.get(&#39;/&#39;,&nbsp;function&nbsp;(req,&nbsp;res)&nbsp;{&nbsp;&nbsp;//&nbsp;如果请求中的&nbsp;cookie&nbsp;存在&nbsp;isVisit,&nbsp;则输出&nbsp;cookie
+&nbsp;&nbsp;//&nbsp;否则，设置&nbsp;cookie&nbsp;字段&nbsp;isVisit,&nbsp;并设置过期时间为1分钟
+&nbsp;&nbsp;if&nbsp;(req.cookies.isVisit)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;console.log(req.cookies);
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&quot;再次欢迎访问&quot;);
+&nbsp;&nbsp;}&nbsp;else&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;res.cookie(&#39;isVisit&#39;,&nbsp;1,&nbsp;{maxAge:&nbsp;60&nbsp;*&nbsp;1000});
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&quot;欢迎第一次访问&quot;);
+&nbsp;&nbsp;}
+});</pre><h3 style=""><strong><span style="color: rgb(79, 97, 40);">session</span></strong></h3><p style="">cookie
+ 虽然很方便，但是使用 cookie 有一个很大的弊端，cookie 
+中的所有数据在客户端就可以被修改，数据非常容易被伪造，那么一些重要的数据就不能存放在 cookie 中了，而且如果 cookie 
+中数据字段太多会影响传输效率。为了解决这些问题，就产生了 session，session 中的数据是保留在服务器端的。</p><p style="">session 的运作通过一个 <code style="">session_id</code> 来进行。<code style="">session_id</code> 通常是存放在客户端的 cookie 中，比如在 express 中，默认是 <code style="">connect.sid</code> 这个字段，当请求到来时，服务端检查 cookie 中保存的 session_id 并通过这个 session_id 与服务器端的 session data 关联起来，进行数据的保存和修改。</p><p style="">这意思就是说，当你浏览一个网页时，服务端随机产生一个 1024 比特长的字符串，然后存在你 cookie 中的 <code style="">connect.sid</code>字
+段中。当你下次访问时，cookie 
+会带有这个字符串，然后浏览器就知道你是上次访问过的某某某，然后从服务器的存储中取出上次记录在你身上的数据。由于字符串是随机产生的，而且位数足够
+多，所以也不担心有人能够伪造。伪造成功的概率比坐在家里编程时被邻居家的狗突然闯入并咬死的几率还低。</p><p style="">session
+ 可以存放在 1）内存、2）cookie本身、3）redis 或 memcached 
+等缓存中，或者4）数据库中。线上来说，缓存的方案比较常见，存数据库的话，查询效率相比前三者都太低，不推荐；cookie session 
+有安全性问题，下面会提到。</p><p style="">express 中操作 session 要用到 <code style="">express-session</code> (https://github.com/expressjs/session ) 这个模块，主要的方法就是<code style="">session(options)</code>，其中 options 中包含可选参数，主要有：</p><ul class="task-list list-paddingleft-2" style=""><li><p>name: 设置 cookie 中，保存 session 的字段名称，默认为 <code style="">connect.sid</code> 。</p></li><li><p>store: session 的存储方式，默认存放在内存中，也可以使用 redis，mongodb 等。express 生态中都有相应模块的支持。</p></li><li><p>secret: 通过设置的 secret 字符串，来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改。</p></li><li><p>cookie: 设置存放 session id 的 cookie 的相关选项，默认为</p></li><ul class="task-list list-paddingleft-2" style="list-style-type: square;"><li><p>(default: { path: &#39;/&#39;, httpOnly: true, secure: false, maxAge: null })</p></li></ul><li><p>genid: 产生一个新的 session_id 时，所使用的函数， 默认使用 <code style="">uid2</code> 这个 npm 包。</p></li><li><p>rolling: 每个请求都重新设置一个 cookie，默认为 false。</p></li><li><p>resave: 即使 session 没有被修改，也保存 session 值，默认为 true。</p></li></ul><p style=""><strong><span style="color: rgb(79, 97, 40);">1） 在内存中存储 session</span></strong></p><p style=""><code style="">express-session</code> 默认使用内存来存 session，对于开发调试来说很方便。</p><pre style="">var&nbsp;express&nbsp;=&nbsp;require(&#39;express&#39;);//&nbsp;首先引入&nbsp;express-session&nbsp;这个模块var&nbsp;session&nbsp;=&nbsp;require(&#39;express-session&#39;);var&nbsp;app&nbsp;=&nbsp;express();
+app.listen(5000);//&nbsp;按照上面的解释，设置&nbsp;session&nbsp;的可选参数app.use(session({
+&nbsp;&nbsp;secret:&nbsp;&#39;recommand&nbsp;128&nbsp;bytes&nbsp;random&nbsp;string&#39;,&nbsp;//&nbsp;建议使用&nbsp;128&nbsp;个字符的随机字符串
+&nbsp;&nbsp;cookie:&nbsp;{&nbsp;maxAge:&nbsp;60&nbsp;*&nbsp;1000&nbsp;}
+}));
+
+app.get(&#39;/&#39;,&nbsp;function&nbsp;(req,&nbsp;res)&nbsp;{&nbsp;&nbsp;//&nbsp;检查&nbsp;session&nbsp;中的&nbsp;isVisit&nbsp;字段
+&nbsp;&nbsp;//&nbsp;如果存在则增加一次，否则为&nbsp;session&nbsp;设置&nbsp;isVisit&nbsp;字段，并初始化为&nbsp;1。
+&nbsp;&nbsp;if(req.session.isVisit)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;req.session.isVisit++;
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&#39;&lt;p&gt;第&nbsp;&#39;&nbsp;+&nbsp;req.session.isVisit&nbsp;+&nbsp;&#39;次来此页面&lt;/p&gt;&#39;);
+&nbsp;&nbsp;}&nbsp;else&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;req.session.isVisit&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&quot;欢迎第一次来这里&quot;);&nbsp;&nbsp;&nbsp;&nbsp;console.log(req.session);
+&nbsp;&nbsp;}
+});</pre><p style=""><strong><span style="color: rgb(79, 97, 40);">2） 在 redis 中存储 session</span></strong></p><p style="">session 存放在内存中不方便进程间共享，因此可以使用 redis 等缓存来存储 session。</p><p style="">假
+设你的机器是 4 核的，你使用了 4 个进程在跑同一个 node web 服务，当用户访问进程1时，他被设置了一些数据当做 session 
+存在内存中。而下一次访问时，他被负载均衡到了进程2，则此时进程2的内存中没有他的信息，认为他是个新用户。这就会导致用户在我们服务中的状态不一致。</p><p style="">使用 redis 作为缓存，可以使用 <code style="">connect-redis</code> 模块(https://github.com/tj/connect-redis )来得到 redis 连接实例，然后在 session 中设置存储方式为该实例。</p><pre style="">var&nbsp;express&nbsp;=&nbsp;require(&#39;express&#39;);var&nbsp;session&nbsp;=&nbsp;require(&#39;express-session&#39;);var&nbsp;redisStore&nbsp;=&nbsp;require(&#39;connect-redis&#39;)(session);var&nbsp;app&nbsp;=&nbsp;express();
+app.listen(5000);
+
+app.use(session({&nbsp;&nbsp;//&nbsp;假如你不想使用&nbsp;redis&nbsp;而想要使用&nbsp;memcached&nbsp;的话，代码改动也不会超过&nbsp;5&nbsp;行。
+&nbsp;&nbsp;//&nbsp;这些&nbsp;store&nbsp;都遵循着统一的接口，凡是实现了那些接口的库，都可以作为&nbsp;session&nbsp;的&nbsp;store&nbsp;使用，比如都需要实现&nbsp;.get(keyString)&nbsp;和&nbsp;.set(keyString,&nbsp;value)&nbsp;方法。
+&nbsp;&nbsp;//&nbsp;编写自己的&nbsp;store&nbsp;也很简单
+&nbsp;&nbsp;store:&nbsp;new&nbsp;redisStore(),
+&nbsp;&nbsp;secret:&nbsp;&#39;somesecrettoken&#39;}));
+
+app.get(&#39;/&#39;,&nbsp;function&nbsp;(req,&nbsp;res)&nbsp;{&nbsp;&nbsp;if(req.session.isVisit)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;req.session.isVisit++;
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&#39;&lt;p&gt;第&nbsp;&#39;&nbsp;+&nbsp;req.session.isVisit&nbsp;+&nbsp;&#39;次来到此页面&lt;/p&gt;&#39;);
+&nbsp;&nbsp;}&nbsp;else&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;req.session.isVisit&nbsp;=&nbsp;1;
+&nbsp;&nbsp;&nbsp;&nbsp;res.send(&#39;欢迎第一次来这里&#39;);
+&nbsp;&nbsp;}
+});</pre><p style="">我们可以运行 <code style="">redis-cli</code> 查看结果，如图可以看到 redis 中缓存结果。</p><p style=""><br/></p><h3 style=""><strong><span style="color: rgb(79, 97, 40);">各种存储的利弊</span></strong></h3><p style="">上面我们说到，session 的 store 有四个常用选项：<span style="color: rgb(79, 97, 40);">1）内存 2）cookie 3）缓存 4）数据库</span></p><p style="">其中，开发环境存内存就好了。一般的小程序为了省事，如果不涉及状态共享的问题，用内存 session 也没问题。但内存 session 除了省事之外，没有别的好处。</p><p style="">cookie
+ session 我们下面会提到，现在说说利弊。用 cookie session 的话，是不用担心状态共享问题的，因为 session 的 
+data 
+不是由服务器来保存，而是保存在用户浏览器端，每次用户访问时，都会主动带上他自己的信息。当然在这里，安全性之类的，只要遵照最佳实践来，也是有保证
+的。它的弊端是增大了数据量传输，利端是方便。</p><p style="">缓存方式是最常用的方式了，即快，又能共享状态。相比 cookie session 来说，当 session data 比较大的时候，可以节省网络传输。推荐使用。</p><p style="">数据库 session。除非你很熟悉这一块，知道自己要什么，否则还是老老实实用缓存吧。</p><h3 style=""><strong><span style="color: rgb(79, 97, 40);">signedCookie</span></strong></h3><p style="">上面都是讲基础，现在讲一些专业点的。</p><p style="">上面有提到</p><blockquote style=""><p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0px;">cookie 虽然很方便，但是使用 cookie 有一个很大的弊端，cookie 中的所有数据在客户端就可以被修改，数据非常容易被伪造</p></blockquote><p style="">其实不是这样的，那只是为了方便理解才那么写。要知道，计算机领域有个名词叫 <strong style="box-sizing: border-box;">签名</strong>，专业点说，叫 <strong style="box-sizing: border-box;">信息摘要算法</strong>。</p><p style="">比如我们现在面临着一个菜鸟开发的网站，他用 cookie 来记录登陆的用户凭证。相应的 cookie 长这样：<code style="">dotcom_user=alsotang</code>，它说明现在的用户是 alsotang 这个用户。如果我在浏览器中装个插件，把它改成<code style="">dotcom_user=ricardo</code>，服务器一读取，就会误认为我是 ricardo。然后我就可以进行 ricardo 才能进行的操作了。之前 web 开发不成熟的时候，用这招甚至可以黑个网站下来，把 cookie 改成 <code style="">dotcom_user=admin</code> 就行了，唉，那是个玩黑客的黄金年代啊。</p><p style="">OK，现在我有一些数据，不想存在 session 中，想存在 cookie 中，怎么保证不被篡改呢？答案很简单，签个名。</p><p style="">假设我的服务器有个秘密字符串，是 <code style="">this_is_my_secret_and_fuck_you_all</code>，我为用户 cookie 的 <code style="">dotcom_user</code> 字段设置了个值 <code style="">alsotang</code>。cookie 本应是</p><pre style="">{dotcom_user:&nbsp;&#39;alsotang&#39;}</pre><p style="">这样的。</p><p style="">而如果我们签个名，比如把 <code style="">dotcom_user</code> 的值跟我的 secret_string 做个 sha1</p><p style=""><code style="">sha1(&#39;this_is_my_secret_and_fuck_you_all&#39; + &#39;alsotang&#39;) === &#39;4850a42e3bc0d39c978770392cbd8dc2923e3d1d&#39;</code></p><p style="">然后把 cookie 变成这样</p><pre style="">{
+&nbsp;&nbsp;dotcom_user:&nbsp;&#39;alsotang&#39;,&nbsp;&nbsp;&#39;dotcom_user.sig&#39;:&nbsp;&#39;4850a42e3bc0d39c978770392cbd8dc2923e3d1d&#39;,
+}</pre><p style="">这样一来，用户就没法伪造信息了。一旦它更改了 cookie 中的信息，则服务器会发现 hash 校验的不一致。</p><p style="">毕竟他不懂我们的 secret_string 是什么，而暴力破解哈希值的成本太高。</p><h3 style=""><strong><span style="color: rgb(79, 97, 40);">cookie-session</span></strong></h3><p><span style="">上
+面一直提到 session 可以存在 cookie 中，现在来讲讲具体的思路。这里所涉及的专业名词叫做 对称加密。 假设我们想在用户的 
+cookie 中存 session data，使用一个名为 `session_data` 的字段。 存 ```js var 
+sessionData = {username: &#39;alsotang&#39;, age: 22, company: &#39;alibaba&#39;, 
+location: &#39;hangzhou&#39;} ``` 这段信息的话，可以将 `sessionData` 与我们的 `secret_string` 
+一起做个对称加密，存到 cookie 的 `session_data` 字段中，只要你的 `secret_string` 
+足够长，那么攻击者也是无法获取实际 session 内容的。对称加密之后的内容对于攻击者来说相当于一段乱码。 而当用户下次访问时，我们就可以用 
+`secret_string` 来解密 `sessionData`，得到我们需要的 session data。 signedCookies 跟 
+cookie-session 还是有区别的： 1）是前者信息可见不可篡改，后者不可见也不可篡改 2）是前者一般是长期保存，而后者是 
+session cookie</span><span style=""></span></p><p style="">cookie-session 的实现跟 signedCookies 差不多。</p><p style="">不过 cookie-session 我个人建议不要使用，有受到回放攻击的危险。</p><p style="">回
+放攻击指的是，比如一个用户，它现在有 100 积分，积分存在 session 中，session 保存在 cookie 中。他先复制下现在的这段
+ cookie，然后去发个帖子，扣掉了 20 积分，于是他就只有 80 积分了。而他现在可以将之前复制下的那段 cookie 
+再粘贴回去浏览器中，于是服务器在一些场景下会认为他又有了 100 积分。</p><p style="">如果避免这种攻击呢？这就需要引入一个第三
+方的手段来验证 cookie session，而验证所需的信息，一定不能存在 cookie 中。这么一来，避免了这种攻击后，使用 cookie 
+session 的好处就荡然无存了。如果为了避免攻击而引入了缓存使用的话，那不如把 cookie session 也一起放进缓存中。</p><h3 style=""><strong><span style="color: rgb(79, 97, 40);">session cookie</span></strong></h3><p style="">初学者容易犯的一个错误是，忘记了 session_id 在 cookie 中的存储方式是 session cookie。即，当用户一关闭浏览器，浏览器 cookie 中的 session_id 字段就会消失。</p><p style="">常见的场景就是在开发用户登陆状态保持时。</p><p style="">假如用户在之前登陆了你的网站，你在他对应的 session 中存了信息，当他关闭浏览器再次访问时，你还是不懂他是谁。所以我们要在 cookie 中，也保存一份关于用户身份的信息。</p><p style="">比如有这样一个用户</p><pre style="">{username:&nbsp;&#39;alsotang&#39;,&nbsp;age:&nbsp;22,&nbsp;company:&nbsp;&#39;alibaba&#39;,&nbsp;location:&nbsp;&#39;hangzhou&#39;}</pre><p style="">我们可以考虑把这四个字段的信息都存在 session 中，而在 cookie，我们用 signedCookies 来存个 username。</p><p style="">登陆的检验过程伪代码如下：</p><pre style="">if&nbsp;(req.session.user)&nbsp;{&nbsp;&nbsp;//&nbsp;获取&nbsp;user&nbsp;并进行下一步
+&nbsp;&nbsp;next()
+}&nbsp;else&nbsp;if&nbsp;(req.signedCookies[&#39;username&#39;])&nbsp;{&nbsp;&nbsp;//&nbsp;如果存在则从数据库中获取这个&nbsp;username&nbsp;的信息，并保存到&nbsp;session&nbsp;中
+&nbsp;&nbsp;getuser(function&nbsp;(err,&nbsp;user)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;req.session.user&nbsp;=&nbsp;user;
+&nbsp;&nbsp;&nbsp;&nbsp;next();
+&nbsp;&nbsp;});
+}&nbsp;else&nbsp;{&nbsp;&nbsp;//&nbsp;当做为登陆用户处理
+&nbsp;&nbsp;next();
+}</pre><h3 style=""><strong><span style="color: rgb(79, 97, 40);">etag 当做 session，保存 http 会话</span></strong></h3><div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd"></div>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="576c6f44353308f7389956822726645b" data-title="阿里巴巴攻城师分享nodeJS精华：cookie 和 session " data-url="http://www.niefengjun.cn/blog/576c6f44353308f7389956822726645b.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/576c6f44353308f7389956822726645b/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

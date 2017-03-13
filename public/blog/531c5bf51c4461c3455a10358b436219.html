@@ -1,0 +1,683 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>linux 常用命令</title>
+    <meta name="baidu-site-verification" content="1GVY0gQGIG"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="linux 常用命令"/>
+    <link rel="icon" href="/images/logo_32X32.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-fa-57x57-precomposed.png">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.min.css" media="screen">
+    <script src="/js/jquery.1.11.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.ui.totop.js"></script>
+    <script type="text/javascript" src="/js/theme.js"></script>
+    <meta content="聂峰军,聂峰军个人博客,nodejs,专注于web开发,网站建设优化,linux编程,linux 常用命令" name="keywords">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="/">
+                    <img src="/css/log.png" alt="niefengjun.cn" alt="logo">
+
+                </a>
+                <a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                         <span class="nb_left pull-left">
+                              <span class="fa fa-reorder"></span>
+                         </span>
+                    <span class="nb_right pull-right">menu</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav pull-right navbar-nav">
+                    
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="http://www.500d.me/niefengjun">个人履历</a></li><li><a href="http://niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</header>
+<div class="main">
+    <div class="container">
+        <section>
+            <div class="row breadcrumb-row">
+                <ul class="breadcrumb">
+
+                    <li><a href="/">首页</a></li>
+
+
+                </ul>
+            </div>
+            <div class="row">
+                <div id="leftcol" class="col-sm-8 col-md-8">
+
+
+
+                    <h3>linux 常用命令</h3>
+                    <p>
+                        <i class="fa-time"></i>
+                        2015-01-24 18:56:13
+                    </p>
+                    <p><i class="fa-time"></i>
+                        <a href="#post_comments"></a>
+                    </p>
+
+                    <article class="post">
+                        <div class="post_content">
+                            <pre class="brush:python;toolbar:false">系统信息&nbsp;
+arch&nbsp;显示机器的处理器架构(1)&nbsp;
+uname&nbsp;-m&nbsp;显示机器的处理器架构(2)&nbsp;
+uname&nbsp;-r&nbsp;显示正在使用的内核版本&nbsp;
+dmidecode&nbsp;-q&nbsp;显示硬件系统部件&nbsp;-&nbsp;(SMBIOS&nbsp;/&nbsp;DMI)&nbsp;
+hdparm&nbsp;-i&nbsp;/dev/hda&nbsp;罗列一个磁盘的架构特性&nbsp;
+hdparm&nbsp;-tT&nbsp;/dev/sda&nbsp;在磁盘上执行测试性读取操作&nbsp;
+cat&nbsp;/proc/cpuinfo&nbsp;显示CPU&nbsp;info的信息&nbsp;
+cat&nbsp;/proc/interrupts&nbsp;显示中断&nbsp;
+cat&nbsp;/proc/meminfo&nbsp;校验内存使用&nbsp;
+cat&nbsp;/proc/swaps&nbsp;显示哪些swap被使用&nbsp;
+cat&nbsp;/proc/version&nbsp;显示内核的版本&nbsp;
+cat&nbsp;/proc/net/dev&nbsp;显示网络适配器及统计&nbsp;
+cat&nbsp;/proc/mounts&nbsp;显示已加载的文件系统&nbsp;
+lspci&nbsp;-tv&nbsp;罗列&nbsp;PCI&nbsp;设备&nbsp;
+lsusb&nbsp;-tv&nbsp;显示&nbsp;USB&nbsp;设备&nbsp;
+date&nbsp;显示系统日期&nbsp;
+cal&nbsp;2007&nbsp;显示2007年的日历表&nbsp;
+date&nbsp;041217002007.00&nbsp;设置日期和时间&nbsp;-&nbsp;月日时分年.秒&nbsp;
+clock&nbsp;-w&nbsp;将时间修改保存到&nbsp;BIOS&nbsp;
+
+
+
+关机&nbsp;(系统的关机、重启以及登出&nbsp;)&nbsp;
+shutdown&nbsp;-h&nbsp;now&nbsp;关闭系统(1)&nbsp;
+init&nbsp;0&nbsp;关闭系统(2)&nbsp;
+telinit&nbsp;0&nbsp;关闭系统(3)&nbsp;
+shutdown&nbsp;-h&nbsp;hours:minutes&nbsp;&amp;&nbsp;按预定时间关闭系统&nbsp;
+shutdown&nbsp;-c&nbsp;取消按预定时间关闭系统&nbsp;
+shutdown&nbsp;-r&nbsp;now&nbsp;重启(1)&nbsp;
+reboot&nbsp;重启(2)&nbsp;
+logout&nbsp;注销&nbsp;
+
+
+
+文件和目录&nbsp;
+cd&nbsp;/home&nbsp;进入&nbsp;&#39;/&nbsp;home&#39;&nbsp;目录&#39;&nbsp;
+cd&nbsp;..&nbsp;返回上一级目录&nbsp;
+cd&nbsp;../..&nbsp;返回上两级目录&nbsp;
+cd&nbsp;进入个人的主目录&nbsp;
+cd&nbsp;~user1&nbsp;进入个人的主目录&nbsp;
+cd&nbsp;-&nbsp;返回上次所在的目录&nbsp;
+pwd&nbsp;显示工作路径&nbsp;
+ls&nbsp;查看目录中的文件&nbsp;
+ls&nbsp;-F&nbsp;查看目录中的文件&nbsp;
+ls&nbsp;-l&nbsp;显示文件和目录的详细资料&nbsp;
+ls&nbsp;-a&nbsp;显示隐藏文件&nbsp;
+ls&nbsp;*[0-9]*&nbsp;显示包含数字的文件名和目录名&nbsp;
+tree&nbsp;显示文件和目录由根目录开始的树形结构(1)&nbsp;
+lstree&nbsp;显示文件和目录由根目录开始的树形结构(2)&nbsp;
+mkdir&nbsp;dir1&nbsp;创建一个叫做&nbsp;&#39;dir1&#39;&nbsp;的目录&#39;&nbsp;
+mkdir&nbsp;dir1&nbsp;dir2&nbsp;同时创建两个目录&nbsp;
+mkdir&nbsp;-p&nbsp;/tmp/dir1/dir2&nbsp;创建一个目录树&nbsp;
+rm&nbsp;-f&nbsp;file1&nbsp;删除一个叫做&nbsp;&#39;file1&#39;&nbsp;的文件&#39;&nbsp;
+rmdir&nbsp;dir1&nbsp;删除一个叫做&nbsp;&#39;dir1&#39;&nbsp;的目录&#39;&nbsp;
+rm&nbsp;-rf&nbsp;dir1&nbsp;删除一个叫做&nbsp;&#39;dir1&#39;&nbsp;的目录并同时删除其内容&nbsp;
+rm&nbsp;-rf&nbsp;dir1&nbsp;dir2&nbsp;同时删除两个目录及它们的内容&nbsp;
+mv&nbsp;dir1&nbsp;new_dir&nbsp;重命名/移动&nbsp;一个目录&nbsp;
+cp&nbsp;file1&nbsp;file2&nbsp;复制一个文件&nbsp;
+cp&nbsp;dir/*&nbsp;.&nbsp;复制一个目录下的所有文件到当前工作目录&nbsp;
+cp&nbsp;-a&nbsp;/tmp/dir1&nbsp;.&nbsp;复制一个目录到当前工作目录&nbsp;
+cp&nbsp;-a&nbsp;dir1&nbsp;dir2&nbsp;复制一个目录&nbsp;
+ln&nbsp;-s&nbsp;file1&nbsp;lnk1&nbsp;创建一个指向文件或目录的软链接&nbsp;
+ln&nbsp;file1&nbsp;lnk1&nbsp;创建一个指向文件或目录的物理链接&nbsp;
+touch&nbsp;-t&nbsp;0712250000&nbsp;file1&nbsp;修改一个文件或目录的时间戳&nbsp;-&nbsp;(YYMMDDhhmm)&nbsp;
+file&nbsp;file1&nbsp;outputs&nbsp;the&nbsp;mime&nbsp;type&nbsp;of&nbsp;the&nbsp;file&nbsp;as&nbsp;text&nbsp;
+iconv&nbsp;-l&nbsp;列出已知的编码&nbsp;
+iconv&nbsp;-f&nbsp;fromEncoding&nbsp;-t&nbsp;toEncoding&nbsp;inputFile&nbsp;&gt;&nbsp;outputFile&nbsp;creates&nbsp;a&nbsp;
+new&nbsp;from&nbsp;the&nbsp;given&nbsp;input&nbsp;file&nbsp;by&nbsp;assuming&nbsp;it&nbsp;is&nbsp;encoded&nbsp;in&nbsp;fromEncoding&nbsp;
+and&nbsp;converting&nbsp;it&nbsp;to&nbsp;toEncoding.&nbsp;
+find&nbsp;.&nbsp;-maxdepth&nbsp;1&nbsp;-name&nbsp;*.jpg&nbsp;-print&nbsp;-exec&nbsp;convert&nbsp;&quot;{}&quot;&nbsp;-resize&nbsp;80x60&nbsp;
+&quot;thumbs/{}&quot;&nbsp;\;&nbsp;batch&nbsp;resize&nbsp;files&nbsp;in&nbsp;the&nbsp;current&nbsp;directory&nbsp;and&nbsp;send&nbsp;them
+&nbsp;to&nbsp;a&nbsp;thumbnails&nbsp;directory&nbsp;(requires&nbsp;convert&nbsp;from&nbsp;Imagemagick)&nbsp;
+
+
+
+文件搜索&nbsp;
+find&nbsp;/&nbsp;-name&nbsp;file1&nbsp;从&nbsp;&#39;/&#39;&nbsp;开始进入根文件系统搜索文件和目录&nbsp;
+find&nbsp;/&nbsp;-user&nbsp;user1&nbsp;搜索属于用户&nbsp;&#39;user1&#39;&nbsp;的文件和目录&nbsp;
+find&nbsp;/home/user1&nbsp;-name&nbsp;\*.bin&nbsp;在目录&nbsp;&#39;/&nbsp;home/user1&#39;&nbsp;中搜索带有&#39;.bin&#39;&nbsp;结尾的文件&nbsp;
+find&nbsp;/usr/bin&nbsp;-type&nbsp;f&nbsp;-atime&nbsp;+100&nbsp;搜索在过去100天内未被使用过的执行文件&nbsp;
+find&nbsp;/usr/bin&nbsp;-type&nbsp;f&nbsp;-mtime&nbsp;-10&nbsp;搜索在10天内被创建或者修改过的文件&nbsp;
+find&nbsp;/&nbsp;-name&nbsp;\*.rpm&nbsp;-exec&nbsp;chmod&nbsp;755&nbsp;&#39;{}&#39;&nbsp;\;&nbsp;搜索以&nbsp;&#39;.rpm&#39;&nbsp;结尾的文件并定义其权限&nbsp;
+find&nbsp;/&nbsp;-xdev&nbsp;-name&nbsp;\*.rpm&nbsp;搜索以&nbsp;&#39;.rpm&#39;&nbsp;结尾的文件，忽略光驱、捷盘等可移动设备&nbsp;
+locate&nbsp;\*.ps&nbsp;寻找以&nbsp;&#39;.ps&#39;&nbsp;结尾的文件&nbsp;-&nbsp;先运行&nbsp;&#39;updatedb&#39;&nbsp;命令&nbsp;
+whereis&nbsp;halt&nbsp;显示一个二进制文件、源码或man的位置&nbsp;
+which&nbsp;halt&nbsp;显示一个二进制文件或可执行文件的完整路径&nbsp;
+
+
+
+挂载一个文件系统&nbsp;
+mount&nbsp;/dev/hda2&nbsp;/mnt/hda2&nbsp;挂载一个叫做hda2的盘&nbsp;-&nbsp;确定目录&nbsp;&#39;/&nbsp;mnt/hda2&#39;&nbsp;已经存在&nbsp;
+umount&nbsp;/dev/hda2&nbsp;卸载一个叫做hda2的盘&nbsp;-&nbsp;先从挂载点&nbsp;&#39;/&nbsp;mnt/hda2&#39;&nbsp;退出&nbsp;
+fuser&nbsp;-km&nbsp;/mnt/hda2&nbsp;当设备繁忙时强制卸载&nbsp;
+umount&nbsp;-n&nbsp;/mnt/hda2&nbsp;运行卸载操作而不写入&nbsp;/etc/mtab&nbsp;文件-&nbsp;当文件为只读或当磁盘写满时非常有用&nbsp;
+mount&nbsp;/dev/fd0&nbsp;/mnt/floppy&nbsp;挂载一个软盘&nbsp;
+mount&nbsp;/dev/cdrom&nbsp;/mnt/cdrom&nbsp;挂载一个cdrom或dvdrom&nbsp;
+mount&nbsp;/dev/hdc&nbsp;/mnt/cdrecorder&nbsp;挂载一个cdrw或dvdrom&nbsp;
+mount&nbsp;/dev/hdb&nbsp;/mnt/cdrecorder&nbsp;挂载一个cdrw或dvdrom&nbsp;
+mount&nbsp;-o&nbsp;loop&nbsp;file.iso&nbsp;/mnt/cdrom&nbsp;挂载一个文件或ISO镜像文件&nbsp;
+mount&nbsp;-t&nbsp;vfat&nbsp;/dev/hda5&nbsp;/mnt/hda5&nbsp;挂载一个Windows&nbsp;FAT32文件系统&nbsp;
+mount&nbsp;/dev/sda1&nbsp;/mnt/usbdisk&nbsp;挂载一个usb&nbsp;捷盘或闪存设备&nbsp;
+mount&nbsp;-t&nbsp;smbfs&nbsp;-o&nbsp;username=user,password=pass&nbsp;//WinClient/share&nbsp;/mnt/share&nbsp;挂载一个windows网络共享&nbsp;
+
+
+
+磁盘空间&nbsp;
+df&nbsp;-h&nbsp;显示已经挂载的分区列表&nbsp;
+ls&nbsp;-lSr&nbsp;|more&nbsp;以尺寸大小排列文件和目录&nbsp;
+du&nbsp;-sh&nbsp;dir1&nbsp;估算目录&nbsp;&#39;dir1&#39;&nbsp;已经使用的磁盘空间&#39;&nbsp;
+du&nbsp;-sk&nbsp;*&nbsp;|&nbsp;sort&nbsp;-rn&nbsp;以容量大小为依据依次显示文件和目录的大小&nbsp;
+rpm&nbsp;-q&nbsp;-a&nbsp;--qf&nbsp;&#39;%10{SIZE}t%{NAME}n&#39;&nbsp;|&nbsp;sort&nbsp;-k1,1n&nbsp;以大小为依据依次显示已安装的rpm包所使用的空间&nbsp;(fedora,&nbsp;redhat类系统)&nbsp;
+dpkg-query&nbsp;-W&nbsp;-f=&#39;${Installed-Size;10}t${Package}n&#39;&nbsp;|&nbsp;sort&nbsp;-k1,1n&nbsp;以大小为依据显示已安装的deb包所使用的空间&nbsp;(ubuntu,&nbsp;debian类系统)&nbsp;
+
+返回顶部索引&nbsp;^
+
+用户和群组&nbsp;
+groupadd&nbsp;group_name&nbsp;创建一个新用户组&nbsp;
+groupdel&nbsp;group_name&nbsp;删除一个用户组&nbsp;
+groupmod&nbsp;-n&nbsp;new_group_name&nbsp;old_group_name&nbsp;重命名一个用户组&nbsp;
+useradd&nbsp;-c&nbsp;&quot;Name&nbsp;Surname&nbsp;&quot;&nbsp;-g&nbsp;admin&nbsp;-d&nbsp;/home/user1&nbsp;-s&nbsp;/bin/bash&nbsp;user1&nbsp;创建一个属于&nbsp;&quot;admin&quot;&nbsp;用户组的用户&nbsp;
+useradd&nbsp;user1&nbsp;创建一个新用户&nbsp;
+userdel&nbsp;-r&nbsp;user1&nbsp;删除一个用户&nbsp;(&nbsp;&#39;-r&#39;&nbsp;排除主目录)&nbsp;
+usermod&nbsp;-c&nbsp;&quot;User&nbsp;FTP&quot;&nbsp;-g&nbsp;system&nbsp;-d&nbsp;/ftp/user1&nbsp;-s&nbsp;/bin/nologin&nbsp;user1&nbsp;修改用户属性&nbsp;
+passwd&nbsp;修改口令&nbsp;
+passwd&nbsp;user1&nbsp;修改一个用户的口令&nbsp;(只允许root执行)&nbsp;
+chage&nbsp;-E&nbsp;2005-12-31&nbsp;user1&nbsp;设置用户口令的失效期限&nbsp;
+pwck&nbsp;检查&nbsp;&#39;/etc/passwd&#39;&nbsp;的文件格式和语法修正以及存在的用户&nbsp;
+grpck&nbsp;检查&nbsp;&#39;/etc/passwd&#39;&nbsp;的文件格式和语法修正以及存在的群组&nbsp;
+newgrp&nbsp;group_name&nbsp;登陆进一个新的群组以改变新创建文件的预设群组&nbsp;
+
+返回顶部索引&nbsp;^
+
+文件的权限&nbsp;-&nbsp;使用&nbsp;&quot;+&quot;&nbsp;设置权限，使用&nbsp;&quot;-&quot;&nbsp;用于取消&nbsp;
+ls&nbsp;-lh&nbsp;显示权限&nbsp;
+ls&nbsp;/tmp&nbsp;|&nbsp;pr&nbsp;-T5&nbsp;-W$COLUMNS&nbsp;将终端划分成5栏显示&nbsp;
+chmod&nbsp;ugo+rwx&nbsp;directory1&nbsp;设置目录的所有人(u)、群组(g)以及其他人(o)以读（r&nbsp;）、写(w)和执行(x)的权限&nbsp;
+chmod&nbsp;go-rwx&nbsp;directory1&nbsp;删除群组(g)与其他人(o)对目录的读写执行权限&nbsp;
+chown&nbsp;user1&nbsp;file1&nbsp;改变一个文件的所有人属性&nbsp;
+chown&nbsp;-R&nbsp;user1&nbsp;directory1&nbsp;改变一个目录的所有人属性并同时改变改目录下所有文件的属性&nbsp;
+chgrp&nbsp;group1&nbsp;file1&nbsp;改变文件的群组&nbsp;
+chown&nbsp;user1:group1&nbsp;file1&nbsp;改变一个文件的所有人和群组属性&nbsp;
+find&nbsp;/&nbsp;-perm&nbsp;-u+s&nbsp;罗列一个系统中所有使用了SUID控制的文件&nbsp;
+chmod&nbsp;u+s&nbsp;/bin/file1&nbsp;设置一个二进制文件的&nbsp;SUID&nbsp;位&nbsp;-&nbsp;运行该文件的用户也被赋予和所有者同样的权限&nbsp;
+chmod&nbsp;u-s&nbsp;/bin/file1&nbsp;禁用一个二进制文件的&nbsp;SUID位&nbsp;
+chmod&nbsp;g+s&nbsp;/home/public&nbsp;设置一个目录的SGID&nbsp;位&nbsp;-&nbsp;类似SUID&nbsp;，不过这是针对目录的&nbsp;
+chmod&nbsp;g-s&nbsp;/home/public&nbsp;禁用一个目录的&nbsp;SGID&nbsp;位&nbsp;
+chmod&nbsp;o+t&nbsp;/home/public&nbsp;设置一个文件的&nbsp;STIKY&nbsp;位&nbsp;-&nbsp;只允许合法所有人删除文件&nbsp;
+chmod&nbsp;o-t&nbsp;/home/public&nbsp;禁用一个目录的&nbsp;STIKY&nbsp;位&nbsp;
+
+返回顶部索引&nbsp;^
+
+文件的特殊属性&nbsp;-&nbsp;使用&nbsp;&quot;+&quot;&nbsp;设置权限，使用&nbsp;&quot;-&quot;&nbsp;用于取消&nbsp;
+chattr&nbsp;+a&nbsp;file1&nbsp;只允许以追加方式读写文件&nbsp;
+chattr&nbsp;+c&nbsp;file1&nbsp;允许这个文件能被内核自动压缩/解压&nbsp;
+chattr&nbsp;+d&nbsp;file1&nbsp;在进行文件系统备份时，dump程序将忽略这个文件&nbsp;
+chattr&nbsp;+i&nbsp;file1&nbsp;设置成不可变的文件，不能被删除、修改、重命名或者链接&nbsp;
+chattr&nbsp;+s&nbsp;file1&nbsp;允许一个文件被安全地删除&nbsp;
+chattr&nbsp;+S&nbsp;file1&nbsp;一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘&nbsp;
+chattr&nbsp;+u&nbsp;file1&nbsp;若文件被删除，系统会允许你在以后恢复这个被删除的文件&nbsp;
+lsattr&nbsp;显示特殊的属性&nbsp;
+
+返回顶部索引&nbsp;^
+
+打包和压缩文件&nbsp;
+bunzip2&nbsp;file1.bz2&nbsp;解压一个叫做&nbsp;&#39;file1.bz2&#39;的文件&nbsp;
+bzip2&nbsp;file1&nbsp;压缩一个叫做&nbsp;&#39;file1&#39;&nbsp;的文件&nbsp;
+gunzip&nbsp;file1.gz&nbsp;解压一个叫做&nbsp;&#39;file1.gz&#39;的文件&nbsp;
+gzip&nbsp;file1&nbsp;压缩一个叫做&nbsp;&#39;file1&#39;的文件&nbsp;
+gzip&nbsp;-9&nbsp;file1&nbsp;最大程度压缩&nbsp;
+rar&nbsp;a&nbsp;file1.rar&nbsp;test_file&nbsp;创建一个叫做&nbsp;&#39;file1.rar&#39;&nbsp;的包&nbsp;
+rar&nbsp;a&nbsp;file1.rar&nbsp;file1&nbsp;file2&nbsp;dir1&nbsp;同时压缩&nbsp;&#39;file1&#39;,&nbsp;&#39;file2&#39;&nbsp;以及目录&nbsp;&#39;dir1&#39;&nbsp;
+rar&nbsp;x&nbsp;file1.rar&nbsp;解压rar包&nbsp;
+unrar&nbsp;x&nbsp;file1.rar&nbsp;解压rar包&nbsp;
+tar&nbsp;-cvf&nbsp;archive.tar&nbsp;file1&nbsp;创建一个非压缩的&nbsp;tarball&nbsp;
+tar&nbsp;-cvf&nbsp;archive.tar&nbsp;file1&nbsp;file2&nbsp;dir1&nbsp;创建一个包含了&nbsp;&#39;file1&#39;,&nbsp;&#39;file2&#39;&nbsp;以及&nbsp;&#39;dir1&#39;的档案文件&nbsp;
+tar&nbsp;-tf&nbsp;archive.tar&nbsp;显示一个包中的内容&nbsp;
+tar&nbsp;-xvf&nbsp;archive.tar&nbsp;释放一个包&nbsp;
+tar&nbsp;-xvf&nbsp;archive.tar&nbsp;-C&nbsp;/tmp&nbsp;将压缩包释放到&nbsp;/tmp目录下&nbsp;
+tar&nbsp;-cvfj&nbsp;archive.tar.bz2&nbsp;dir1&nbsp;创建一个bzip2格式的压缩包&nbsp;
+tar&nbsp;-xvfj&nbsp;archive.tar.bz2&nbsp;解压一个bzip2格式的压缩包&nbsp;
+tar&nbsp;-cvfz&nbsp;archive.tar.gz&nbsp;dir1&nbsp;创建一个gzip格式的压缩包&nbsp;
+tar&nbsp;-xvfz&nbsp;archive.tar.gz&nbsp;解压一个gzip格式的压缩包&nbsp;
+zip&nbsp;file1.zip&nbsp;file1&nbsp;创建一个zip格式的压缩包&nbsp;
+zip&nbsp;-r&nbsp;file1.zip&nbsp;file1&nbsp;file2&nbsp;dir1&nbsp;将几个文件和目录同时压缩成一个zip格式的压缩包&nbsp;
+unzip&nbsp;file1.zip&nbsp;解压一个zip格式压缩包&nbsp;
+
+返回顶部索引&nbsp;^
+
+RPM&nbsp;包&nbsp;-&nbsp;（Fedora,&nbsp;Redhat及类似系统）&nbsp;
+rpm&nbsp;-ivh&nbsp;package.rpm&nbsp;安装一个rpm包&nbsp;
+rpm&nbsp;-ivh&nbsp;--nodeeps&nbsp;package.rpm&nbsp;安装一个rpm包而忽略依赖关系警告&nbsp;
+rpm&nbsp;-U&nbsp;package.rpm&nbsp;更新一个rpm包但不改变其配置文件&nbsp;
+rpm&nbsp;-F&nbsp;package.rpm&nbsp;更新一个确定已经安装的rpm包&nbsp;
+rpm&nbsp;-e&nbsp;package_name.rpm&nbsp;删除一个rpm包&nbsp;
+rpm&nbsp;-qa&nbsp;显示系统中所有已经安装的rpm包&nbsp;
+rpm&nbsp;-qa&nbsp;|&nbsp;grep&nbsp;httpd&nbsp;显示所有名称中包含&nbsp;&quot;httpd&quot;&nbsp;字样的rpm包&nbsp;
+rpm&nbsp;-qi&nbsp;package_name&nbsp;获取一个已安装包的特殊信息&nbsp;
+rpm&nbsp;-qg&nbsp;&quot;System&nbsp;Environment/Daemons&quot;&nbsp;显示一个组件的rpm包&nbsp;
+rpm&nbsp;-ql&nbsp;package_name&nbsp;显示一个已经安装的rpm包提供的文件列表&nbsp;
+rpm&nbsp;-qc&nbsp;package_name&nbsp;显示一个已经安装的rpm包提供的配置文件列表&nbsp;
+rpm&nbsp;-q&nbsp;package_name&nbsp;--whatrequires&nbsp;显示与一个rpm包存在依赖关系的列表&nbsp;
+rpm&nbsp;-q&nbsp;package_name&nbsp;--whatprovides&nbsp;显示一个rpm包所占的体积&nbsp;
+rpm&nbsp;-q&nbsp;package_name&nbsp;--scripts&nbsp;显示在安装/删除期间所执行的脚本l&nbsp;
+rpm&nbsp;-q&nbsp;package_name&nbsp;--changelog&nbsp;显示一个rpm包的修改历史&nbsp;
+rpm&nbsp;-qf&nbsp;/etc/httpd/conf/httpd.conf&nbsp;确认所给的文件由哪个rpm包所提供&nbsp;
+rpm&nbsp;-qp&nbsp;package.rpm&nbsp;-l&nbsp;显示由一个尚未安装的rpm包提供的文件列表&nbsp;
+rpm&nbsp;--import&nbsp;/media/cdrom/RPM-GPG-KEY&nbsp;导入公钥数字证书&nbsp;
+rpm&nbsp;--checksig&nbsp;package.rpm&nbsp;确认一个rpm包的完整性&nbsp;
+rpm&nbsp;-qa&nbsp;gpg-pubkey&nbsp;确认已安装的所有rpm包的完整性&nbsp;
+rpm&nbsp;-V&nbsp;package_name&nbsp;检查文件尺寸、&nbsp;许可、类型、所有者、群组、MD5检查以及最后修改时间&nbsp;
+rpm&nbsp;-Va&nbsp;检查系统中所有已安装的rpm包-&nbsp;小心使用&nbsp;
+rpm&nbsp;-Vp&nbsp;package.rpm&nbsp;确认一个rpm包还未安装&nbsp;
+rpm2cpio&nbsp;package.rpm&nbsp;|&nbsp;cpio&nbsp;--extract&nbsp;--make-directories&nbsp;*bin*&nbsp;从一个rpm包运行可执行文件&nbsp;
+rpm&nbsp;-ivh&nbsp;/usr/src/redhat/RPMS/`arch`/package.rpm&nbsp;从一个rpm源码安装一个构建好的包&nbsp;
+rpmbuild&nbsp;--rebuild&nbsp;package_name.src.rpm&nbsp;从一个rpm源码构建一个&nbsp;rpm&nbsp;包&nbsp;
+
+返回顶部索引&nbsp;^
+
+YUM&nbsp;软件包升级器&nbsp;-&nbsp;（Fedora,&nbsp;RedHat及类似系统）&nbsp;
+yum&nbsp;install&nbsp;package_name&nbsp;下载并安装一个rpm包&nbsp;
+yum&nbsp;localinstall&nbsp;package_name.rpm&nbsp;将安装一个rpm包，使用你自己的软件仓库为你解决所有依赖关系&nbsp;
+yum&nbsp;update&nbsp;package_name.rpm&nbsp;更新当前系统中所有安装的rpm包&nbsp;
+yum&nbsp;update&nbsp;package_name&nbsp;更新一个rpm包&nbsp;
+yum&nbsp;remove&nbsp;package_name&nbsp;删除一个rpm包&nbsp;
+yum&nbsp;list&nbsp;列出当前系统中安装的所有包&nbsp;
+yum&nbsp;search&nbsp;package_name&nbsp;在rpm仓库中搜寻软件包&nbsp;
+yum&nbsp;clean&nbsp;packages&nbsp;清理rpm缓存删除下载的包&nbsp;
+yum&nbsp;clean&nbsp;headers&nbsp;删除所有头文件&nbsp;
+yum&nbsp;clean&nbsp;all&nbsp;删除所有缓存的包和头文件&nbsp;
+
+返回顶部索引&nbsp;^
+
+DEB&nbsp;包&nbsp;(Debian,&nbsp;Ubuntu&nbsp;以及类似系统)&nbsp;
+dpkg&nbsp;-i&nbsp;package.deb&nbsp;安装/更新一个&nbsp;deb&nbsp;包&nbsp;
+dpkg&nbsp;-r&nbsp;package_name&nbsp;从系统删除一个&nbsp;deb&nbsp;包&nbsp;
+dpkg&nbsp;-l&nbsp;显示系统中所有已经安装的&nbsp;deb&nbsp;包&nbsp;
+dpkg&nbsp;-l&nbsp;|&nbsp;grep&nbsp;httpd&nbsp;显示所有名称中包含&nbsp;&quot;httpd&quot;&nbsp;字样的deb包&nbsp;
+dpkg&nbsp;-s&nbsp;package_name&nbsp;获得已经安装在系统中一个特殊包的信息&nbsp;
+dpkg&nbsp;-L&nbsp;package_name&nbsp;显示系统中已经安装的一个deb包所提供的文件列表&nbsp;
+dpkg&nbsp;--contents&nbsp;package.deb&nbsp;显示尚未安装的一个包所提供的文件列表&nbsp;
+dpkg&nbsp;-S&nbsp;/bin/ping&nbsp;确认所给的文件由哪个deb包提供&nbsp;
+
+返回顶部索引&nbsp;^
+
+APT&nbsp;软件工具&nbsp;(Debian,&nbsp;Ubuntu&nbsp;以及类似系统)&nbsp;
+apt-get&nbsp;install&nbsp;package_name&nbsp;安装/更新一个&nbsp;deb&nbsp;包&nbsp;
+apt-cdrom&nbsp;install&nbsp;package_name&nbsp;从光盘安装/更新一个&nbsp;deb&nbsp;包&nbsp;
+apt-get&nbsp;update&nbsp;升级列表中的软件包&nbsp;
+apt-get&nbsp;upgrade&nbsp;升级所有已安装的软件&nbsp;
+apt-get&nbsp;remove&nbsp;package_name&nbsp;从系统删除一个deb包&nbsp;
+apt-get&nbsp;check&nbsp;确认依赖的软件仓库正确&nbsp;
+apt-get&nbsp;clean&nbsp;从下载的软件包中清理缓存&nbsp;
+apt-cache&nbsp;search&nbsp;searched-package&nbsp;返回包含所要搜索字符串的软件包名称&nbsp;
+
+返回顶部索引&nbsp;^
+
+查看文件内容&nbsp;
+cat&nbsp;file1&nbsp;从第一个字节开始正向查看文件的内容&nbsp;
+tac&nbsp;file1&nbsp;从最后一行开始反向查看一个文件的内容&nbsp;
+more&nbsp;file1&nbsp;查看一个长文件的内容&nbsp;
+less&nbsp;file1&nbsp;类似于&nbsp;&#39;more&#39;&nbsp;命令，但是它允许在文件中和正向操作一样的反向操作&nbsp;
+head&nbsp;-2&nbsp;file1&nbsp;查看一个文件的前两行&nbsp;
+tail&nbsp;-2&nbsp;file1&nbsp;查看一个文件的最后两行&nbsp;
+tail&nbsp;-f&nbsp;/var/log/messages&nbsp;实时查看被添加到一个文件中的内容&nbsp;
+
+返回顶部索引&nbsp;^
+
+文本处理&nbsp;
+cat&nbsp;file1&nbsp;file2&nbsp;...&nbsp;|&nbsp;command&nbsp;&lt;&gt;&nbsp;file1_in.txt_or_file1_out.txt&nbsp;
+general&nbsp;syntax&nbsp;for&nbsp;text&nbsp;manipulation&nbsp;using&nbsp;PIPE,&nbsp;STDIN&nbsp;and&nbsp;STDOUT&nbsp;
+cat&nbsp;file1&nbsp;|&nbsp;command(&nbsp;sed,&nbsp;grep,&nbsp;awk,&nbsp;grep,&nbsp;etc...)&nbsp;&gt;&nbsp;result.txt&nbsp;合并一个文件的详细说明文本，并将简介写入一个新文件中&nbsp;
+cat&nbsp;file1&nbsp;|&nbsp;command(&nbsp;sed,&nbsp;grep,&nbsp;awk,&nbsp;grep,&nbsp;etc...)&nbsp;&gt;&gt;&nbsp;result.txt&nbsp;合并一个文件的详细说明文本，并将简介写入一个已有的文件中&nbsp;
+grep&nbsp;Aug&nbsp;/var/log/messages&nbsp;在文件&nbsp;&#39;/var/log/messages&#39;中查找关键词&quot;Aug&quot;&nbsp;
+grep&nbsp;^Aug&nbsp;/var/log/messages&nbsp;在文件&nbsp;&#39;/var/log/messages&#39;中查找以&quot;Aug&quot;开始的词汇&nbsp;
+grep&nbsp;[0-9]&nbsp;/var/log/messages&nbsp;选择&nbsp;&#39;/var/log/messages&#39;&nbsp;文件中所有包含数字的行&nbsp;
+grep&nbsp;Aug&nbsp;-R&nbsp;/var/log/*&nbsp;在目录&nbsp;&#39;/var/log&#39;&nbsp;及随后的目录中搜索字符串&quot;Aug&quot;&nbsp;
+sed&nbsp;&#39;s/stringa1/stringa2/g&#39;&nbsp;example.txt&nbsp;将example.txt文件中的&nbsp;&quot;string1&quot;&nbsp;替换成&nbsp;&quot;string2&quot;&nbsp;
+sed&nbsp;&#39;/^$/d&#39;&nbsp;example.txt&nbsp;从example.txt文件中删除所有空白行&nbsp;
+sed&nbsp;&#39;/&nbsp;*#/d;&nbsp;/^$/d&#39;&nbsp;example.txt&nbsp;从example.txt文件中删除所有注释和空白行&nbsp;
+echo&nbsp;&#39;esempio&#39;&nbsp;|&nbsp;tr&nbsp;&#39;[:lower:]&#39;&nbsp;&#39;[:upper:]&#39;&nbsp;合并上下单元格内容&nbsp;
+sed&nbsp;-e&nbsp;&#39;1d&#39;&nbsp;result.txt&nbsp;从文件example.txt&nbsp;中排除第一行&nbsp;
+sed&nbsp;-n&nbsp;&#39;/stringa1/p&#39;&nbsp;查看只包含词汇&nbsp;&quot;string1&quot;的行&nbsp;
+sed&nbsp;-e&nbsp;&#39;s/&nbsp;*$//&#39;&nbsp;example.txt&nbsp;删除每一行最后的空白字符&nbsp;
+sed&nbsp;-e&nbsp;&#39;s/stringa1//g&#39;&nbsp;example.txt&nbsp;从文档中只删除词汇&nbsp;&quot;string1&quot;&nbsp;并保留剩余全部&nbsp;
+sed&nbsp;-n&nbsp;&#39;1,5p;5q&#39;&nbsp;example.txt&nbsp;查看从第一行到第5行内容&nbsp;
+sed&nbsp;-n&nbsp;&#39;5p;5q&#39;&nbsp;example.txt&nbsp;查看第5行&nbsp;
+sed&nbsp;-e&nbsp;&#39;s/00*/0/g&#39;&nbsp;example.txt&nbsp;用单个零替换多个零&nbsp;
+cat&nbsp;-n&nbsp;file1&nbsp;标示文件的行数&nbsp;
+cat&nbsp;example.txt&nbsp;|&nbsp;awk&nbsp;&#39;NR%2==1&#39;&nbsp;删除example.txt文件中的所有偶数行&nbsp;
+echo&nbsp;a&nbsp;b&nbsp;c&nbsp;|&nbsp;awk&nbsp;&#39;{print&nbsp;$1}&#39;&nbsp;查看一行第一栏&nbsp;
+echo&nbsp;a&nbsp;b&nbsp;c&nbsp;|&nbsp;awk&nbsp;&#39;{print&nbsp;$1,$3}&#39;&nbsp;查看一行的第一和第三栏&nbsp;
+paste&nbsp;file1&nbsp;file2&nbsp;合并两个文件或两栏的内容&nbsp;
+paste&nbsp;-d&nbsp;&#39;+&#39;&nbsp;file1&nbsp;file2&nbsp;合并两个文件或两栏的内容，中间用&quot;+&quot;区分&nbsp;
+sort&nbsp;file1&nbsp;file2&nbsp;排序两个文件的内容&nbsp;
+sort&nbsp;file1&nbsp;file2&nbsp;|&nbsp;uniq&nbsp;取出两个文件的并集(重复的行只保留一份)&nbsp;
+sort&nbsp;file1&nbsp;file2&nbsp;|&nbsp;uniq&nbsp;-u&nbsp;删除交集，留下其他的行&nbsp;
+sort&nbsp;file1&nbsp;file2&nbsp;|&nbsp;uniq&nbsp;-d&nbsp;取出两个文件的交集(只留下同时存在于两个文件中的文件)&nbsp;
+comm&nbsp;-1&nbsp;file1&nbsp;file2&nbsp;比较两个文件的内容只删除&nbsp;&#39;file1&#39;&nbsp;所包含的内容&nbsp;
+comm&nbsp;-2&nbsp;file1&nbsp;file2&nbsp;比较两个文件的内容只删除&nbsp;&#39;file2&#39;&nbsp;所包含的内容&nbsp;
+comm&nbsp;-3&nbsp;file1&nbsp;file2&nbsp;比较两个文件的内容只删除两个文件共有的部分&nbsp;
+
+返回顶部索引&nbsp;^
+
+
+字符设置和文件格式转换&nbsp;
+dos2unix&nbsp;filedos.txt&nbsp;fileunix.txt&nbsp;将一个文本文件的格式从MSDOS转换成UNIX&nbsp;
+unix2dos&nbsp;fileunix.txt&nbsp;filedos.txt&nbsp;将一个文本文件的格式从UNIX转换成MSDOS&nbsp;
+recode&nbsp;..HTML&nbsp;&lt;&nbsp;page.txt&nbsp;&gt;&nbsp;page.html&nbsp;将一个文本文件转换成html&nbsp;
+recode&nbsp;-l&nbsp;|&nbsp;more&nbsp;显示所有允许的转换格式&nbsp;
+
+返回顶部索引&nbsp;^
+
+文件系统分析&nbsp;
+badblocks&nbsp;-v&nbsp;/dev/hda1&nbsp;检查磁盘hda1上的坏磁块&nbsp;
+fsck&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上linux文件系统的完整性&nbsp;
+fsck.ext2&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上ext2文件系统的完整性&nbsp;
+e2fsck&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上ext2文件系统的完整性&nbsp;
+e2fsck&nbsp;-j&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上ext3文件系统的完整性&nbsp;
+fsck.ext3&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上ext3文件系统的完整性&nbsp;
+fsck.vfat&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上fat文件系统的完整性&nbsp;
+fsck.msdos&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上dos文件系统的完整性&nbsp;
+dosfsck&nbsp;/dev/hda1&nbsp;修复/检查hda1磁盘上dos文件系统的完整性&nbsp;
+
+返回顶部索引&nbsp;^
+
+初始化一个文件系统&nbsp;
+mkfs&nbsp;/dev/hda1&nbsp;在hda1分区创建一个文件系统&nbsp;
+mke2fs&nbsp;/dev/hda1&nbsp;在hda1分区创建一个linux&nbsp;ext2的文件系统&nbsp;
+mke2fs&nbsp;-j&nbsp;/dev/hda1&nbsp;在hda1分区创建一个linux&nbsp;ext3(日志型)的文件系统&nbsp;
+mkfs&nbsp;-t&nbsp;vfat&nbsp;32&nbsp;-F&nbsp;/dev/hda1&nbsp;创建一个&nbsp;FAT32&nbsp;文件系统&nbsp;
+fdformat&nbsp;-n&nbsp;/dev/fd0&nbsp;格式化一个软盘&nbsp;
+mkswap&nbsp;/dev/hda3&nbsp;创建一个swap文件系统&nbsp;
+
+返回顶部索引&nbsp;^
+
+SWAP文件系统&nbsp;
+mkswap&nbsp;/dev/hda3&nbsp;创建一个swap文件系统&nbsp;
+swapon&nbsp;/dev/hda3&nbsp;启用一个新的swap文件系统&nbsp;
+swapon&nbsp;/dev/hda2&nbsp;/dev/hdb3&nbsp;启用两个swap分区&nbsp;
+
+返回顶部索引&nbsp;^
+
+备份&nbsp;
+dump&nbsp;-0aj&nbsp;-f&nbsp;/tmp/home0.bak&nbsp;/home&nbsp;制作一个&nbsp;&#39;/home&#39;&nbsp;目录的完整备份&nbsp;
+dump&nbsp;-1aj&nbsp;-f&nbsp;/tmp/home0.bak&nbsp;/home&nbsp;制作一个&nbsp;&#39;/home&#39;&nbsp;目录的交互式备份&nbsp;
+restore&nbsp;-if&nbsp;/tmp/home0.bak&nbsp;还原一个交互式备份&nbsp;
+rsync&nbsp;-rogpav&nbsp;--delete&nbsp;/home&nbsp;/tmp&nbsp;同步两边的目录&nbsp;
+rsync&nbsp;-rogpav&nbsp;-e&nbsp;ssh&nbsp;--delete&nbsp;/home&nbsp;ip_address:/tmp&nbsp;通过SSH通道rsync&nbsp;
+rsync&nbsp;-az&nbsp;-e&nbsp;ssh&nbsp;--delete&nbsp;ip_addr:/home/public&nbsp;/home/local&nbsp;通过ssh和压缩将一个远程目录同步到本地目录&nbsp;
+rsync&nbsp;-az&nbsp;-e&nbsp;ssh&nbsp;--delete&nbsp;/home/local&nbsp;ip_addr:/home/public&nbsp;通过ssh和压缩将本地目录同步到远程目录&nbsp;
+dd&nbsp;bs=1M&nbsp;if=/dev/hda&nbsp;|&nbsp;gzip&nbsp;|&nbsp;ssh&nbsp;user@ip_addr&nbsp;&#39;dd&nbsp;of=hda.gz&#39;&nbsp;通过ssh在远程主机上执行一次备份本地磁盘的操作&nbsp;
+dd&nbsp;if=/dev/sda&nbsp;of=/tmp/file1&nbsp;备份磁盘内容到一个文件&nbsp;
+tar&nbsp;-Puf&nbsp;backup.tar&nbsp;/home/user&nbsp;执行一次对&nbsp;&#39;/home/user&#39;&nbsp;目录的交互式备份操作&nbsp;
+(&nbsp;cd&nbsp;/tmp/local/&nbsp;&amp;&amp;&nbsp;tar&nbsp;c&nbsp;.&nbsp;)&nbsp;|&nbsp;ssh&nbsp;-C&nbsp;user@ip_addr&nbsp;&#39;cd&nbsp;/home/share/&nbsp;&amp;&amp;&nbsp;tar&nbsp;x&nbsp;-p&#39;&nbsp;通过ssh在远程目录中复制一个目录内容&nbsp;
+(&nbsp;tar&nbsp;c&nbsp;/home&nbsp;)&nbsp;|&nbsp;ssh&nbsp;-C&nbsp;user@ip_addr&nbsp;&#39;cd&nbsp;/home/backup-home&nbsp;&amp;&amp;&nbsp;tar&nbsp;x&nbsp;-p&#39;&nbsp;通过ssh在远程目录中复制一个本地目录&nbsp;
+tar&nbsp;cf&nbsp;-&nbsp;.&nbsp;|&nbsp;(cd&nbsp;/tmp/backup&nbsp;;&nbsp;tar&nbsp;xf&nbsp;-&nbsp;)&nbsp;本地将一个目录复制到另一个地方，保留原有权限及链接&nbsp;
+find&nbsp;/home/user1&nbsp;-name&nbsp;&#39;*.txt&#39;&nbsp;|&nbsp;xargs&nbsp;cp&nbsp;-av&nbsp;--target-directory=/home/backup/&nbsp;--parents&nbsp;从一个目录查找并复制所有以&nbsp;&#39;.txt&#39;&nbsp;结尾的文件到另一个目录&nbsp;
+find&nbsp;/var/log&nbsp;-name&nbsp;&#39;*.log&#39;&nbsp;|&nbsp;tar&nbsp;cv&nbsp;--files-from=-&nbsp;|&nbsp;bzip2&nbsp;&gt;&nbsp;log.tar.bz2&nbsp;查找所有以&nbsp;&#39;.log&#39;&nbsp;结尾的文件并做成一个bzip包&nbsp;
+dd&nbsp;if=/dev/hda&nbsp;of=/dev/fd0&nbsp;bs=512&nbsp;count=1&nbsp;做一个将&nbsp;MBR&nbsp;(Master&nbsp;Boot&nbsp;Record)内容复制到软盘的动作&nbsp;
+dd&nbsp;if=/dev/fd0&nbsp;of=/dev/hda&nbsp;bs=512&nbsp;count=1&nbsp;从已经保存到软盘的备份中恢复MBR内容&nbsp;
+
+返回顶部索引&nbsp;^
+
+光盘&nbsp;
+cdrecord&nbsp;-v&nbsp;gracetime=2&nbsp;dev=/dev/cdrom&nbsp;-eject&nbsp;blank=fast&nbsp;-force&nbsp;清空一个可复写的光盘内容&nbsp;
+mkisofs&nbsp;/dev/cdrom&nbsp;&gt;&nbsp;cd.iso&nbsp;在磁盘上创建一个光盘的iso镜像文件&nbsp;
+mkisofs&nbsp;/dev/cdrom&nbsp;|&nbsp;gzip&nbsp;&gt;&nbsp;cd_iso.gz&nbsp;在磁盘上创建一个压缩了的光盘iso镜像文件&nbsp;
+mkisofs&nbsp;-J&nbsp;-allow-leading-dots&nbsp;-R&nbsp;-V&nbsp;&quot;Label&nbsp;CD&quot;&nbsp;-iso-level&nbsp;4&nbsp;-o&nbsp;./cd.iso&nbsp;data_cd&nbsp;创建一个目录的iso镜像文件&nbsp;
+cdrecord&nbsp;-v&nbsp;dev=/dev/cdrom&nbsp;cd.iso&nbsp;刻录一个ISO镜像文件&nbsp;
+gzip&nbsp;-dc&nbsp;cd_iso.gz&nbsp;|&nbsp;cdrecord&nbsp;dev=/dev/cdrom&nbsp;-&nbsp;刻录一个压缩了的ISO镜像文件&nbsp;
+mount&nbsp;-o&nbsp;loop&nbsp;cd.iso&nbsp;/mnt/iso&nbsp;挂载一个ISO镜像文件&nbsp;
+cd-paranoia&nbsp;-B&nbsp;从一个CD光盘转录音轨到&nbsp;wav&nbsp;文件中&nbsp;
+cd-paranoia&nbsp;--&nbsp;&quot;-3&quot;&nbsp;从一个CD光盘转录音轨到&nbsp;wav&nbsp;文件中（参数-3）&nbsp;
+cdrecord&nbsp;--scanbus&nbsp;扫描总线以识别scsi通道&nbsp;
+dd&nbsp;if=/dev/hdc&nbsp;|&nbsp;md5sum&nbsp;校验一个设备的md5sum编码，例如一张&nbsp;CD&nbsp;
+
+返回顶部索引&nbsp;^
+
+网络&nbsp;-&nbsp;（以太网和WIFI无线）&nbsp;
+ifconfig&nbsp;eth0&nbsp;显示一个以太网卡的配置&nbsp;
+ifup&nbsp;eth0&nbsp;启用一个&nbsp;&#39;eth0&#39;&nbsp;网络设备&nbsp;
+ifdown&nbsp;eth0&nbsp;禁用一个&nbsp;&#39;eth0&#39;&nbsp;网络设备&nbsp;
+ifconfig&nbsp;eth0&nbsp;192.168.1.1&nbsp;netmask&nbsp;255.255.255.0&nbsp;控制IP地址&nbsp;
+ifconfig&nbsp;eth0&nbsp;promisc&nbsp;设置&nbsp;&#39;eth0&#39;&nbsp;成混杂模式以嗅探数据包&nbsp;(sniffing)&nbsp;
+dhclient&nbsp;eth0&nbsp;以dhcp模式启用&nbsp;&#39;eth0&#39;&nbsp;
+route&nbsp;-n&nbsp;show&nbsp;routing&nbsp;table&nbsp;
+route&nbsp;add&nbsp;-net&nbsp;0/0&nbsp;gw&nbsp;IP_Gateway&nbsp;configura&nbsp;default&nbsp;gateway&nbsp;
+route&nbsp;add&nbsp;-net&nbsp;192.168.0.0&nbsp;netmask&nbsp;255.255.0.0&nbsp;gw&nbsp;192.168.1.1&nbsp;configure&nbsp;static&nbsp;route&nbsp;to&nbsp;reach&nbsp;network&nbsp;&#39;192.168.0.0/16&#39;&nbsp;
+route&nbsp;del&nbsp;0/0&nbsp;gw&nbsp;IP_gateway&nbsp;remove&nbsp;static&nbsp;route&nbsp;
+echo&nbsp;&quot;1&quot;&nbsp;&gt;&nbsp;/proc/sys/net/ipv4/ip_forward&nbsp;activate&nbsp;ip&nbsp;routing&nbsp;
+hostname&nbsp;show&nbsp;hostname&nbsp;of&nbsp;system&nbsp;
+host&nbsp;www.example.com&nbsp;lookup&nbsp;hostname&nbsp;to&nbsp;resolve&nbsp;name&nbsp;to&nbsp;ip&nbsp;address&nbsp;and&nbsp;viceversa(1)&nbsp;
+nslookup&nbsp;www.example.com&nbsp;lookup&nbsp;hostname&nbsp;to&nbsp;resolve&nbsp;name&nbsp;to&nbsp;ip&nbsp;address&nbsp;and&nbsp;viceversa(2)&nbsp;
+ip&nbsp;link&nbsp;show&nbsp;show&nbsp;link&nbsp;status&nbsp;of&nbsp;all&nbsp;interfaces&nbsp;
+mii-tool&nbsp;eth0&nbsp;show&nbsp;link&nbsp;status&nbsp;of&nbsp;&#39;eth0&#39;&nbsp;
+ethtool&nbsp;eth0&nbsp;show&nbsp;statistics&nbsp;of&nbsp;network&nbsp;card&nbsp;&#39;eth0&#39;&nbsp;
+netstat&nbsp;-tup&nbsp;show&nbsp;all&nbsp;active&nbsp;network&nbsp;connections&nbsp;and&nbsp;their&nbsp;PID&nbsp;
+netstat&nbsp;-tupl&nbsp;show&nbsp;all&nbsp;network&nbsp;services&nbsp;listening&nbsp;on&nbsp;the&nbsp;system&nbsp;and&nbsp;their&nbsp;PID&nbsp;
+tcpdump&nbsp;tcp&nbsp;port&nbsp;80&nbsp;show&nbsp;all&nbsp;HTTP&nbsp;traffic&nbsp;
+iwlist&nbsp;scan&nbsp;show&nbsp;wireless&nbsp;networks&nbsp;
+iwconfig&nbsp;eth1&nbsp;show&nbsp;configuration&nbsp;of&nbsp;a&nbsp;wireless&nbsp;network&nbsp;card&nbsp;
+hostname&nbsp;show&nbsp;hostname&nbsp;
+host&nbsp;www.example.com&nbsp;lookup&nbsp;hostname&nbsp;to&nbsp;resolve&nbsp;name&nbsp;to&nbsp;ip&nbsp;address&nbsp;and&nbsp;viceversa&nbsp;
+nslookup&nbsp;www.example.com&nbsp;lookup&nbsp;hostname&nbsp;to&nbsp;resolve&nbsp;name&nbsp;to&nbsp;ip&nbsp;address&nbsp;and&nbsp;viceversa&nbsp;
+whois&nbsp;www.example.com&nbsp;lookup&nbsp;on&nbsp;Whois&nbsp;database&nbsp;
+
+GO&nbsp;TOP&nbsp;INDEX&nbsp;^&nbsp;
+Microsoft&nbsp;Windows&nbsp;networks&nbsp;(SAMBA)&nbsp;
+nbtscan&nbsp;ip_addr&nbsp;netbios&nbsp;name&nbsp;resolution&nbsp;
+nmblookup&nbsp;-A&nbsp;ip_addr&nbsp;netbios&nbsp;name&nbsp;resolution&nbsp;
+smbclient&nbsp;-L&nbsp;ip_addr/hostname&nbsp;show&nbsp;remote&nbsp;shares&nbsp;of&nbsp;a&nbsp;windows&nbsp;host&nbsp;
+smbget&nbsp;-Rr&nbsp;smb://ip_addr/share&nbsp;like&nbsp;wget&nbsp;can&nbsp;download&nbsp;files&nbsp;from&nbsp;a&nbsp;host&nbsp;windows&nbsp;via&nbsp;smb&nbsp;
+mount&nbsp;-t&nbsp;smbfs&nbsp;-o&nbsp;username=user,password=pass&nbsp;//WinClient/share&nbsp;/mnt/share&nbsp;mount&nbsp;a&nbsp;windows&nbsp;network&nbsp;share</pre><div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd"></div>
+                        </div>
+
+                        <div style="height:1px;border:none;border-top:1px dashed #0066CC;"></div>
+                        <div align="center" >
+                            <h4>你打算打赏多少钱呢?</h4>
+                            <img src="/images/weixin.png" alt="打赏" width="170">
+                            <br/>
+                            (微信扫一扫)
+                        </div>
+                        <div>
+                            <!-- 多说评论框 start -->
+                            <div class="ds-thread" data-thread-key="531c5bf51c4461c3455a10358b436219" data-title="linux 常用命令" data-url="http://www.niefengjun.cn/blog/531c5bf51c4461c3455a10358b436219.html"></div>
+                            <!-- 多说评论框 end -->
+                            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"niefengjun"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0]
+                                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!-- 多说公共JS代码 end -->
+                        </div>
+
+                        <div   style="text-align:left;display: none" id="shouji">
+
+
+
+                        </div>
+                        <div   style="text-align:left;display: none" id="pc">
+
+                            <!--<script type="text/javascript">-->
+                                <!--var sogou_ad_id=526263;-->
+                                <!--var sogou_ad_height=60;-->
+                                <!--var sogou_ad_width=468;-->
+                            <!--</script>-->
+
+                            <!--<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>-->
+                        </div>
+
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                    </article>
+                </div>
+                <div id="sidebar" class="col-sm-4 col-md-4">
+
+                    <aside class="widget">
+                        <form class="form-horizontal" action="/search" method="get">
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="word" placeholder="关键字">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-default" type="submit">  搜索  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+
+                    <aside class="widget">
+                        <h4>博客驱动</h4>
+                        <ul class="grove-list">
+                            <li><a class="media-heading" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DZd8FREwD%2FSMcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAljrVyWpLPYzVOl3Z7VwCXRK%2FuMcf1V7D2nky8NiVsD6t9Km0dgrcbHCY6HLvL%2For%2Bdn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a></li>
+                            <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget">
+                        <h4>推广位</h4>
+                            <ul class="grove-list">
+                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
+                                    </li>
+                        <aside class="widget">
+                    <aside class="widget">
+                        <h4>联系方式</h4>
+                        <ul class="grove-list">
+                            <li><h5 class="media-heading">QQ群:323934521</h5></li>
+                            <li><h5 class="media-heading">Email:mac@niefengjun.cn</h5></li>
+                        </ul>
+                        <h4>订阅聂峰军公众号</h4>
+                        <ul class="grove-list">
+                            <li><img src="/mp/niefengjun.jpg" width="170" alt="公众号"></li>
+                            <li><h5 class="media-heading">公众号:niefengjun85</h5></li>
+                        </ul>
+                    </aside>
+                    <aside class="widget last">
+                        <h4>友情链接</h4>
+                        <ul class="grove-list">
+                            <li><a href="http://www.yijiebuyi.com/?url=niefengjun" target="_blank">一介布衣</a></li>
+                            <li><a href="http://www.itbilu.com/?url=niefengjun" target="_blank">it笔录</a></li>
+                            <li><a href="http://www.cnblogs.com/pangguoming/" target=_blank>炉火纯青</a></li>
+                            <li><a href="http://www.sui-yuan.com/?url=niefengjun" target="_blank">穗儿圆</a></li>
+                            <li><a href="http://www.lfq618.com/?url=niefengjun" target="_blank">福强工作室</a></li>
+
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        $(function(){
+            if(navigator.userAgent.match(/Android/i)||(navigator.userAgent.indexOf('iPhone') != -1) || (navigator.userAgent.indexOf('iPod') != -1) || (navigator.userAgent.indexOf('iPad') != -1)) {
+                $('#shouji').show() ;
+
+            }
+            else
+            {
+                $('#pc').show() ;
+
+            }
+        })
+    </script>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row credits">
+                <div class="col-md-12">
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            Copyright ©2013-2015 all rights reserved<a href="http://www.miitbeian.gov.cn/" target="_blank">聂峰军笔记</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://github.com/niefengjun" target="_blank">
+                                个人git地址
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="https://coding.net/u/niefengjun/p/blog_es6/git" target="_blank">
+                                开源地址
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
+<script type="text/javascript">
+    (function(win,doc){
+        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
+        if (!win.alimamatk_show) {
+            s.charset = "gbk";
+            s.async = true;
+            s.src = "http://a.alimama.cn/tkapi.js";
+            h.insertBefore(s, h.firstChild);
+        };
+        var o = {
+            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "",/*自定义统计字段*/
+            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
+        };
+        win.alimamatk_onload = win.alimamatk_onload || [];
+        win.alimamatk_onload.push(o);
+    })(window,document);
+</script>
+
+<script>
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?30c3fc8096e4883bf4e7eab245946af5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<script src="/blogyuedu/531c5bf51c4461c3455a10358b436219/" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
