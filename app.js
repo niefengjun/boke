@@ -13,6 +13,8 @@ var qiniu = require('./lib/api/qiniu.js');
 var os = require('os');
 var app = express();
 
+app.disable('x-powered-by');
+app.enable('trust proxy')
 // view engine setup
 app.use(cookieParser());
 
