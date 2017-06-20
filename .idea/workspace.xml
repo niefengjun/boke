@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="011d2ca5-8569-460e-95ed-d6afa7777e37" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/niefengjun/admin" afterPath="$PROJECT_DIR$/db/niefengjun/admin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/niefengjun/blog" afterPath="$PROJECT_DIR$/db/niefengjun/blog" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tool.js" afterPath="$PROJECT_DIR$/lib/tool.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/niefengjun/date.log" afterPath="$PROJECT_DIR$/logs/niefengjun/date.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/blogindex.html" afterPath="$PROJECT_DIR$/views/blogindex.html" />
     </list>
     <ignored path="boke.iws" />
@@ -73,8 +69,8 @@
       <file leaf-file-name="blogindex.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/blogindex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="93" column="54" lean-forward="false" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+            <state relative-caret-position="145">
+              <caret line="91" column="55" lean-forward="false" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#article#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -658,7 +654,7 @@
       <workItem from="1497334727209" duration="391000" />
       <workItem from="1497338943147" duration="768000" />
       <workItem from="1497430975031" duration="569000" />
-      <workItem from="1497917830242" duration="604000" />
+      <workItem from="1497917830242" duration="1089000" />
     </task>
     <task id="LOCAL-00001" summary="更新页码">
       <created>1478498547027</created>
@@ -755,7 +751,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42809000" />
+    <option name="totallyTimeSpent" value="43294000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -768,6 +764,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -777,7 +774,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1169,8 +1166,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/blogindex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="93" column="54" lean-forward="false" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="54" />
+        <state relative-caret-position="145">
+          <caret line="91" column="55" lean-forward="false" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#div#1;n#article#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
