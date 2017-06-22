@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="011d2ca5-8569-460e-95ed-d6afa7777e37" name="Default" comment="更新页码">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/niefengjun/blog" afterPath="$PROJECT_DIR$/db/niefengjun/blog" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/pageBlog.js" afterPath="$PROJECT_DIR$/lib/pageBlog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tool.js" afterPath="$PROJECT_DIR$/lib/tool.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/niefengjun/date.log" afterPath="$PROJECT_DIR$/logs/niefengjun/date.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/blogindex.html" afterPath="$PROJECT_DIR$/views/blogindex.html" />
     </list>
     <ignored path="boke.iws" />
@@ -73,8 +69,8 @@
       <file leaf-file-name="blogindex.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/blogindex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="91" column="53" lean-forward="false" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+            <state relative-caret-position="266">
+              <caret line="151" column="53" lean-forward="true" selection-start-line="151" selection-start-column="53" selection-end-line="151" selection-end-column="53" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#article#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -149,6 +145,7 @@
       <find>https</find>
       <find>iconv</find>
       <find>crypto</find>
+      <find>grove-list</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public/swagger</dir>
@@ -663,7 +660,7 @@
       <workItem from="1497430975031" duration="569000" />
       <workItem from="1497917830242" duration="1281000" />
       <workItem from="1498010000032" duration="8000" />
-      <workItem from="1498091709142" duration="660000" />
+      <workItem from="1498091709142" duration="1050000" />
     </task>
     <task id="LOCAL-00001" summary="更新页码">
       <created>1478498547027</created>
@@ -756,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491806208169</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="更新页码">
+      <created>1498092412454</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1498092412454</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44154000" />
+    <option name="totallyTimeSpent" value="44544000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1172,8 +1176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/blogindex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="91" column="53" lean-forward="false" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+        <state relative-caret-position="266">
+          <caret line="151" column="53" lean-forward="true" selection-start-line="151" selection-start-column="53" selection-end-line="151" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#div#1;n#article#0;n#div#0;n#div#1;n#section#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>

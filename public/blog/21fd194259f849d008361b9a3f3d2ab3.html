@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav pull-right navbar-nav">
                     
-                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
+                    <ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>
 
                 </ul>
             </div>
@@ -88,18 +88,15 @@
                         </div>
 
                         <div>
-
-
-                            <!--PC打分版-->
-                            <div id="SOHUCS" sid="21fd194259f849d008361b9a3f3d2ab3"></div>
-                            <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+                            <!--PC和WAP自适应版-->
+                            <div id="SOHUCS" sid="21fd194259f849d008361b9a3f3d2ab3" ></div>
                             <script type="text/javascript">
-                                window._config = { showScore: true };
-                                window.changyan.api.config({
-                                    appid: 'cystfx12t',
-                                    conf: 'prod_235bfda567db66c1d6bd75b291c8d710'
-                                });
-                            </script>
+                                (function(){
+                                    var appid = 'cystfx12t';
+                                    var conf = 'prod_235bfda567db66c1d6bd75b291c8d710';
+                                    var width = window.innerWidth || document.documentElement.clientWidth;
+                                    if (width < 960) {
+                                        window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
 
                         </div>
 
@@ -147,12 +144,12 @@
                             <li><h5 class="media-heading">nodejs(express+nedb+ejs)</h5></li>
                         </ul>
                     </aside>
-                    <aside class="widget">
-                        <h4>推广位</h4>
-                            <ul class="grove-list">
-                                <li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>
-                                    </li>
-                        <aside class="widget">
+                    <!--<aside class="widget">-->
+                        <!--<h4>推广位</h4>-->
+                            <!--<ul class="grove-list">-->
+                                <!--<li> <a data-type="3" data-tmpl="380x380" data-tmplid="197" data-rd="2" data-style="2" data-border="1" href="#"></a>-->
+                                    <!--</li>-->
+                        <!--<aside class="widget">-->
                     <aside class="widget">
                         <h4>联系方式</h4>
                         <ul class="grove-list">
@@ -221,25 +218,6 @@
     </footer>
 </div>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=30286710" charset="UTF-8"></script>
-<script type="text/javascript">
-    (function(win,doc){
-        var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
-        if (!win.alimamatk_show) {
-            s.charset = "gbk";
-            s.async = true;
-            s.src = "//a.alimama.cn/tkapi.js";
-            h.insertBefore(s, h.firstChild);
-        };
-        var o = {
-            pid: "mm_13774938_9896076_42410605",/*推广单元ID，用于区分不同的推广渠道*/
-            appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
-            unid: "",/*自定义统计字段*/
-            type: "click" /* click 组件的入口标志 （使用click组件必设）*/
-        };
-        win.alimamatk_onload = win.alimamatk_onload || [];
-        win.alimamatk_onload.push(o);
-    })(window,document);
-</script>
 
 <script>
 
