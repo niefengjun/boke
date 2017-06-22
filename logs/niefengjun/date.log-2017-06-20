@@ -1,0 +1,66 @@
+[2017-06-20 08:24:06.836] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-20 08:24:30.935] [INFO] console - /favicon.ico
+[2017-06-20 08:24:30.952] [INFO] console - /favicon.ico
+[2017-06-20 08:24:39.534] [INFO] console - null null
+[2017-06-20 08:24:39.536] [INFO] console -  null
+[2017-06-20 08:24:59.067] [INFO] console - null null
+[2017-06-20 08:24:59.067] [INFO] console -  null
+[2017-06-20 08:25:32.682] [INFO] console - null null
+[2017-06-20 08:25:32.682] [INFO] console -  null
+[2017-06-20 08:25:38.576] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-20 08:25:40.565] [INFO] console - null { id: '1234567890',
+  username: 'admin',
+  password: 'e10adc3949ba59abbe56e057f20f883e',
+  _id: 'rNRqUDEtxE95EZUL' }
+[2017-06-20 08:25:40.569] [INFO] console -  { id: '1234567890',
+  username: 'admin',
+  password: 'e10adc3949ba59abbe56e057f20f883e',
+  _id: 'rNRqUDEtxE95EZUL' }
+[2017-06-20 08:25:40.569] [INFO] console - 1
+[2017-06-20 08:25:40.570] [INFO] console - cafe0fb336964d6158458a9434ef9ecd614432fbef20ac3368c96bd0c3ad6e0bac7fb66166bf9bea8f51f21ce195b04b72ce81affb08133b16352fd756a3cbb53550c5971369860325f931089a337d70d1cc6e80060725d5f5a54b25194b7b638208601252ce52f3e0f498b8d0327275
+[2017-06-20 08:25:40.587] [INFO] console - /admin/index/
+[2017-06-20 08:25:43.470] [INFO] console - /admin/blog/?ajax=list
+[2017-06-20 08:25:43.471] [INFO] console - ht undefined undefined
+[2017-06-20 08:25:43.472] [INFO] console - list
+[2017-06-20 08:25:43.498] [INFO] console - /admin/blog/?ajax=list
+[2017-06-20 08:25:43.498] [INFO] console - ht undefined undefined
+[2017-06-20 08:25:43.499] [INFO] console - list
+[2017-06-20 08:25:43.687] [INFO] console - /admin/blog/?ajax=pagePageInfo&sEcho=1&iColumns=7&sColumns=%2C%2C%2C%2C%2C%2C&iDisplayStart=0&iDisplayLength=10&mDataProp_0=title&sSearch_0=&bRegex_0=false&bSearchable_0=true&bSortable_0=true&mDataProp_1=column&sSearch_1=&bRegex_1=false&bSearchable_1=true&bSortable_1=true&mDataProp_2=created&sSearch_2=&bRegex_2=false&bSearchable_2=true&bSortable_2=true&mDataProp_3=create_username&sSearch_3=&bRegex_3=false&bSearchable_3=true&bSortable_3=true&mDataProp_4=yuedu&sSearch_4=&bRegex_4=false&bSearchable_4=true&bSortable_4=true&mDataProp_5=_id&sSearch_5=&bRegex_5=false&bSearchable_5=true&bSortable_5=true&mDataProp_6=&sSearch_6=&bRegex_6=false&bSearchable_6=true&bSortable_6=true&sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&_=1497918343561
+[2017-06-20 08:25:43.687] [INFO] console - ht undefined undefined
+[2017-06-20 08:25:43.687] [INFO] console - pagePageInfo
+[2017-06-20 08:25:43.687] [INFO] console - 10 1
+[2017-06-20 08:25:44.676] [INFO] console - /admin/blog/
+[2017-06-20 08:25:44.676] [INFO] console - ht undefined undefined
+[2017-06-20 08:25:44.677] [INFO] console - undefined
+[2017-06-20 08:25:59.733] [INFO] console - /admin/blog/
+[2017-06-20 08:25:59.734] [INFO] console - ht undefined undefined
+[2017-06-20 08:25:59.734] [INFO] console - add
+[2017-06-20 08:25:59.740] [INFO] console - blogindex.html { _id: '5b6c28ed64f1e7af315597eedc67c5ae',
+  title: '111111',
+  content: '<p>sdsdsdsdsds<br/></p>',
+  column: 'nodejs',
+  yuedu: 0,
+  created: '2017-06-01 19:00:00',
+  create_username: 'admin',
+  classname: '<ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>' } /blog/5b6c28ed64f1e7af315597eedc67c5ae.html
+[2017-06-20 08:27:00.674] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-20 08:27:03.704] [INFO] console - /admin/blog/
+[2017-06-20 08:27:03.705] [INFO] console - ht undefined undefined
+[2017-06-20 08:27:03.706] [INFO] console - add
+[2017-06-20 08:27:03.721] [INFO] console - blogindex.html { _id: '21fd194259f849d008361b9a3f3d2ab3',
+  title: '111111',
+  content: '<p>sdsdsdsdsds<br/></p>',
+  column: 'nodejs',
+  yuedu: 0,
+  created: '2017-06-01 19:00:00',
+  create_username: 'admin',
+  classname: '<ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>' } /blog/21fd194259f849d008361b9a3f3d2ab3.html
+[2017-06-20 08:27:05.414] [INFO] console - /admin/blog/?ajax=list
+[2017-06-20 08:27:05.415] [INFO] console - ht undefined undefined
+[2017-06-20 08:27:05.415] [INFO] console - list
+[2017-06-20 08:27:05.848] [INFO] console - /admin/blog/?ajax=pagePageInfo&sEcho=1&iColumns=7&sColumns=%2C%2C%2C%2C%2C%2C&iDisplayStart=0&iDisplayLength=10&mDataProp_0=title&sSearch_0=&bRegex_0=false&bSearchable_0=true&bSortable_0=true&mDataProp_1=column&sSearch_1=&bRegex_1=false&bSearchable_1=true&bSortable_1=true&mDataProp_2=created&sSearch_2=&bRegex_2=false&bSearchable_2=true&bSortable_2=true&mDataProp_3=create_username&sSearch_3=&bRegex_3=false&bSearchable_3=true&bSortable_3=true&mDataProp_4=yuedu&sSearch_4=&bRegex_4=false&bSearchable_4=true&bSortable_4=true&mDataProp_5=_id&sSearch_5=&bRegex_5=false&bSearchable_5=true&bSortable_5=true&mDataProp_6=&sSearch_6=&bRegex_6=false&bSearchable_6=true&bSortable_6=true&sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&_=1497918425685
+[2017-06-20 08:27:05.849] [INFO] console - ht undefined undefined
+[2017-06-20 08:27:05.849] [INFO] console - pagePageInfo
+[2017-06-20 08:27:05.849] [INFO] console - 10 1
+[2017-06-20 08:28:02.210] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-20 08:36:57.072] [INFO] console - /admin/index/
