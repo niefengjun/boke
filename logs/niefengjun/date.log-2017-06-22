@@ -1,0 +1,72 @@
+[2017-06-22 08:43:21.956] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-22 08:43:44.001] [INFO] console - /favicon.ico
+[2017-06-22 08:43:44.037] [INFO] console - /favicon.ico
+[2017-06-22 08:43:45.486] [INFO] console - null { id: '1234567890',
+  username: 'admin',
+  password: 'e10adc3949ba59abbe56e057f20f883e',
+  _id: 'rNRqUDEtxE95EZUL' }
+[2017-06-22 08:43:45.489] [INFO] console -  { id: '1234567890',
+  username: 'admin',
+  password: 'e10adc3949ba59abbe56e057f20f883e',
+  _id: 'rNRqUDEtxE95EZUL' }
+[2017-06-22 08:43:45.490] [INFO] console - 1
+[2017-06-22 08:43:45.490] [INFO] console - cafe0fb336964d6158458a9434ef9ecd614432fbef20ac3368c96bd0c3ad6e0bac7fb66166bf9bea8f51f21ce195b04b72ce81affb08133b16352fd756a3cbb53550c5971369860325f931089a337d70d1cc6e80060725d5f5a54b25194b7b638208601252ce52f3e0f498b8d0327275
+[2017-06-22 08:43:45.509] [INFO] console - /admin/index/
+[2017-06-22 08:43:47.740] [INFO] console - /admin/blog/?ajax=list
+[2017-06-22 08:43:47.741] [INFO] console - ht undefined undefined
+[2017-06-22 08:43:47.743] [INFO] console - list
+[2017-06-22 08:43:47.770] [INFO] console - /admin/blog/?ajax=list
+[2017-06-22 08:43:47.770] [INFO] console - ht undefined undefined
+[2017-06-22 08:43:47.770] [INFO] console - list
+[2017-06-22 08:43:47.964] [INFO] console - /admin/blog/?ajax=pagePageInfo&sEcho=1&iColumns=7&sColumns=%2C%2C%2C%2C%2C%2C&iDisplayStart=0&iDisplayLength=10&mDataProp_0=title&sSearch_0=&bRegex_0=false&bSearchable_0=true&bSortable_0=true&mDataProp_1=column&sSearch_1=&bRegex_1=false&bSearchable_1=true&bSortable_1=true&mDataProp_2=created&sSearch_2=&bRegex_2=false&bSearchable_2=true&bSortable_2=true&mDataProp_3=create_username&sSearch_3=&bRegex_3=false&bSearchable_3=true&bSortable_3=true&mDataProp_4=yuedu&sSearch_4=&bRegex_4=false&bSearchable_4=true&bSortable_4=true&mDataProp_5=_id&sSearch_5=&bRegex_5=false&bSearchable_5=true&bSortable_5=true&mDataProp_6=&sSearch_6=&bRegex_6=false&bSearchable_6=true&bSortable_6=true&sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&_=1498092227855
+[2017-06-22 08:43:47.964] [INFO] console - ht undefined undefined
+[2017-06-22 08:43:47.964] [INFO] console - pagePageInfo
+[2017-06-22 08:43:47.964] [INFO] console - 10 1
+[2017-06-22 08:43:48.799] [INFO] console - /admin/blog/
+[2017-06-22 08:43:48.800] [INFO] console - ht undefined undefined
+[2017-06-22 08:43:48.800] [INFO] console - undefined
+[2017-06-22 08:43:58.575] [INFO] console - /admin/blog/
+[2017-06-22 08:43:58.575] [INFO] console - ht undefined undefined
+[2017-06-22 08:43:58.575] [INFO] console - add
+[2017-06-22 08:43:58.580] [INFO] console - blogindex.html { _id: '3474aee1ccbb1365e8219e1c91ba9d7f',
+  title: 'fdfdfdfdf',
+  content: '<p>sdsdsds<br/></p>',
+  column: 'nodejs',
+  yuedu: 0,
+  created: '2017-06-22 08:43:58',
+  create_username: 'admin',
+  classname: '<ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>' } /blog/3474aee1ccbb1365e8219e1c91ba9d7f.html
+[2017-06-22 08:45:21.070] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-22 08:45:30.552] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-22 08:45:33.602] [INFO] console - /admin/blog/
+[2017-06-22 08:45:33.603] [INFO] console - ht undefined undefined
+[2017-06-22 08:45:33.605] [INFO] console - add
+[2017-06-22 08:45:33.612] [INFO] console - write==== { _id: '59ba6bc0a5343f80ed4ad7d11ec4d362',
+  title: 'fdfdfdfdf',
+  content: '<p>sdsdsds<br/></p>',
+  column: 'nodejs',
+  yuedu: 0,
+  created: '2017-06-22 08:45:33',
+  create_username: 'admin',
+  classname: '<ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>' }
+[2017-06-22 08:46:17.669] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-22 08:46:20.405] [INFO] console - /admin/blog/
+[2017-06-22 08:46:20.406] [INFO] console - ht undefined undefined
+[2017-06-22 08:46:20.407] [INFO] console - add
+[2017-06-22 08:46:20.421] [INFO] console - write==== { _id: '0c3c5fb7dcdbb96d353b3856a21928f4',
+  title: 'fdfdfdfdf',
+  content: '<p>sdsdsds<br/></p>',
+  column: 'nodejs',
+  yuedu: 0,
+  created: '2017-06-22 08:46:20',
+  create_username: 'admin',
+  classname: '<ul class="nav pull-right navbar-nav"><li><a href="/">首页</a></li><li class="active"><a href="/category/nodejs.html">nodejs</a></li><li><a href="/category/life.html">生活</a></li><li><a href="/category/yuanchuang.html">原创</a></li><li><a href="/category/demo.html">demo</a></li><li><a href="/category/reprint.html">转载</a></li><li><a href="/category/Other.html">其他</a></li><li><a href="//niefengjun.mikecrm.com/f.php?t=68K29M">留言板</a></li></ul>' }
+[2017-06-22 08:46:21.959] [INFO] console - /admin/blog/?ajax=list
+[2017-06-22 08:46:21.959] [INFO] console - ht undefined undefined
+[2017-06-22 08:46:21.959] [INFO] console - list
+[2017-06-22 08:46:22.302] [INFO] console - /admin/blog/?ajax=pagePageInfo&sEcho=1&iColumns=7&sColumns=%2C%2C%2C%2C%2C%2C&iDisplayStart=0&iDisplayLength=10&mDataProp_0=title&sSearch_0=&bRegex_0=false&bSearchable_0=true&bSortable_0=true&mDataProp_1=column&sSearch_1=&bRegex_1=false&bSearchable_1=true&bSortable_1=true&mDataProp_2=created&sSearch_2=&bRegex_2=false&bSearchable_2=true&bSortable_2=true&mDataProp_3=create_username&sSearch_3=&bRegex_3=false&bSearchable_3=true&bSortable_3=true&mDataProp_4=yuedu&sSearch_4=&bRegex_4=false&bSearchable_4=true&bSortable_4=true&mDataProp_5=_id&sSearch_5=&bRegex_5=false&bSearchable_5=true&bSortable_5=true&mDataProp_6=&sSearch_6=&bRegex_6=false&bSearchable_6=true&bSortable_6=true&sSearch=&bRegex=false&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&_=1498092382136
+[2017-06-22 08:46:22.302] [INFO] console - ht undefined undefined
+[2017-06-22 08:46:22.303] [INFO] console - pagePageInfo
+[2017-06-22 08:46:22.303] [INFO] console - 10 1
+[2017-06-22 08:46:54.915] [INFO] console - niefengjunblog服务器启动 4000
+[2017-06-22 10:44:59.643] [INFO] console - niefengjunblog服务器启动 4000
