@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 <title>天晴小栈--马家堡西里16号楼2007</title>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wDYEcxgRRheZwyC9jpN1Tt7fzr2zjosZ"></script>
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script><!--调用jQuery-->
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wDYEcxgRRheZwyC9jpN1Tt7fzr2zjosZ"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script><!--调用jQuery-->
 
 <style type="text/css">
     body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
     var map = new BMap.Map("allmap");
-    var point = new BMap.Point(116.709684,39.89778);
+    var point = new BMap.Point(116.382881,39.859786);
     map.centerAndZoom(point, 16);
     map.enableScrollWheelZoom();
 
@@ -40,7 +40,7 @@
             var lngCurrent = r.point.lng;
             //alert('我的位置：'+ latCurrent + ',' + lngCurrent);
 
-            location.href="http://api.map.baidu.com/direction?origin="+latCurrent+","+lngCurrent+"&destination=116.382881,39.859786&mode=driving&region=北京&output=html";
+            location.href="https://api.map.baidu.com/direction?origin="+latCurrent+","+lngCurrent+"&destination=116.382881,39.859786&mode=driving&region=北京&output=html";
 
         }
         else {
